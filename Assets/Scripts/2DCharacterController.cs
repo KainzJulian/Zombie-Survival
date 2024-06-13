@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class CharacterController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Rigidbody2D rb;
+
+    public float speed;
+
+    private void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void moveFixed(float horizontal, float vertical)
     {
-        
+        rb.MovePosition(rb.position + new Vector2(horizontal, vertical) * speed * Time.fixedDeltaTime);
+    }
+
+    public void move(float horizontal, float vertical)
+    {
+        rb.MovePosition(rb.position + new Vector2(horizontal, vertical) * speed * Time.deltaTime);
     }
 }
