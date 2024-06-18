@@ -6,24 +6,12 @@ public class Health : MonoBehaviour, Damagable
 {
     public int health = 100;
 
-    [SerializeField]
-    private int maxHealth = 100;
+    public int maxHealth = 100;
 
     public UnityEvent<int> onHealthDecrease = new UnityEvent<int>();
     public UnityEvent<int> onHealthIncrease = new UnityEvent<int>();
     public UnityEvent<int> onHealthChange = new UnityEvent<int>();
-
-    [SerializeField] TextMeshProUGUI healthText;
-
-    [SerializeField] TextMeshProUGUI maxHealthText;
-
-    private void Start()
-    {
-        setHealthText(health);
-        maxHealthText.text = maxHealth.ToString();
-
-        onHealthChange.AddListener(setHealthText);
-    }
+    public UnityEvent onDie = new UnityEvent();
 
     public void takeDamage(int amount)
     {
@@ -36,6 +24,9 @@ public class Health : MonoBehaviour, Damagable
 
         onHealthChange?.Invoke(amount);
         onHealthDecrease?.Invoke(amount);
+
+        if (health == 0)
+            die();
     }
 
     public void heal(int amount)
@@ -51,8 +42,8 @@ public class Health : MonoBehaviour, Damagable
         onHealthIncrease?.Invoke(amount);
     }
 
-    public void setHealthText(int healthAmount)
+    public void die()
     {
-        healthText.text = health.ToString();
+        onDie?.Invoke();
     }
 }
