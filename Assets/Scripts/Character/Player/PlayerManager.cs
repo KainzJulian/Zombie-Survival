@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
 
     CharacterController characterController;
     Health healthComponent;
+    Armor armorComponent;
+    Attackable attackComponent;
 
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI maxHealthText;
@@ -19,13 +21,23 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        attackComponent = GetComponent<Attackable>();
 
+        armorComponent = GetComponent<Armor>();
         healthComponent = GetComponent<Health>();
         setHealthText();
         setMaxHealthText();
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("attack melee");
+            attackComponent.attack(null, 10);
+        }
+    }
+
     private void FixedUpdate()
     {
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;

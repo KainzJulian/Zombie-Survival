@@ -2,30 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageEntity : MonoBehaviour
+public class DamageEntity : MonoBehaviour, Attackable
 {
 
     public int damage = 0;
-
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         switch (other.gameObject.tag)
         {
             case "Player":
-                takeDamage(other.gameObject.GetComponent<Damagable>());
+                attack(other.gameObject.GetComponent<Damagable>(), damage);
                 break;
             default: return;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void attack(Damagable damagable, int damageAmount = 0)
     {
-        Debug.Log("ONTriggerEnter");
-    }
-
-    public void takeDamage(Damagable damagable)
-    {
-        damagable.takeDamage(damage);
+        damagable.takeDamage(damageAmount);
     }
 }

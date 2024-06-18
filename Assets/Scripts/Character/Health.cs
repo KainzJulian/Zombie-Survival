@@ -7,6 +7,7 @@ public class Health : MonoBehaviour, Damagable
     public int health = 100;
 
     public int maxHealth = 100;
+    public int armorAmount = 0;
 
     public UnityEvent<int> onHealthDecrease = new UnityEvent<int>();
     public UnityEvent<int> onHealthIncrease = new UnityEvent<int>();
@@ -15,7 +16,7 @@ public class Health : MonoBehaviour, Damagable
 
     public void takeDamage(int amount)
     {
-        int help = amount - GetComponent<Armor>().armor;
+        int help = amount - armorAmount;
 
         if (help < 0)
             help = 1;
@@ -25,7 +26,7 @@ public class Health : MonoBehaviour, Damagable
         onHealthChange?.Invoke(amount);
         onHealthDecrease?.Invoke(amount);
 
-        if (health == 0)
+        if (health <= 0)
             die();
     }
 
@@ -44,6 +45,7 @@ public class Health : MonoBehaviour, Damagable
 
     public void die()
     {
+        gameObject.SetActive(false);
         onDie?.Invoke();
     }
 }
