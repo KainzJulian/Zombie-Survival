@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Health))]
 public class PlayerManager : MonoBehaviour
 {
-
     CharacterController characterController;
     Health healthComponent;
     Armor armorComponent;
-    Attackable attackComponent;
+
+    public WeaponConfig weaponConfig;
 
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI maxHealthText;
+
+    [SerializeField] LayerMask attackLayers;
+    [SerializeField] Transform attackPoint;
 
     Vector2 movement;
 
@@ -21,7 +25,6 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        attackComponent = GetComponent<Attackable>();
 
         armorComponent = GetComponent<Armor>();
         healthComponent = GetComponent<Health>();
@@ -34,7 +37,7 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("attack melee");
-            attackComponent.attack(null, 10);
+            weaponConfig.attack(attackPoint, attackLayers);
         }
     }
 

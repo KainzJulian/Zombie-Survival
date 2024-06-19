@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface Attackable
 {
-    void attack(Damagable damagable, int damageAmount);
+    void attack();
 }

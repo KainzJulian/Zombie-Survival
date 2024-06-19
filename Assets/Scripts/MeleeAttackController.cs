@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class MeleeAttackController : MonoBehaviour, Attackable
+public class MeleeAttackController : MonoBehaviour
 {
     public int size = 10;
-    public Transform attackPoint;
-    public LayerMask layer;
+    [SerializeField] Transform attackPoint;
+    [SerializeField] Transform playerPosition;
+    [SerializeField] LayerMask layer;
+
+    [SerializeField] MeleeWeaponConfig weaponConfig;
 
     public void attack(Damagable damagable = null, int damageAmount = 0)
     {

@@ -7,7 +7,7 @@ public class CameraPointManager : MonoBehaviour
 
     Vector3 mousePosition;
 
-    [Tooltip("Wether the camera should be closer to the mouse(1) or the player(0)")]
+    [Tooltip("Wether the camera should be closer to the player(0) or the mouse(1)")]
     [SerializeField, Range(0f, 1f)]
     float positionScale;
 
