@@ -37,6 +37,7 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("attack melee");
+            Debug.Log(weaponConfig);
             weaponConfig.attack(attackPoint, attackLayers);
         }
     }
@@ -61,5 +62,11 @@ public class PlayerManager : MonoBehaviour
             amount = healthComponent.health;
 
         maxHealthText.SetText(amount.ToString());
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (attackPoint != null)
+            Gizmos.DrawWireSphere(attackPoint.position, 10);
     }
 }

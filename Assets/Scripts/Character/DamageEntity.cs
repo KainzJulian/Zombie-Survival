@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class DamageEntity : MonoBehaviour, Attackable
+public class DamageEntity : MonoBehaviour
 {
 
     public int damage = 0;
@@ -11,17 +12,21 @@ public class DamageEntity : MonoBehaviour, Attackable
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        switch (other.gameObject.tag)
-        {
-            case "Player":
-                damagable = other.gameObject.GetComponent<Damagable>();
-                break;
-            default: return;
-        }
+        damagable = other.gameObject.GetComponent<Damagable>();
+
+        if (damagable == null)
+            return;
+
+        damagable.takeDamage(damage);
     }
 
-    public void attack()
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        damagable = other.gameObject.GetComponent<Damagable>();
+
+        if (damagable == null)
+            return;
+
         damagable.takeDamage(damage);
     }
 }
