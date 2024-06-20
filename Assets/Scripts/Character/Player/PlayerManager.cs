@@ -21,7 +21,6 @@ public class PlayerManager : MonoBehaviour
 
     Vector2 movement;
 
-    // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent<CharacterController>();
