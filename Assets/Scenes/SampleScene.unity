@@ -257,6 +257,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152074146}
   m_CullTransparentMesh: 1
+--- !u!50 &174681535 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3362154318722211106, guid: 7eeaac6c6026d564f8abadcea05301ca, type: 3}
+  m_PrefabInstance: {fileID: 5561095439326884939}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,7 +1450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5ec4347454b5c4da9021b41101df8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponConfig: {fileID: 11400000, guid: 1facc4759e5a5cf48b01a4b27a17cdc3, type: 2}
+  weaponConfig: {fileID: 11400000, guid: 911368c4e8ceba540bfe8628cbf64211, type: 2}
   healthText: {fileID: 695535346}
   maxHealthText: {fileID: 152074148}
   attackLayers:
@@ -1583,6 +1588,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4424950794092486581, guid: 7eeaac6c6026d564f8abadcea05301ca, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 174681535}
     - target: {fileID: 5977094512605975314, guid: 7eeaac6c6026d564f8abadcea05301ca, type: 3}
       propertyPath: m_Name
       value: Bullet

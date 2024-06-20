@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: testRange
   m_EditorClassIdentifier: 
   attackPoint: {x: 0, y: 0}
-  duration: 0
-  damage: 0
-  attackSpeed: 0
-  lifeTime: 0
-  projectileCount: 0
+  duration: 2
+  damage: 2
+  attackSpeed: 2
+  lifeTime: 10
+  projectileCount: 1
   projectileSpeed: 100
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 5977094512605975314, guid: 7eeaac6c6026d564f8abadcea05301ca, type: 3}

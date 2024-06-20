@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: testMelee
   m_EditorClassIdentifier: 
   attackPoint: {x: 0, y: 0}
-  duration: 0
-  damage: 0
-  attackSpeed: 0
-  attackSize: 0
+  duration: 1
+  damage: 20
+  attackSpeed: 2
+  attackSize: 50
