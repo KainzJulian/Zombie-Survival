@@ -17,6 +17,6 @@ MonoBehaviour:
   damage: 2
   attackSpeed: 2
   lifeTime: 10
-  projectileCount: 1
-  projectileSpeed: 100
+  projectileCount: 10
+  projectileSpeed: 200
   projectilePrefab: {fileID: 5977094512605975314, guid: 7eeaac6c6026d564f8abadcea05301ca, type: 3}
