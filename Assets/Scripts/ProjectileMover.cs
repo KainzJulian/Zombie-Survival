@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileMover : MonoBehaviour
 {
-    public float speed { private get; set; } = 1f;
+    public float speed { private get; set; } = 900f;
     Rigidbody2D rb;
 
     private void Start()

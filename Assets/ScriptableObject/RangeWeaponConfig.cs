@@ -11,9 +11,6 @@ public class RangeWeaponConfig : WeaponConfig
     [Tooltip("Amount of projectiles per shot")]
     public int projectileCount;
 
-    [Tooltip("Speed of projectiles")]
-    public int projectileSpeed = 100;
-
     [Tooltip("Projectile which will be shot")]
     public GameObject projectilePrefab;
 
@@ -25,6 +22,5 @@ public class RangeWeaponConfig : WeaponConfig
 
         projectile.GetComponent<DamageEntity>().damage = damage;
         projectile.GetComponent<LifeSpanController>().setLifeTime(lifeTime);
-        projectile.GetComponent<ProjectileMover>().speed = projectileSpeed;
     }
 }
