@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class AttackPointController : MonoBehaviour
 {
-    // [SerializeField] WeaponConfig weaponConfig;
-
-    // private void Start()
-    // {
-    //     transform.position = weaponConfig.attackPoint;
-    // }
-
     private void FixedUpdate()
     {
         rotateAttackPoint();
