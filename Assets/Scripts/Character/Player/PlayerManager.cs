@@ -11,7 +11,8 @@ public class PlayerManager : MonoBehaviour
     Health healthComponent;
     Armor armorComponent;
 
-    public WeaponConfig weaponConfig;
+    public WeaponConfig primaryWeapon;
+    public WeaponConfig secondaryWeapon;
 
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI maxHealthText;
@@ -33,11 +34,17 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            WeaponConfig help = primaryWeapon;
+            primaryWeapon = secondaryWeapon;
+            secondaryWeapon = help;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("attack melee");
-            Debug.Log(weaponConfig);
-            weaponConfig.attack(attackPoint, attackLayers);
+            primaryWeapon.attack(attackPoint, attackLayers);
         }
     }
 

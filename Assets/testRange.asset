@@ -16,6 +16,7 @@ MonoBehaviour:
   duration: 1
   damage: 2
   attackSpeed: 2
-  projectileCount: 1369
+  projectileCount: 40
   projectilePrefab: {fileID: 5977094512605975314, guid: 7eeaac6c6026d564f8abadcea05301ca, type: 3}
   angle: 22
+  magazinSize: 0
