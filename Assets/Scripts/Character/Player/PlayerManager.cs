@@ -11,14 +11,11 @@ public class PlayerManager : MonoBehaviour
     Health healthComponent;
     Armor armorComponent;
 
-    public WeaponConfig primaryWeapon;
-    public WeaponConfig secondaryWeapon;
+    // public WeaponConfig primaryWeapon;
+    // public WeaponConfig secondaryWeapon;
 
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI maxHealthText;
-
-    [SerializeField] LayerMask attackLayers;
-    [SerializeField] Transform attackPoint;
 
     Vector2 movement;
 
@@ -34,18 +31,12 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            WeaponConfig help = primaryWeapon;
-            primaryWeapon = secondaryWeapon;
-            secondaryWeapon = help;
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            primaryWeapon.attack(attackPoint, attackLayers);
-        }
+        // if (Input.GetKeyDown(KeyCode.E))
+        // {
+        //     WeaponConfig help = primaryWeapon;
+        //     primaryWeapon = secondaryWeapon;
+        //     secondaryWeapon = help;
+        // }
     }
 
     private void FixedUpdate()
@@ -68,11 +59,5 @@ public class PlayerManager : MonoBehaviour
             amount = healthComponent.health;
 
         maxHealthText.SetText(amount.ToString());
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (attackPoint != null)
-            Gizmos.DrawWireSphere(attackPoint.position, 10);
     }
 }

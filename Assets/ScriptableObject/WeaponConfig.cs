@@ -16,5 +16,5 @@ public abstract class WeaponConfig : ScriptableObject
     [Tooltip("Time between two Attacks (lower number = faster attack)")]
     public float attackSpeed;
 
-    public abstract void attack(Transform attackPoint, LayerMask layer);
+    public abstract void attack(Transform attackPoint, LayerMask layer, Weapon weapon);
 }

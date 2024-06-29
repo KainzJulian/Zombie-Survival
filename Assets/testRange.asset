@@ -19,4 +19,4 @@ MonoBehaviour:
   projectileCount: 40
   projectilePrefab: {fileID: 5977094512605975314, guid: 7eeaac6c6026d564f8abadcea05301ca, type: 3}
   angle: 22
-  magazinSize: 0
+  magazinSize: 10

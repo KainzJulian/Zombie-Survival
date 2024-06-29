@@ -7,16 +7,31 @@ public class WeaponController : MonoBehaviour
     public WeaponConfig currentWeaponConfig;
     public Weapon currentWeapon;
 
+    [SerializeField] LayerMask attackLayers;
+    [SerializeField] Transform attackPoint;
+
     private void Start()
     {
-        currentWeapon = new Weapon(currentWeaponConfig);
+        setWeapon(currentWeaponConfig);
     }
 
-    // private void Update()
-    // {
-    //     if (Input.GetMouseButtonDown(0))
-    //     {
-    //         // currentWeaponConfig.attack(attackPoint, attackLayers);
-    //     }
-    // }
+    public void setWeapon(WeaponConfig config)
+    {
+        currentWeapon = new Weapon(config);
+        currentWeaponConfig = config;
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            currentWeaponConfig.attack(attackPoint, attackLayers, currentWeapon);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (attackPoint != null)
+            Gizmos.DrawWireSphere(attackPoint.position, 10);
+    }
 }

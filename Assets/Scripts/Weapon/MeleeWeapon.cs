@@ -10,4 +10,9 @@ public class MeleeWeapon : Weapon
     {
         attackSize = config.attackSize;
     }
+
+    public override void attack()
+    {
+        throw new System.NotImplementedException();
+    }
 }
