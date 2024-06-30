@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6019a5e0badc4f642aebf643c943bf3b, type: 3}
   m_Name: testRange
   m_EditorClassIdentifier: 
+  weaponType: 0
   attackPoint: {x: 0, y: 0}
   duration: 1
   damage: 2
   attackSpeed: 2
-  projectileCount: 40
+  projectileCount: 5
   projectilePrefab: {fileID: 5977094512605975314, guid: 7eeaac6c6026d564f8abadcea05301ca, type: 3}
-  angle: 22
+  angle: 15
   magazinSize: 10

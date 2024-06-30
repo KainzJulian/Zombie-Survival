@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a0488db2def694e8d3e5e213ff4655, type: 3}
   m_Name: testMelee
   m_EditorClassIdentifier: 
+  weaponType: 1
   attackPoint: {x: 0, y: 0}
   duration: 1
   damage: 20

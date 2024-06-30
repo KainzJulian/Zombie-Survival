@@ -17,16 +17,8 @@ public class RangeWeaponConfig : WeaponConfig
 
     public int magazinSize;
 
-    public override void attack(Transform attackPoint, LayerMask layer, Weapon weapon)
+    public override void attack(Transform attackPoint, LayerMask layer)
     {
-
-        RangeWeapon rangeWeapon = weapon as RangeWeapon;
-
-        if (rangeWeapon.currentAmmoAmount <= 0)
-            return;
-
-        rangeWeapon.attack();
-
         for (int i = 0; i < projectileCount; i++)
         {
             // add spread to the bullets
@@ -34,7 +26,7 @@ public class RangeWeaponConfig : WeaponConfig
             GameObject projectile = Instantiate(projectilePrefab, attackPoint.position, Quaternion.Euler(0f, 0f, newAngle));
 
             // set damage of bullet
-            projectile.GetComponent<DamageEntity>().damage = rangeWeapon.damage;
+            projectile.GetComponent<DamageEntity>().damage = damage;
         }
     }
 }

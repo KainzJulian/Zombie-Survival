@@ -13,6 +13,7 @@ public class MeleeWeapon : Weapon
 
     public override void attack()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("melee Weapon attack");
+        // throw new System.NotImplementedException();
     }
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public abstract class WeaponConfig : ScriptableObject
 {
+
+    [Tooltip("Type of weapon")]
+    public WeaponType weaponType;
+
     [Tooltip("The Point on which the attack should come from")]
     public Vector2 attackPoint;
 
@@ -16,5 +20,12 @@ public abstract class WeaponConfig : ScriptableObject
     [Tooltip("Time between two Attacks (lower number = faster attack)")]
     public float attackSpeed;
 
-    public abstract void attack(Transform attackPoint, LayerMask layer, Weapon weapon);
+    public abstract void attack(Transform attackPoint, LayerMask layer);
+}
+
+public enum WeaponType
+{
+    Range,
+    Melee,
+    Throwable
 }

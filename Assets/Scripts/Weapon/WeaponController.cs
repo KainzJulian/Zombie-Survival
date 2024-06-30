@@ -4,28 +4,66 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    public WeaponConfig currentWeaponConfig;
-    public Weapon currentWeapon;
+    public WeaponConfig weaponConfig;
+    private Weapon weapon;
+
+    public WeaponConfig primaryWeaponConfig;
+    private Weapon primaryWeapon;
+
+    public WeaponConfig secondaryWeaponConfig;
+    private Weapon secondaryWeapon;
 
     [SerializeField] LayerMask attackLayers;
     [SerializeField] Transform attackPoint;
 
     private void Start()
     {
-        setWeapon(currentWeaponConfig);
+        if (weaponConfig != null)
+            weapon = setWeapon(weaponConfig);
+
+        primaryWeapon = setWeapon(primaryWeaponConfig);
+        secondaryWeapon = setWeapon(secondaryWeaponConfig);
     }
 
-    public void setWeapon(WeaponConfig config)
+    public Weapon setWeapon(WeaponConfig config)
     {
-        currentWeapon = new Weapon(config);
-        currentWeaponConfig = config;
+        weaponConfig = config;
+
+        if (config.weaponType == WeaponType.Range)
+            return new RangeWeapon(config as RangeWeaponConfig);
+
+        if (config.weaponType == WeaponType.Melee)
+            return new MeleeWeapon(config as MeleeWeaponConfig);
+
+        return null;
+
+        // if(config.weaponType == WeaponType.Throwable)
+        //     currentWeapon = new RangeWeapon(config as RangeWeaponConfig);
+
+    }
+
+    public void switchWeapon(Weapon weapon, WeaponConfig weaponConfig)
+    {
+        this.weapon = weapon;
+        this.weaponConfig = weaponConfig;
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            switchWeapon(primaryWeapon, primaryWeaponConfig);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            switchWeapon(secondaryWeapon, secondaryWeaponConfig);
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
-            currentWeaponConfig.attack(attackPoint, attackLayers, currentWeapon);
+            weaponConfig?.attack(attackPoint, attackLayers);
+            weapon?.attack();
         }
     }
 

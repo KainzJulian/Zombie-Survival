@@ -11,7 +11,9 @@ public class RangeWeapon : Weapon
 
     public override void attack()
     {
+        Debug.Log("range Weapon attack");
         currentAmmoAmount -= 1;
+        Debug.Log(currentAmmoAmount);
     }
 
     public RangeWeapon(RangeWeaponConfig config) : base(config)
