@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : Attackable
+public class Weapon : MonoBehaviour, Attackable
 {
     public int damage;
     public float attackSpeed;
