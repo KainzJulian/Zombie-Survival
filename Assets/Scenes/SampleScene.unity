@@ -2978,6 +2978,8 @@ GameObject:
   - component: {fileID: 2131335456}
   - component: {fileID: 2131335455}
   - component: {fileID: 2131335463}
+  - component: {fileID: 2131335465}
+  - component: {fileID: 2131335464}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3160,20 +3162,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponConfig: {fileID: 0}
   primaryWeaponConfig: {fileID: 11400000, guid: 3df703c88c70ab64eab549dc0fd05a37, type: 2}
+  primaryWeapon: {fileID: 2131335464}
   secondaryWeaponConfig: {fileID: 11400000, guid: 911368c4e8ceba540bfe8628cbf64211, type: 2}
+  secondaryWeapon: {fileID: 2131335465}
   attackLayers:
     serializedVersion: 2
     m_Bits: 384
   attackPoint: {fileID: 817719602}
-  maxAmmoText: {fileID: 186684142}
-  currentAmmoText: {fileID: 982987710}
-  rangeUI: {fileID: 1087749937}
   onEquipRange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2131335465}
+        m_TargetAssemblyTypeName: RangeWeapon, Assembly-CSharp
+        m_MethodName: switchUI
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2131335465}
+        m_TargetAssemblyTypeName: RangeWeapon, Assembly-CSharp
+        m_MethodName: setCurrentAmmoText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2131335465}
+        m_TargetAssemblyTypeName: RangeWeapon, Assembly-CSharp
+        m_MethodName: setMaxAmmoText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onEquipMelee:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2131335465}
+        m_TargetAssemblyTypeName: RangeWeapon, Assembly-CSharp
+        m_MethodName: switchUI
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2131335465}
+        m_TargetAssemblyTypeName: RangeWeapon, Assembly-CSharp
+        m_MethodName: setCurrentAmmoText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2131335463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3187,6 +3251,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 491776617}
+--- !u!114 &2131335464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131335454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbdddc3d5f271804785ef468cf307dea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  attackSpeed: 0
+  weaponType: 0
+  attackSize: 0
+  meleeWeaponConfig: {fileID: 0}
+--- !u!114 &2131335465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131335454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe1c47ab229f7a4db983bf3877f4581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  attackSpeed: 0
+  weaponType: 0
+  angle: 0
+  magazinSize: 0
+  currentAmmoAmount: 0
+  rangeWeaponConfig: {fileID: 0}
+  maxAmmoText: {fileID: 186684142}
+  currentAmmoText: {fileID: 982987710}
+  rangeUI: {fileID: 1087749937}
 --- !u!1001 &8640461019648794871
 PrefabInstance:
   m_ObjectHideFlags: 0

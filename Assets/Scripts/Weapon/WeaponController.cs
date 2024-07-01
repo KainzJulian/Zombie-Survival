@@ -9,45 +9,28 @@ public class WeaponController : MonoBehaviour
     public WeaponConfig weaponConfig;
     private Weapon weapon;
 
-    public WeaponConfig primaryWeaponConfig;
-    private Weapon primaryWeapon;
+    public MeleeWeaponConfig primaryWeaponConfig;
+    [SerializeField] MeleeWeapon primaryWeapon;
 
-    public WeaponConfig secondaryWeaponConfig;
-    private Weapon secondaryWeapon;
+    public RangeWeaponConfig secondaryWeaponConfig;
+    [SerializeField] RangeWeapon secondaryWeapon;
 
     [SerializeField] LayerMask attackLayers;
     [SerializeField] Transform attackPoint;
 
-    [SerializeField] TextMeshProUGUI maxAmmoText;
-    [SerializeField] TextMeshProUGUI currentAmmoText;
-    [SerializeField] GameObject rangeUI;
-
     [SerializeField] UnityEvent onEquipRange = new UnityEvent();
     [SerializeField] UnityEvent onEquipMelee = new UnityEvent();
+    [SerializeField] UnityEvent onAttack = new UnityEvent();
+
+    private float helpAttackTime = 1;
 
     private void Start()
     {
         if (weaponConfig != null)
             weapon = setWeapon(weaponConfig);
 
-        primaryWeapon = setWeapon(primaryWeaponConfig);
-        secondaryWeapon = setWeapon(secondaryWeaponConfig);
-
-
-    }
-
-    private void switchUIState(bool state)
-    {
-        rangeUI.SetActive(state);
-    }
-
-    private void updateRangeUI()
-    {
-        // OK Julian von morgen viel glück beim machen ich schreib das auf damit ich es nicht vergesse
-        // Wenn du das machen willst musst du das umändern damit je nach waffe RangeWeapon oder MeleeWeapon 
-        // als script zum spieler hinzugefügt wird bzw. schon hinzufügen und dann aktivieren / deaktivieren
-        // good luck
-        //  das ist glaub ich das beste
+        primaryWeapon.initData(primaryWeaponConfig);
+        secondaryWeapon.initData(secondaryWeaponConfig);
     }
 
     public Weapon setWeapon(WeaponConfig config)
@@ -57,19 +40,16 @@ public class WeaponController : MonoBehaviour
         if (config.weaponType == WeaponType.Range)
         {
             onEquipRange?.Invoke();
-            return new RangeWeapon(config as RangeWeaponConfig);
+            return GetComponent<RangeWeapon>();
         }
 
         if (config.weaponType == WeaponType.Melee)
         {
             onEquipMelee?.Invoke();
-            return new MeleeWeapon(config as MeleeWeaponConfig);
+            return GetComponent<MeleeWeapon>();
         }
 
         return null;
-
-        // if(config.weaponType == WeaponType.Throwable)
-        //     currentWeapon = new RangeWeapon(config as RangeWeaponConfig);
     }
 
     public void switchWeapon(Weapon weapon, WeaponConfig weaponConfig)
@@ -96,11 +76,15 @@ public class WeaponController : MonoBehaviour
             switchWeapon(secondaryWeapon, secondaryWeaponConfig);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)) && helpAttackTime <= 0)
         {
-            weaponConfig?.attack(attackPoint, attackLayers);
-            weapon?.attack();
+            weapon?.attack(attackPoint, attackLayers);
+            onAttack?.Invoke();
+            helpAttackTime = 1;
         }
+
+        if (helpAttackTime > 0 && weapon != null)
+            helpAttackTime -= Time.deltaTime * weapon.attackSpeed;
     }
 
     private void OnDrawGizmos()

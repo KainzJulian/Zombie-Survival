@@ -16,17 +16,4 @@ public class RangeWeaponConfig : WeaponConfig
     public float angle;
 
     public int magazinSize;
-
-    public override void attack(Transform attackPoint, LayerMask layer)
-    {
-        for (int i = 0; i < projectileCount; i++)
-        {
-            // add spread to the bullets
-            float newAngle = attackPoint.rotation.eulerAngles.z + Random.Range(-angle, angle);
-            GameObject projectile = Instantiate(projectilePrefab, attackPoint.position, Quaternion.Euler(0f, 0f, newAngle));
-
-            // set damage of bullet
-            projectile.GetComponent<DamageEntity>().damage = damage;
-        }
-    }
 }
