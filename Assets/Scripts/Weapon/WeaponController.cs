@@ -76,6 +76,11 @@ public class WeaponController : MonoBehaviour
             switchWeapon(secondaryWeapon, secondaryWeaponConfig);
         }
 
+        if (Input.GetKeyDown(KeyCode.R) && weapon is RangeWeapon rangeWeapon)
+        {
+            rangeWeapon.currentAmmoAmount = rangeWeapon.magazinSize;
+        }
+
         if ((Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)) && helpAttackTime <= 0)
         {
             weapon?.attack(attackPoint, attackLayers);

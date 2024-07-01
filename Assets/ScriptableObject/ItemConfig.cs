@@ -6,5 +6,7 @@ using UnityEngine;
 public class ItemConfig : ScriptableObject
 {
     public Sprite sprite;
-    public string name;
+    public new string name;
+
+    public int pickupRange = 20;
 }
