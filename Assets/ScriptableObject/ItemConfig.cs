@@ -7,6 +7,4 @@ public class ItemConfig : ScriptableObject
 {
     public Sprite sprite;
     public new string name;
-
-    public int pickupRange = 20;
 }

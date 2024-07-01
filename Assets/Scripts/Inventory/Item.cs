@@ -9,12 +9,10 @@ public class Item : MonoBehaviour, Pickable
     [SerializeField] int amount;
 
     [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] CircleCollider2D circleCollider2D;
 
     // Start is called before the first frame update
     void Start()
     {
-        setCollider();
         setSprite();
     }
 
@@ -26,21 +24,17 @@ public class Item : MonoBehaviour, Pickable
 
     public void pick()
     {
-        throw new System.NotImplementedException();
+        Debug.Log(item.name);
     }
 
     private void setSprite()
     {
         spriteRenderer.sprite = item.sprite;
     }
-    private void setCollider()
-    {
-        circleCollider2D.radius = item.pickupRange;
-    }
+
 
     private void OnDrawGizmos()
     {
         setSprite();
-        setCollider();
     }
 }
