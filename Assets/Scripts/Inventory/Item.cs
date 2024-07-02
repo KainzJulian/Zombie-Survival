@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Item : MonoBehaviour, Pickable
 {
-    [SerializeField] ItemConfig item;
-    [SerializeField] int amount;
+    public ItemConfig item;
+    public int amount;
 
     [SerializeField] SpriteRenderer spriteRenderer;
 
@@ -31,7 +31,6 @@ public class Item : MonoBehaviour, Pickable
     {
         spriteRenderer.sprite = item.sprite;
     }
-
 
     private void OnDrawGizmos()
     {

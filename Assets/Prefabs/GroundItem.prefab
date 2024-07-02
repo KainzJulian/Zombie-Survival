@@ -145,8 +145,9 @@ GameObject:
   - component: {fileID: 6013568617607797179}
   - component: {fileID: 6344335892127916568}
   - component: {fileID: 2479546840604472705}
+  - component: {fileID: 3088565480169922712}
   m_Layer: 5
-  m_Name: GroundItem 1
+  m_Name: GroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,6 +213,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3088565480169922712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148002855808673872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72540ba02a0570840a71402a75212c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 0}
+  amount: 0
+  description: {fileID: 451313793749462278}
+  itemName: {fileID: 6179616053933589983}
+  icon: {fileID: 7080367331627380788}
 --- !u!1 &5529860033470621056
 GameObject:
   m_ObjectHideFlags: 0
