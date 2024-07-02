@@ -51,6 +51,16 @@ public class InventorySystem : MonoBehaviour
         inventoryUI.SetActive(!isActive);
     }
 
+    public void disableInput()
+    {
+
+    }
+
+    public void enableInput()
+    {
+
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(pickupArea.transform.position, pickRange);

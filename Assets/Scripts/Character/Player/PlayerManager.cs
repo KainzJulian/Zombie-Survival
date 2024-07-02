@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class PlayerManager : MonoBehaviour
 {
-    CharacterController characterController;
+    CharacterController2D characterController;
     Health healthComponent;
     Armor armorComponent;
 
@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController2D>();
 
         armorComponent = GetComponent<Armor>();
         healthComponent = GetComponent<Health>();
@@ -29,20 +29,10 @@ public class PlayerManager : MonoBehaviour
         setMaxHealthText();
     }
 
-    private void Update()
-    {
-        // if (Input.GetKeyDown(KeyCode.E))
-        // {
-        //     WeaponConfig help = primaryWeapon;
-        //     primaryWeapon = secondaryWeapon;
-        //     secondaryWeapon = help;
-        // }
-    }
-
     private void FixedUpdate()
     {
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        characterController.move(movement.x, movement.y);
+        characterController.moveFixed(movement.x, movement.y);
     }
 
     public void setHealthText(int amount = -1)
