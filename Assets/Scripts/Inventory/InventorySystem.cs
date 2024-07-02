@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InventorySystem : MonoBehaviour
 {
     [SerializeField] List<Item> inventory;
+
+    [SerializeField] InventoryController inventoryController;
 
     [SerializeField] GameObject inventoryUI;
     [SerializeField] GameObject pickupArea;
@@ -13,32 +16,39 @@ public class InventorySystem : MonoBehaviour
 
     [SerializeField] int pickRange;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    [SerializeField] UnityEvent onOpenInventory = new UnityEvent();
+    [SerializeField] UnityEvent onCloseInventory = new UnityEvent();
 
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            switchInventoryUI();
+
+            inventoryController.itemsOnGround.Clear();
+
             Collider2D[] items = Physics2D.OverlapCircleAll(pickupArea.transform.position, pickRange, itemLayers);
 
             foreach (Collider2D item in items)
             {
-                item.GetComponent<Pickable>().pick();
+                inventoryController.itemsOnGround.Add(item.GetComponent<Item>());
             }
+
+            switchInventoryUI();
         }
-
-
     }
 
     private void switchInventoryUI()
     {
-        inventoryUI.SetActive(!inventoryUI.activeSelf);
+
+        bool isActive = inventoryUI.activeSelf;
+
+        if (!isActive)
+            onOpenInventory?.Invoke();
+        else
+            onCloseInventory?.Invoke();
+
+        inventoryUI.SetActive(!isActive);
     }
 
     private void OnDrawGizmos()
