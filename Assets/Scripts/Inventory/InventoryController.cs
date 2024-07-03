@@ -12,6 +12,8 @@ public class InventoryController : MonoBehaviour
 
     public List<Item> itemsOnGround;
 
+    public List<GameObject> inventorySlots;
+
     public void drawItemsOnGround()
     {
         GameObject help;
