@@ -19,11 +19,14 @@ public class ItemSlotHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         if (itemConfig == null)
             changeItemContainerState(false);
         else
+        {
             changeItemContainerState(true);
+            updateIcon();
+            updateInfo();
+        }
 
     }
 
@@ -56,5 +59,14 @@ public class ItemSlotHandler : MonoBehaviour
     public void updateInfo()
     {
         info.SetText(itemConfig.name);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (itemConfig == null)
+            return;
+
+        updateIcon();
+        updateInfo();
     }
 }
