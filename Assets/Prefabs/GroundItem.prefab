@@ -258,10 +258,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a9b17b2bc25f74794f494c9b9647c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 7080367331627380788}
   hideOnDrag:
   - {fileID: 3951762538942805453}
   - {fileID: 5529860033470621056}
+  disableRaycastOnDrag:
+  - {fileID: 7080367331627380788}
+  - {fileID: 2479546840604472705}
   parentAfterDrag: {fileID: 0}
 --- !u!1 &5529860033470621056
 GameObject:
