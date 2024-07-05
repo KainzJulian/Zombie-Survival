@@ -9,11 +9,16 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public Image image;
 
+    [SerializeField] List<GameObject> hideOnDrag;
+
     [HideInInspector] public Transform parentAfterDrag;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         parentAfterDrag = transform.parent;
+
+        foreach (var obj in hideOnDrag)
+            obj.SetActive(false);
 
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
@@ -31,5 +36,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.SetParent(parentAfterDrag);
 
         image.raycastTarget = true;
+
+        foreach (var obj in hideOnDrag)
+            obj.SetActive(true);
     }
 }
