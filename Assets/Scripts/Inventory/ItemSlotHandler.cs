@@ -7,8 +7,9 @@ using UnityEngine;
 public class ItemSlotHandler : MonoBehaviour
 {
 
-    [SerializeField] ItemConfig itemConfig;
     [SerializeField] ItemConfig test;
+
+    [SerializeField] Item item;
 
     public Image icon;
     public TextMeshProUGUI info;
@@ -19,7 +20,7 @@ public class ItemSlotHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (itemConfig == null)
+        if (item.item == null)
             changeItemContainerState(false);
         else
         {
@@ -27,7 +28,6 @@ public class ItemSlotHandler : MonoBehaviour
             updateIcon();
             updateInfo();
         }
-
     }
 
     private void Update()
@@ -43,8 +43,6 @@ public class ItemSlotHandler : MonoBehaviour
 
     public void setItemConfig(ItemConfig item)
     {
-        itemConfig = item;
-
         changeItemContainerState(true);
 
         updateIcon();
@@ -53,17 +51,17 @@ public class ItemSlotHandler : MonoBehaviour
 
     public void updateIcon()
     {
-        icon.sprite = itemConfig.sprite;
+        icon.sprite = item.item.sprite;
     }
 
     public void updateInfo()
     {
-        info.SetText(itemConfig.name);
+        info.SetText(item.amount.ToString());
     }
 
     private void OnDrawGizmos()
     {
-        if (itemConfig == null)
+        if (item.item == null)
             return;
 
         updateIcon();

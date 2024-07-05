@@ -40,10 +40,14 @@ public class RangeWeapon : Weapon
     {
         base.initData(config);
 
+
         projectileCount = config.projectileCount;
         projectilePrefab = config.projectilePrefab;
         angle = config.angle;
         magazinSize = config.magazinSize;
+
+        setMaxAmmoText();
+        setCurrentAmmoText();
     }
 
     public void switchUI(bool state)

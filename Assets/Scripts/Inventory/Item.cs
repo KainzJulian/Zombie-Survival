@@ -2,38 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
-public class Item : MonoBehaviour, Pickable
+public class Item : MonoBehaviour
 {
     public ItemConfig item;
-    public int amount;
+    public int amount = 0;
 
-    [SerializeField] SpriteRenderer spriteRenderer;
-
-    // Start is called before the first frame update
-    void Start()
+    public void setItem(ItemConfig itemConfig)
     {
-        setSprite();
+        item = itemConfig;
     }
 
-    // Update is called once per frame
-    void Update()
+    public ItemConfig getItem()
     {
-
+        return item;
     }
 
-    public void pick()
+    public void setAmount(int amount)
     {
-        Debug.Log(item.name);
+        this.amount = amount;
     }
 
-    private void setSprite()
+    public int getAmount()
     {
-        spriteRenderer.sprite = item.sprite;
-    }
-
-    private void OnDrawGizmos()
-    {
-        setSprite();
+        return this.amount;
     }
 }

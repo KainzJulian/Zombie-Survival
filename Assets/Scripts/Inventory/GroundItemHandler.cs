@@ -4,10 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Item))]
 public class GroundItemHandler : MonoBehaviour
 {
 
-    [SerializeField] ItemConfig config;
+    [SerializeField] Item item;
     [SerializeField] int amount;
 
     [SerializeField] TextMeshProUGUI description;
@@ -17,17 +18,20 @@ public class GroundItemHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (config == null)
+
+        item = GetComponent<Item>();
+
+        if (item == null)
             return;
 
-        description.SetText(config.description);
-        itemName.SetText(config.name);
-        icon.sprite = config.sprite;
+        description.SetText(item.item.description);
+        itemName.SetText(item.item.name);
+        icon.sprite = item.item.sprite;
     }
 
     public void setItem(ItemConfig config, int amount)
     {
-        this.config = config;
-        this.amount = amount;
+        item.setItem(config);
+        item.setAmount(amount);
     }
 }

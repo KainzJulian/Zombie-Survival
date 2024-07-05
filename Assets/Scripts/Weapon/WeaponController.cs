@@ -79,6 +79,7 @@ public class WeaponController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && weapon is RangeWeapon rangeWeapon)
         {
             rangeWeapon.currentAmmoAmount = rangeWeapon.magazinSize;
+            rangeWeapon.setCurrentAmmoText();
         }
 
         if ((Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)) && helpAttackTime <= 0)

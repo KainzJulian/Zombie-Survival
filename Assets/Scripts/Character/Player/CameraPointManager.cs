@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraPointManager : MonoBehaviour
 {
-
     Vector3 mousePosition;
 
     [Tooltip("Wether the camera should be closer to the player(0) or the mouse(1)")]

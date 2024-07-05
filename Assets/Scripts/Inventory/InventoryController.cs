@@ -21,7 +21,9 @@ public class InventoryController : MonoBehaviour
         foreach (Item item in itemsOnGround)
         {
             help = Instantiate(groundItemPrefab, groundPanel.transform);
-            help.GetComponent<GroundItemHandler>().setItem(item.item, item.amount);
+            help.AddComponent<Item>();
+            help.GetComponent<Item>().amount = item.amount;
+            help.GetComponent<Item>().item = item.item;
         }
     }
 
