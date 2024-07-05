@@ -26,4 +26,10 @@ public class Item : MonoBehaviour
     {
         return this.amount;
     }
+
+    public void deleteItem()
+    {
+        setItem(null);
+        setAmount(0);
+    }
 }

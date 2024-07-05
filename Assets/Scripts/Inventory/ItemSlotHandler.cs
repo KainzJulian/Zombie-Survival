@@ -7,8 +7,6 @@ using UnityEngine;
 public class ItemSlotHandler : MonoBehaviour
 {
 
-    [SerializeField] ItemConfig test;
-
     [SerializeField] Item item;
 
     public Image icon;
@@ -30,19 +28,16 @@ public class ItemSlotHandler : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-            setItemConfig(test);
-    }
-
     public void changeItemContainerState(bool state)
     {
         itemContainer.SetActive(state);
     }
 
-    public void setItemConfig(ItemConfig item)
+    public void setItem(ItemConfig item, int amount)
     {
+        this.item.setItem(item);
+        this.item.setAmount(amount);
+
         changeItemContainerState(true);
 
         updateIcon();

@@ -16,11 +16,11 @@ public class CharacterController2D : MonoBehaviour
 
     public void moveFixed(float horizontal, float vertical)
     {
-        rb.MovePosition(rb.position + new Vector2(horizontal, vertical) * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + new Vector2(horizontal, vertical) * (speed * Time.fixedDeltaTime));
     }
 
     public void move(float horizontal, float vertical)
     {
-        rb.MovePosition(rb.position + new Vector2(horizontal, vertical) * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + speed * Time.deltaTime * new Vector2(horizontal, vertical));
     }
 }

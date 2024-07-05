@@ -9,7 +9,7 @@ public class AttackPointController : MonoBehaviour
         rotateAttackPoint();
     }
 
-    public void rotateAttackPoint()
+    private void rotateAttackPoint()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 

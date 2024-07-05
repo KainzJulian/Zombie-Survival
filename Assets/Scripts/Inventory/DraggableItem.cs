@@ -7,9 +7,8 @@ using UnityEngine.UI;
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
-    public Image image;
-
     [SerializeField] List<GameObject> hideOnDrag;
+    [SerializeField] List<Image> disableRaycastOnDrag;
 
     [HideInInspector] public Transform parentAfterDrag;
 
@@ -23,7 +22,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
 
-        image.raycastTarget = false;
+        foreach (var item in disableRaycastOnDrag)
+            item.raycastTarget = false;
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -35,9 +36,10 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         transform.SetParent(parentAfterDrag);
 
-        image.raycastTarget = true;
-
         foreach (var obj in hideOnDrag)
             obj.SetActive(true);
+
+        foreach (var item in disableRaycastOnDrag)
+            item.raycastTarget = true;
     }
 }
