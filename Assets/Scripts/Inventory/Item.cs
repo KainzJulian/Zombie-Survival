@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Item : MonoBehaviour
 {
     public ItemConfig item;
     public int amount = 0;
 
+    [SerializeField] UnityEvent onDataChange = new UnityEvent();
+
     public void setItem(ItemConfig itemConfig)
     {
         item = itemConfig;
+        onDataChange?.Invoke();
     }
 
     public ItemConfig getItem()
@@ -20,6 +24,7 @@ public class Item : MonoBehaviour
     public void setAmount(int amount)
     {
         this.amount = amount;
+        onDataChange?.Invoke();
     }
 
     public int getAmount()
@@ -31,5 +36,7 @@ public class Item : MonoBehaviour
     {
         setItem(null);
         setAmount(0);
+
+        onDataChange?.Invoke();
     }
 }
