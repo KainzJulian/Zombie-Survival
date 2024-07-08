@@ -48,6 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 8fc1e55a9fa810441a296cf844048e33, type: 2}
   amount: 1
+  onDataChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!212 &8028288558150416940
 SpriteRenderer:
   m_ObjectHideFlags: 0

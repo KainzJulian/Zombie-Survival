@@ -8,8 +8,16 @@ public class ItemUIHandler : MonoBehaviour
 {
 
     [SerializeField] TextMeshProUGUI infoText;
+    [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] Image image;
     [SerializeField] Item item;
+
+    private void Start()
+    {
+        updateImage();
+        updateInfoText();
+        updateNameText();
+    }
 
     public void updateImage(Image image)
     {
@@ -21,13 +29,31 @@ public class ItemUIHandler : MonoBehaviour
         this.infoText.SetText(infoText);
     }
 
+    public void updateNameText(string name)
+    {
+        this.nameText.SetText(name);
+    }
+
+    public void updateNameText()
+    {
+        if (!isNull(nameText))
+            this.nameText.SetText(item.item.name);
+    }
+
     public void updateImage()
     {
-        this.image.sprite = item.item.sprite;
+        if (!isNull(image))
+            this.image.sprite = item.item.sprite;
     }
 
     public void updateInfoText()
     {
-        this.infoText.SetText(item.amount.ToString());
+        if (!isNull(infoText))
+            this.infoText.SetText(item.amount.ToString());
+    }
+
+    public bool isNull(Object obj)
+    {
+        return obj == null;
     }
 }

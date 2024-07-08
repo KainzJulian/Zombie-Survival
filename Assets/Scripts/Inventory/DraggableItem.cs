@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-
     [SerializeField] List<GameObject> hideOnDrag;
     [SerializeField] List<Image> disableRaycastOnDrag;
 
