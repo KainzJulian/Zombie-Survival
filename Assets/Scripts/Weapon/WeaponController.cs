@@ -9,6 +9,8 @@ public class WeaponController : MonoBehaviour
     public WeaponConfig weaponConfig;
     private Weapon weapon;
 
+    [SerializeField] RangeWeaponUIHandler rangeWeaponUI;
+
     public MeleeWeaponConfig primaryWeaponConfig;
     [SerializeField] MeleeWeapon primaryWeapon;
 
@@ -21,8 +23,6 @@ public class WeaponController : MonoBehaviour
     [SerializeField] UnityEvent onEquipRange = new UnityEvent();
     [SerializeField] UnityEvent onEquipMelee = new UnityEvent();
     [SerializeField] UnityEvent onAttack = new UnityEvent();
-
-    private float helpAttackTime = 1;
 
     private void Start()
     {
@@ -55,7 +55,12 @@ public class WeaponController : MonoBehaviour
     public void switchWeapon(Weapon weapon, WeaponConfig weaponConfig)
     {
         if (weapon.weaponType == WeaponType.Range)
+        {
             onEquipRange?.Invoke();
+
+            rangeWeaponUI.setCurrentAmmoText(GetComponent<RangeWeapon>().currentAmmoAmount);
+            rangeWeaponUI.setMaxAmmoText(GetComponent<RangeWeapon>().magazinSize);
+        }
 
         if (weapon.weaponType == WeaponType.Melee)
             onEquipMelee?.Invoke();
@@ -79,18 +84,17 @@ public class WeaponController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && weapon is RangeWeapon rangeWeapon)
         {
             rangeWeapon.currentAmmoAmount = rangeWeapon.magazinSize;
-            rangeWeapon.setCurrentAmmoText();
+            rangeWeaponUI.setCurrentAmmoText(rangeWeapon.currentAmmoAmount);
         }
 
-        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)) && helpAttackTime <= 0)
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
         {
             weapon?.attack(attackPoint, attackLayers);
             onAttack?.Invoke();
-            helpAttackTime = 1;
-        }
 
-        if (helpAttackTime > 0 && weapon != null)
-            helpAttackTime -= Time.deltaTime * weapon.attackSpeed;
+            if (weapon is RangeWeapon range)
+                rangeWeaponUI.setCurrentAmmoText(range.currentAmmoAmount);
+        }
     }
 
     private void OnDrawGizmos()

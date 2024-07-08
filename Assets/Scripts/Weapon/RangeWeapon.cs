@@ -13,12 +13,12 @@ public class RangeWeapon : Weapon
     // default should be removed in later iterations
     public int currentAmmoAmount = 20;
 
-    [SerializeField] TextMeshProUGUI maxAmmoText;
-    [SerializeField] TextMeshProUGUI currentAmmoText;
-    [SerializeField] GameObject rangeUI;
-
     public override void attack(Transform attackPoint, LayerMask layer)
     {
+
+        if (!canAttack)
+            return;
+
         if (currentAmmoAmount <= 0)
             return;
 
@@ -34,34 +34,17 @@ public class RangeWeapon : Weapon
             // set damage of bullet
             projectile.GetComponent<DamageEntity>().damage = damage;
         }
+
+        base.attack(attackPoint, layer);
     }
 
     public void initData(RangeWeaponConfig config)
     {
         base.initData(config);
 
-
         projectileCount = config.projectileCount;
         projectilePrefab = config.projectilePrefab;
         angle = config.angle;
         magazinSize = config.magazinSize;
-
-        setMaxAmmoText();
-        setCurrentAmmoText();
-    }
-
-    public void switchUI(bool state)
-    {
-        rangeUI.SetActive(state);
-    }
-
-    public void setMaxAmmoText()
-    {
-        maxAmmoText.SetText(magazinSize.ToString());
-    }
-
-    public void setCurrentAmmoText()
-    {
-        currentAmmoText.SetText(currentAmmoAmount.ToString());
     }
 }

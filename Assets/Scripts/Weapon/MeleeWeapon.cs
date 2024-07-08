@@ -18,6 +18,10 @@ public class MeleeWeapon : Weapon
 
     public override void attack(Transform attackPoint, LayerMask layer)
     {
+
+        if (!canAttack)
+            return;
+
         Debug.Log("melee Attack");
 
         Collider2D[] hit = Physics2D.OverlapCircleAll(attackPoint.position, attackSize, layer);
@@ -26,5 +30,7 @@ public class MeleeWeapon : Weapon
         {
             i.GetComponent<Health>().takeDamage(damage);
         }
+
+        base.attack(attackPoint, layer);
     }
 }

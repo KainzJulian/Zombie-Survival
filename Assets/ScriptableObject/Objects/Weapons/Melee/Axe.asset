@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a0488db2def694e8d3e5e213ff4655, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  attackPoint: {x: 16, y: 0}
+  weaponType: 0
   duration: 1
-  damage: 1
+  damage: 474
   attackSpeed: 0.5
-  attackSize: 50
+  attackSize: 30

@@ -17,6 +17,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI maxHealthText;
 
+    [SerializeField] AttackPointController attackPointController;
+
     Vector2 movement;
 
     void Start()
@@ -33,6 +35,8 @@ public class PlayerManager : MonoBehaviour
     {
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         characterController.moveFixed(movement.x, movement.y);
+
+        attackPointController.rotateAttackPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
     public void setHealthText(int amount = -1)

@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class AttackPointController : MonoBehaviour
 {
-    private void FixedUpdate()
+    public void rotateAttackPoint(Vector3 position)
     {
-        rotateAttackPoint();
-    }
-
-    private void rotateAttackPoint()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
         // attackPoint.Rotate(playerPosition.position, 90f);
 
-        Vector2 direction = (mousePosition - transform.position).normalized;
+        Vector2 direction = (position - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));

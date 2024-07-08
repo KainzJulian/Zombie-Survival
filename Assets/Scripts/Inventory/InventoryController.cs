@@ -10,7 +10,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] GameObject groundItemPrefab;
     [SerializeField] GameObject groundPanel;
 
-    public List<Item> itemsOnGround;
+    public List<GameObject> itemsOnGround;
 
     public List<GameObject> inventorySlots;
 
@@ -18,13 +18,15 @@ public class InventoryController : MonoBehaviour
     {
         GameObject help;
 
-        foreach (Item item in itemsOnGround)
+        foreach (GameObject groundItem in itemsOnGround)
         {
+            Item itemComponent = groundItem.GetComponent<Item>();
+
             help = Instantiate(groundItemPrefab, groundPanel.transform);
 
             help.AddComponent<Item>();
-            help.GetComponent<Item>().setAmount(item.amount);
-            help.GetComponent<Item>().setItem(item.item);
+            help.GetComponent<Item>().setAmount(itemComponent.amount);
+            help.GetComponent<Item>().setItem(itemComponent.item);
         }
     }
 
