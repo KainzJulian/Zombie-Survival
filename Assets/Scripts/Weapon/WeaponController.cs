@@ -83,7 +83,7 @@ public class WeaponController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) && weapon is RangeWeapon rangeWeapon)
         {
-            rangeWeapon.currentAmmoAmount = rangeWeapon.magazinSize;
+            rangeWeapon.reload();
             rangeWeaponUI.setCurrentAmmoText(rangeWeapon.currentAmmoAmount);
         }
 

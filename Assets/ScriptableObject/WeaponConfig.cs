@@ -14,7 +14,7 @@ public abstract class WeaponConfig : ScriptableObject
     [Tooltip("The Damage per Attack")]
     public int damage;
 
-    [Tooltip("Time between two Attacks (lower number = faster attack)")]
+    [Tooltip("Time between two Attacks (lower number = slower attack)")]
     public float attackSpeed;
 }
 

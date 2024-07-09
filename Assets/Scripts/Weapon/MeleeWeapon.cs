@@ -7,6 +7,18 @@ public class MeleeWeapon : Weapon
     public int attackSize;
     public MeleeWeaponConfig meleeWeaponConfig;
 
+    private void Update()
+    {
+        if (helpAttackTime <= 0 && !canAttack)
+        {
+            canAttack = true;
+            helpAttackTime = 1;
+        }
+
+        if (helpAttackTime > 0)
+            helpAttackTime -= Time.deltaTime * attackSpeed;
+    }
+
     public void initData(MeleeWeaponConfig config)
     {
         base.initData(config);

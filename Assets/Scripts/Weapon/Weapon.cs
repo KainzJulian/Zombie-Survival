@@ -11,21 +11,7 @@ public class Weapon : MonoBehaviour
 
     public bool canAttack = true;
 
-    private float helpAttackTime;
-
-    private void Update()
-    {
-        if (helpAttackTime <= 0 && !canAttack)
-        {
-            canAttack = true;
-            helpAttackTime = 1;
-        }
-
-        if (helpAttackTime > 0)
-        {
-            helpAttackTime -= Time.deltaTime * attackSpeed;
-        }
-    }
+    protected float helpAttackTime;
 
     public void initData(WeaponConfig config)
     {

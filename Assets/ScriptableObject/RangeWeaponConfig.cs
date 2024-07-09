@@ -16,4 +16,7 @@ public class RangeWeaponConfig : WeaponConfig
     public float angle;
 
     public int magazinSize;
+
+    [Tooltip("Time to reload the magazin in seconds")]
+    public float reloadTime;
 }
