@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: testRange
   m_EditorClassIdentifier: 
   weaponType: 0
-  attackPoint: {x: 0, y: 0}
   duration: 1
-  damage: 2
-  attackSpeed: 2
-  projectileCount: 5
+  damage: 1
+  attackSpeed: 10
+  projectileCount: 1
   projectilePrefab: {fileID: 5977094512605975314, guid: 7eeaac6c6026d564f8abadcea05301ca, type: 3}
-  angle: 15
-  magazinSize: 10
+  angle: 10
+  magazinSize: 30
+  reloadTime: 2

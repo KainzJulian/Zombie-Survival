@@ -140,6 +140,30 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7248187500158030339, guid: 68317e1326a1e47499325923916467df, type: 3}
+      propertyPath: onCurrentAmmoChange.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248187500158030339, guid: 68317e1326a1e47499325923916467df, type: 3}
+      propertyPath: onCurrentAmmoChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6582673911388014362}
+    - target: {fileID: 7248187500158030339, guid: 68317e1326a1e47499325923916467df, type: 3}
+      propertyPath: onCurrentAmmoChange.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248187500158030339, guid: 68317e1326a1e47499325923916467df, type: 3}
+      propertyPath: onCurrentAmmoChange.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setCurrentAmmoText
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248187500158030339, guid: 68317e1326a1e47499325923916467df, type: 3}
+      propertyPath: onCurrentAmmoChange.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RangeWeaponUIHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248187500158030339, guid: 68317e1326a1e47499325923916467df, type: 3}
+      propertyPath: onCurrentAmmoChange.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
       propertyPath: m_Name
       value: Player
