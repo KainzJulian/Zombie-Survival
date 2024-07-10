@@ -7,7 +7,14 @@ using UnityEngine.Events;
 public class InputController : MonoBehaviour
 {
 
-    void Start()
+    private SceneController sceneController;
+
+    private void Start()
+    {
+        sceneController = SceneController.instance;
+    }
+
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
             openMap();
@@ -73,6 +80,11 @@ public class InputController : MonoBehaviour
     private void openPause()
     {
         Debug.Log("open pause");
+        if (sceneController.isSceneLoaded("Option"))
+            sceneController.unloadScene("Option");
+
+        else
+            sceneController.loadSceneAdditive("Option");
     }
 
     private void reload()
@@ -88,11 +100,5 @@ public class InputController : MonoBehaviour
     private void sneak()
     {
         Debug.Log("sneak");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

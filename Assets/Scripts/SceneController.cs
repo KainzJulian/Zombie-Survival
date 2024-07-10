@@ -36,6 +36,11 @@ public class SceneController : MonoBehaviour
         SceneManager.UnloadSceneAsync(name);
     }
 
+    public bool isSceneLoaded(string name)
+    {
+        return getAllActiveScenes().Contains(SceneManager.GetSceneByName(name));
+    }
+
     #region useless but maybe it will be needed later
     // public void switchScene(string name)
     // {
@@ -52,17 +57,17 @@ public class SceneController : MonoBehaviour
     //     foreach (Scene scene in activeScene)
     //         yield return SceneManager.UnloadSceneAsync(scene);
     // }
-
-    // public List<Scene> getAllActiveScenes()
-    // {
-    //     List<Scene> help = new List<Scene>();
-
-    //     for (int i = 0; i < SceneManager.loadedSceneCount; i++)
-    //     {
-    //         help.Add(SceneManager.GetSceneAt(i));
-    //     }
-
-    //     return help;
-    // }
     #endregion
+
+    public List<Scene> getAllActiveScenes()
+    {
+        List<Scene> help = new List<Scene>();
+
+        for (int i = 0; i < SceneManager.loadedSceneCount; i++)
+        {
+            help.Add(SceneManager.GetSceneAt(i));
+        }
+
+        return help;
+    }
 }
