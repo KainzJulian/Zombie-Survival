@@ -54,4 +54,17 @@ public class PlayerManager : MonoBehaviour
 
         maxHealthText.SetText(amount.ToString());
     }
+
+    public void savePlayer()
+    {
+        SaveSystem.saveData(new PlayerData(this), FILENAME.PLAYER);
+    }
+
+    public void loadPlayer()
+    {
+        PlayerData pl = SaveSystem.loadData<PlayerData>(FILENAME.PLAYER);
+        Debug.Log(pl.x + " " + pl.y);
+        transform.position = new Vector3(pl.x, pl.y);
+        // healthComponent.setHealth(pl.health);
+    }
 }

@@ -9,6 +9,9 @@ public class InputController : MonoBehaviour
 
     private SceneController sceneController;
 
+    public UnityEvent onOpenPause = new UnityEvent();
+    public UnityEvent onClosePause = new UnityEvent();
+
     private void Start()
     {
         sceneController = SceneController.instance;
@@ -81,10 +84,15 @@ public class InputController : MonoBehaviour
     {
         Debug.Log("open pause");
         if (sceneController.isSceneLoaded("Option"))
+        {
+            onClosePause?.Invoke();
             sceneController.unloadScene("Option");
-
+        }
         else
+        {
+            onOpenPause?.Invoke();
             sceneController.loadSceneAdditive("Option");
+        }
     }
 
     private void reload()

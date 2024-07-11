@@ -43,6 +43,12 @@ public class Health : MonoBehaviour, Damagable
         onHealthIncrease?.Invoke(amount);
     }
 
+    public void setHealth(int amount)
+    {
+        onHealthChange?.Invoke(amount);
+        health = amount;
+    }
+
     public void die()
     {
         gameObject.SetActive(false);

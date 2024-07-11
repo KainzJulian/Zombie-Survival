@@ -348,10 +348,11 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   angle: 0
   magazinSize: 0
+  reloadTime: 0
   currentAmmoAmount: 0
-  maxAmmoText: {fileID: 0}
-  currentAmmoText: {fileID: 0}
-  rangeUI: {fileID: 0}
+  onCurrentAmmoChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6219912617398239339
 MonoBehaviour:
   m_ObjectHideFlags: 0
