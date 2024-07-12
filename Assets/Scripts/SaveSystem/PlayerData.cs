@@ -13,6 +13,12 @@ public class PlayerData
 
     public PlayerData(PlayerManager playerManager)
     {
+
+        Debug.LogWarning(playerManager);
+        Debug.LogWarning(playerManager.gameObject);
+        Debug.LogWarning(playerManager.gameObject.transform);
+        Debug.LogWarning(playerManager.gameObject.transform.position);
+
         health = playerManager.gameObject.GetComponent<Health>().health;
 
         Vector3 position = playerManager.gameObject.transform.position;
