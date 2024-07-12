@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public abstract class WeaponConfig : ScriptableObject
     public float attackSpeed;
 }
 
+[Serializable]
 public enum WeaponType
 {
     Range,

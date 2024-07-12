@@ -11,11 +11,11 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] RangeWeaponUIHandler rangeWeaponUI;
 
-    public MeleeWeaponConfig primaryWeaponConfig;
-    [SerializeField] MeleeWeapon primaryWeapon;
+    // public MeleeWeaponConfig primaryWeaponConfig;
+    // [SerializeField] MeleeWeapon primaryWeapon;
 
-    public RangeWeaponConfig secondaryWeaponConfig;
-    [SerializeField] RangeWeapon secondaryWeapon;
+    // public RangeWeaponConfig secondaryWeaponConfig;
+    // [SerializeField] RangeWeapon secondaryWeapon;
 
     [SerializeField] LayerMask attackLayers;
     [SerializeField] Transform attackPoint;
@@ -29,8 +29,8 @@ public class WeaponController : MonoBehaviour
         if (weaponConfig != null)
             weapon = setWeapon(weaponConfig);
 
-        primaryWeapon.initData(primaryWeaponConfig);
-        secondaryWeapon.initData(secondaryWeaponConfig);
+        // primaryWeapon.initData(primaryWeaponConfig);
+        // secondaryWeapon.initData(secondaryWeaponConfig);
     }
 
     public Weapon setWeapon(WeaponConfig config)
@@ -52,34 +52,34 @@ public class WeaponController : MonoBehaviour
         return null;
     }
 
-    public void switchWeapon(Weapon weapon, WeaponConfig weaponConfig)
-    {
-        if (weapon.weaponType == WeaponType.Range)
-        {
-            onEquipRange?.Invoke();
+    // public void switchWeapon(Weapon weapon, WeaponConfig weaponConfig)
+    // {
+    //     if (weapon.weaponType == WeaponType.Range)
+    //     {
+    //         onEquipRange?.Invoke();
 
-            rangeWeaponUI.setCurrentAmmoText(GetComponent<RangeWeapon>().currentAmmoAmount);
-            rangeWeaponUI.setMaxAmmoText(GetComponent<RangeWeapon>().magazinSize);
-        }
+    //         rangeWeaponUI.setCurrentAmmoText(GetComponent<RangeWeapon>().currentAmmoAmount);
+    //         rangeWeaponUI.setMaxAmmoText(GetComponent<RangeWeapon>().magazinSize);
+    //     }
 
-        if (weapon.weaponType == WeaponType.Melee)
-            onEquipMelee?.Invoke();
+    //     if (weapon.weaponType == WeaponType.Melee)
+    //         onEquipMelee?.Invoke();
 
-        this.weapon = weapon;
-        this.weaponConfig = weaponConfig;
-    }
+    //     this.weapon = weapon;
+    //     this.weaponConfig = weaponConfig;
+    // }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            switchWeapon(primaryWeapon, primaryWeaponConfig);
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha1))
+        // {
+        //     switchWeapon(primaryWeapon, primaryWeaponConfig);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            switchWeapon(secondaryWeapon, secondaryWeaponConfig);
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha2))
+        // {
+        //     switchWeapon(secondaryWeapon, secondaryWeaponConfig);
+        // }
 
         if (Input.GetKeyDown(KeyCode.R) && weapon is RangeWeapon rangeWeapon)
         {

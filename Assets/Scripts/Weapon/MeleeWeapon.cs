@@ -1,11 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class MeleeWeapon : Weapon
 {
     public int attackSize;
-    public MeleeWeaponConfig meleeWeaponConfig;
 
     private void Update()
     {
@@ -22,9 +23,6 @@ public class MeleeWeapon : Weapon
     public void initData(MeleeWeaponConfig config)
     {
         base.initData(config);
-
-        meleeWeaponConfig = config;
-
         attackSize = config.attackSize;
     }
 

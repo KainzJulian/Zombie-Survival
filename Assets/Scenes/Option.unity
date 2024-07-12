@@ -339,8 +339,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3879251277629546580, guid: f2487676c46e332409c2facf244f9c50, type: 3}
-        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+      - m_Target: {fileID: 8132768959432060624, guid: f2487676c46e332409c2facf244f9c50, type: 3}
+        m_TargetAssemblyTypeName: PlayerSaveController, Assembly-CSharp
         m_MethodName: savePlayer
         m_Mode: 1
         m_Arguments:
@@ -1161,8 +1161,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3879251277629546580, guid: f2487676c46e332409c2facf244f9c50, type: 3}
-        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+      - m_Target: {fileID: 8132768959432060624, guid: f2487676c46e332409c2facf244f9c50, type: 3}
+        m_TargetAssemblyTypeName: PlayerSaveController, Assembly-CSharp
         m_MethodName: loadPlayer
         m_Mode: 1
         m_Arguments:

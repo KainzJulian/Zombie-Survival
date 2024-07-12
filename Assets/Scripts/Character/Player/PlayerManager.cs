@@ -11,15 +11,27 @@ public class PlayerManager : MonoBehaviour
     Health healthComponent;
     Armor armorComponent;
 
-    // public WeaponConfig primaryWeapon;
-    // public WeaponConfig secondaryWeapon;
-
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI maxHealthText;
 
     [SerializeField] AttackPointController attackPointController;
 
     Vector2 movement;
+
+    public static PlayerManager instance { get; private set; }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -53,18 +65,5 @@ public class PlayerManager : MonoBehaviour
             amount = healthComponent.health;
 
         maxHealthText.SetText(amount.ToString());
-    }
-
-    public void savePlayer()
-    {
-        SaveSystem.saveData(new PlayerData(this), FILENAME.PLAYER);
-    }
-
-    public void loadPlayer()
-    {
-        PlayerData pl = SaveSystem.loadData<PlayerData>(FILENAME.PLAYER);
-        Debug.Log(pl.x + " " + pl.y);
-        transform.position = new Vector3(pl.x, pl.y);
-        // healthComponent.setHealth(pl.health);
     }
 }

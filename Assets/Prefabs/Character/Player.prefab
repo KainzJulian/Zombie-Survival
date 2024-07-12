@@ -299,23 +299,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6582673911388014362}
+    - targetCorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8132768959432060624}
   m_SourcePrefab: {fileID: 100100000, guid: 68317e1326a1e47499325923916467df, type: 3}
 --- !u!4 &815974179111587833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5943417661003852543, guid: 68317e1326a1e47499325923916467df, type: 3}
   m_PrefabInstance: {fileID: 6424858684139808006}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1114710713840084333 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6219912617398239339, guid: 68317e1326a1e47499325923916467df, type: 3}
-  m_PrefabInstance: {fileID: 6424858684139808006}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2685658065619850529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbdddc3d5f271804785ef468cf307dea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2685658065619850529 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
@@ -348,12 +340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adbe3118ed95a0d47acbae35f39f0336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponConfig: {fileID: 0}
+  weaponConfig: {fileID: 11400000, guid: 911368c4e8ceba540bfe8628cbf64211, type: 2}
   rangeWeaponUI: {fileID: 6582673911388014362}
-  primaryWeaponConfig: {fileID: 11400000, guid: 3df703c88c70ab64eab549dc0fd05a37, type: 2}
-  primaryWeapon: {fileID: 1114710713840084333}
-  secondaryWeaponConfig: {fileID: 11400000, guid: 911368c4e8ceba540bfe8628cbf64211, type: 2}
-  secondaryWeapon: {fileID: 4449295633582667525}
   attackLayers:
     serializedVersion: 2
     m_Bits: 384
@@ -504,15 +492,16 @@ MonoBehaviour:
   maxAmmoText: {fileID: 0}
   currentAmmoText: {fileID: 0}
   rangeUI: {fileID: 0}
---- !u!114 &4449295633582667525 stripped
+--- !u!114 &8132768959432060624
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7248187500158030339, guid: 68317e1326a1e47499325923916467df, type: 3}
-  m_PrefabInstance: {fileID: 6424858684139808006}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2685658065619850529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abe1c47ab229f7a4db983bf3877f4581, type: 3}
+  m_Script: {fileID: 11500000, guid: 21699ebf2f141be4998aa6a20ec26295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5455679874052665227 stripped

@@ -5,6 +5,7 @@ using UnityEngine;
 public static class FILENAME
 {
     public const string
-        PLAYER = "player.dat"
+        PLAYER = "player.dat",
+        WEAPON = "weapon.dat"
     ;
 }

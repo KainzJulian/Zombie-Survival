@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[Serializable]
 public class RangeWeapon : Weapon
 {
     public int projectileCount;
@@ -46,7 +48,7 @@ public class RangeWeapon : Weapon
         for (int i = 0; i < projectileCount; i++)
         {
             // add spread to the bullets
-            float newAngle = attackPoint.rotation.eulerAngles.z + Random.Range(-angle, angle);
+            float newAngle = attackPoint.rotation.eulerAngles.z + UnityEngine.Random.Range(-angle, angle);
             GameObject projectile = Instantiate(projectilePrefab, attackPoint.position, Quaternion.Euler(0f, 0f, newAngle));
 
             // set damage of bullet
