@@ -26,35 +26,30 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        if (weaponConfig != null)
-            weapon = setWeapon(weaponConfig);
-
-        // primaryWeapon.initData(primaryWeaponConfig);
-        // secondaryWeapon.initData(secondaryWeaponConfig);
+        setWeapon(weaponConfig);
     }
 
-    public Weapon setWeapon(WeaponConfig config)
+    public void setWeapon(WeaponConfig config)
     {
-        weaponConfig = config;
-
-        if (config.weaponType == WeaponType.Range)
+        if (config is RangeWeaponConfig rangeWeaponConfig)
         {
             onEquipRange?.Invoke();
-            return GetComponent<RangeWeapon>();
+
+            GetComponent<RangeWeapon>().initData(rangeWeaponConfig);
+            weapon = GetComponent<RangeWeapon>();
         }
 
-        if (config.weaponType == WeaponType.Melee)
+        if (config is MeleeWeaponConfig meleeWeaponConfig)
         {
             onEquipMelee?.Invoke();
-            return GetComponent<MeleeWeapon>();
-        }
 
-        return null;
+            GetComponent<MeleeWeapon>().initData(meleeWeaponConfig);
+            weapon = GetComponent<MeleeWeapon>();
+        }
     }
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.R) && weapon is RangeWeapon rangeWeapon)
         {
             rangeWeapon.reload();
