@@ -23,6 +23,14 @@ public class Weapon : MonoBehaviour
         attackSpeed = config.attackSpeed;
     }
 
+    public void setData(WeaponData config)
+    {
+        weaponType = config.weaponType;
+        duration = config.duration;
+        damage = config.damage;
+        attackSpeed = config.attackSpeed;
+    }
+
     public virtual void attack(Transform attackPoint, LayerMask layer)
     {
         if (canAttack)

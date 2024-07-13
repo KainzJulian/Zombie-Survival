@@ -13,7 +13,7 @@ public class RangeWeapon : Weapon
     public int magazinSize;
     public float reloadTime;
 
-    public int currentAmmoAmount = 0;
+    public int currentAmmoAmount;
 
     private bool isReloading = false;
 
@@ -83,5 +83,16 @@ public class RangeWeapon : Weapon
         angle = config.angle;
         magazinSize = config.magazinSize;
         reloadTime = config.reloadTime;
+    }
+
+    public void setData(RangeWeaponData config)
+    {
+        projectileCount = config.projectileCount;
+        angle = config.angle;
+        magazinSize = config.magazinSize;
+        reloadTime = config.reloadTime;
+        currentAmmoAmount = config.currentAmmoAmount;
+
+        base.setData(config);
     }
 }

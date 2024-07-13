@@ -2,26 +2,19 @@ using UnityEngine;
 
 public class PlayerSaveController : MonoBehaviour
 {
-
     GameObject playerObject;
-
-    RangeWeapon rangeWeapon;
-    MeleeWeapon meleeWeapon;
-
-    Weapon weapon;
 
     public void savePlayer()
     {
         PlayerManager manager = PlayerManager.instance;
         playerObject = PlayerManager.instance.gameObject;
 
-        weapon = playerObject.GetComponent<WeaponController>().weapon;
+        Weapon weapon = playerObject.GetComponent<WeaponController>().weapon;
 
         if (weapon is RangeWeapon rangeWeapon)
-            SaveSystem.saveData(rangeWeapon, FILENAME.WEAPON);
+            SaveSystem.saveData(new RangeWeaponData(rangeWeapon), FILENAME.WEAPON);
         if (weapon is MeleeWeapon meleeWeapon)
-            SaveSystem.saveData(meleeWeapon, FILENAME.WEAPON);
-
+            SaveSystem.saveData(new MeleeWeaponData(meleeWeapon), FILENAME.WEAPON);
 
         SaveSystem.saveData(new PlayerData(manager), FILENAME.PLAYER);
     }
@@ -33,9 +26,13 @@ public class PlayerSaveController : MonoBehaviour
         PlayerData pl = SaveSystem.loadData<PlayerData>(FILENAME.PLAYER);
         Debug.Log(pl.x + " " + pl.y);
 
-        weapon = SaveSystem.loadData<Weapon>(FILENAME.WEAPON);
+        WeaponData weapon = SaveSystem.loadData<WeaponData>(FILENAME.WEAPON);
 
-        playerObject.GetComponent<WeaponController>().weapon = weapon;
+        if (weapon is RangeWeaponData rangeData)
+            playerObject.GetComponent<RangeWeapon>().setData(rangeData);
+
+        if (weapon is MeleeWeaponData meleeData)
+            playerObject.GetComponent<RangeWeapon>().setData(meleeData);
 
         playerObject.transform.position = new Vector3(pl.x, pl.y);
         playerObject.GetComponent<Health>().setHealth(pl.health);

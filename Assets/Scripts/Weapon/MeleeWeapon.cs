@@ -26,6 +26,12 @@ public class MeleeWeapon : Weapon
         attackSize = config.attackSize;
     }
 
+    public void setData(MeleeWeaponData meleeWeapon)
+    {
+        attackSize = meleeWeapon.attackSize;
+        base.setData(meleeWeapon);
+    }
+
     public override void attack(Transform attackPoint, LayerMask layer)
     {
 
