@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Weapon : MonoBehaviour
 {
+    //TODO Add Throwable (Grenades, Knifes, bottle, items which are throwable)
     public WeaponType weaponType;
     public float duration;
     public int damage;

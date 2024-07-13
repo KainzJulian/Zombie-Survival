@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestEnemyAI : MonoBehaviour
 {
-
+    //TODO: enemy AI
     MeleeWeapon meleeWeapon;
     [SerializeField] MeleeWeaponConfig config;
     [SerializeField] Transform attackPoint;

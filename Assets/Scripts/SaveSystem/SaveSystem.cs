@@ -7,6 +7,9 @@ using UnityEngine;
 
 public static class SaveSystem
 {
+
+    //TODO: SaveSystem for inventory 
+    //TODO: SaveSystem for Enemies 
     public static void saveData<T>(T data, string fileName)
     {
         BinaryFormatter formatter = new BinaryFormatter();

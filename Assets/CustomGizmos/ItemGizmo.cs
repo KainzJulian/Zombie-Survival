@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(ItemUIHandler))]
 public class ItemGizmo : MonoBehaviour
 {
+    //TODO Refactor code everywhere 
     private void OnDrawGizmos()
     {
         ItemUIHandler itemUI = GetComponent<ItemUIHandler>();
