@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class WeaponController : MonoBehaviour
 {
     public WeaponConfig weaponConfig;
-    private Weapon weapon;
+    public Weapon weapon;
 
     [SerializeField] RangeWeaponUIHandler rangeWeaponUI;
 
@@ -26,61 +26,30 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        if (weaponConfig != null)
-            weapon = setWeapon(weaponConfig);
-
-        // primaryWeapon.initData(primaryWeaponConfig);
-        // secondaryWeapon.initData(secondaryWeaponConfig);
+        setWeapon(weaponConfig);
     }
 
-    public Weapon setWeapon(WeaponConfig config)
+    public void setWeapon(WeaponConfig config)
     {
-        weaponConfig = config;
-
-        if (config.weaponType == WeaponType.Range)
+        if (config is RangeWeaponConfig rangeWeaponConfig)
         {
             onEquipRange?.Invoke();
-            return GetComponent<RangeWeapon>();
+
+            GetComponent<RangeWeapon>().initData(rangeWeaponConfig);
+            weapon = GetComponent<RangeWeapon>();
         }
 
-        if (config.weaponType == WeaponType.Melee)
+        if (config is MeleeWeaponConfig meleeWeaponConfig)
         {
             onEquipMelee?.Invoke();
-            return GetComponent<MeleeWeapon>();
+
+            GetComponent<MeleeWeapon>().initData(meleeWeaponConfig);
+            weapon = GetComponent<MeleeWeapon>();
         }
-
-        return null;
     }
-
-    // public void switchWeapon(Weapon weapon, WeaponConfig weaponConfig)
-    // {
-    //     if (weapon.weaponType == WeaponType.Range)
-    //     {
-    //         onEquipRange?.Invoke();
-
-    //         rangeWeaponUI.setCurrentAmmoText(GetComponent<RangeWeapon>().currentAmmoAmount);
-    //         rangeWeaponUI.setMaxAmmoText(GetComponent<RangeWeapon>().magazinSize);
-    //     }
-
-    //     if (weapon.weaponType == WeaponType.Melee)
-    //         onEquipMelee?.Invoke();
-
-    //     this.weapon = weapon;
-    //     this.weaponConfig = weaponConfig;
-    // }
 
     private void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Alpha1))
-        // {
-        //     switchWeapon(primaryWeapon, primaryWeaponConfig);
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.Alpha2))
-        // {
-        //     switchWeapon(secondaryWeapon, secondaryWeaponConfig);
-        // }
-
         if (Input.GetKeyDown(KeyCode.R) && weapon is RangeWeapon rangeWeapon)
         {
             rangeWeapon.reload();

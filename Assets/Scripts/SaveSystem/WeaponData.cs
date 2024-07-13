@@ -6,12 +6,16 @@ using UnityEngine;
 [Serializable]
 public class WeaponData
 {
-    public RangeWeapon rangeWeapon;
-    public MeleeWeapon meleeWeapon;
+    public WeaponType weaponType;
+    public float duration;
+    public int damage;
+    public float attackSpeed;
 
-    public WeaponData(RangeWeapon range, MeleeWeapon melee)
+    public WeaponData(Weapon weapon)
     {
-        rangeWeapon = range;
-        meleeWeapon = melee;
+        weaponType = weapon.weaponType;
+        duration = weapon.duration;
+        damage = weapon.damage;
+        attackSpeed = weapon.attackSpeed;
     }
 }

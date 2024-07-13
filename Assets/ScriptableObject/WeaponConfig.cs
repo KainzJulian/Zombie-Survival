@@ -22,7 +22,7 @@ public abstract class WeaponConfig : ScriptableObject
 [Serializable]
 public enum WeaponType
 {
-    Range,
-    Melee,
-    Throwable
+    RANGE,
+    MELEE,
+    THROWABLE
 }
