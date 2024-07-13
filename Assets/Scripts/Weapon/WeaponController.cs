@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class WeaponController : MonoBehaviour
 {
     public WeaponConfig weaponConfig;
-    private Weapon weapon;
+    public Weapon weapon;
 
     [SerializeField] RangeWeaponUIHandler rangeWeaponUI;
 
@@ -52,34 +52,8 @@ public class WeaponController : MonoBehaviour
         return null;
     }
 
-    // public void switchWeapon(Weapon weapon, WeaponConfig weaponConfig)
-    // {
-    //     if (weapon.weaponType == WeaponType.Range)
-    //     {
-    //         onEquipRange?.Invoke();
-
-    //         rangeWeaponUI.setCurrentAmmoText(GetComponent<RangeWeapon>().currentAmmoAmount);
-    //         rangeWeaponUI.setMaxAmmoText(GetComponent<RangeWeapon>().magazinSize);
-    //     }
-
-    //     if (weapon.weaponType == WeaponType.Melee)
-    //         onEquipMelee?.Invoke();
-
-    //     this.weapon = weapon;
-    //     this.weaponConfig = weaponConfig;
-    // }
-
     private void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Alpha1))
-        // {
-        //     switchWeapon(primaryWeapon, primaryWeaponConfig);
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.Alpha2))
-        // {
-        //     switchWeapon(secondaryWeapon, secondaryWeaponConfig);
-        // }
 
         if (Input.GetKeyDown(KeyCode.R) && weapon is RangeWeapon rangeWeapon)
         {
