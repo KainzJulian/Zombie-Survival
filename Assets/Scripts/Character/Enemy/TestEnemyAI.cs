@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestEnemyAI : MonoBehaviour
+public class TestEnemyAI : MonoBehaviour, EnemyAI
 {
     //TODO: enemy AI
     MeleeWeapon meleeWeapon;
@@ -10,17 +10,25 @@ public class TestEnemyAI : MonoBehaviour
     [SerializeField] Transform attackPoint;
     [SerializeField] LayerMask layer;
 
-    // Start is called before the first frame update
     void Start()
     {
         meleeWeapon = GetComponent<MeleeWeapon>();
         meleeWeapon.initData(config);
     }
 
-    // Update is called once per frame
     void Update()
     {
         meleeWeapon.attack(attackPoint, layer);
+    }
+
+    public void goToHuman()
+    {
+        Debug.Log("go to human");
+    }
+
+    public void goAFK()
+    {
+        Debug.Log("go to AFK");
     }
 
     private void OnDrawGizmos()
