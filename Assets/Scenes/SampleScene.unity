@@ -2387,6 +2387,23 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5824799689939078222, guid: d846595d347a49c4eacf2880e3c4f088, type: 3}
   m_PrefabInstance: {fileID: 1734098158}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1383403863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8430850162137812570, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+  m_PrefabInstance: {fileID: 3518546861918266142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1383403867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383403863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37e9da17280ba84ca0828ea939ac1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1392087271
 GameObject:
   m_ObjectHideFlags: 0
@@ -3960,6 +3977,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d846595d347a49c4eacf2880e3c4f088, type: 3}
+--- !u!114 &1977177596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9157865302835085311, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+  m_PrefabInstance: {fileID: 3518546861918266142}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761df030def88d64f8fb46e2df3aa8d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1984015306 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4449295633582667525, guid: f2487676c46e332409c2facf244f9c50, type: 3}
@@ -4451,9 +4479,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 569386554469212065, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
-      propertyPath: config
+      propertyPath: enemy
       value: 
-      objectReference: {fileID: 11400000, guid: 1133200a9e4e8ab45bd14837c0c65b5e, type: 2}
+      objectReference: {fileID: 1977177596}
     - target: {fileID: 6615561104571369601, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
       propertyPath: m_Name
       value: Zombie Simple
@@ -4461,7 +4489,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8430850162137812570, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1383403867}
   m_SourcePrefab: {fileID: 100100000, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
 --- !u!1001 &3585526603271408144
 PrefabInstance:

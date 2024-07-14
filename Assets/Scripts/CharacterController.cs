@@ -23,4 +23,10 @@ public class CharacterController2D : MonoBehaviour
     {
         rb.MovePosition(rb.position + speed * Time.deltaTime * new Vector2(horizontal, vertical));
     }
+
+    public void move(Vector2 position)
+    {
+        Vector2 positionToFollow = (new Vector3(position.x, position.y, 0) - transform.position).normalized;
+        move(positionToFollow.x, positionToFollow.y);
+    }
 }

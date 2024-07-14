@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    [SerializeField] EnemyConfig config;
+    public EnemyConfig config;
     [SerializeField] CircleCollider2D seekArea;
     [SerializeField] CharacterController2D characterController2D;
     [SerializeField] EnemyAI enemyAI;
@@ -20,15 +20,9 @@ public class Enemy : MonoBehaviour
         characterController2D.speed = config.movementSpeed;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void goToHuman(Transform position)
     {
-
-    }
-
-    public void goToHuman()
-    {
-        enemyAI.goToHuman();
+        enemyAI.goToHuman(position);
     }
 
     public void goAFK()

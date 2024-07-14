@@ -5,5 +5,5 @@ using UnityEngine;
 public interface EnemyAI
 {
     void goAFK();
-    void goToHuman();
+    void goToHuman(Transform position);
 }

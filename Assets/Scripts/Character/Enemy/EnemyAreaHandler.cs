@@ -12,7 +12,7 @@ public class EnemyAreaHandler : MonoBehaviour
     {
         if (isInLayerMask(other.gameObject))
         {
-            enemy.goToHuman();
+            enemy.goToHuman(other.transform);
         }
     }
 
@@ -21,6 +21,14 @@ public class EnemyAreaHandler : MonoBehaviour
         if (isInLayerMask(other.gameObject))
         {
             enemy.goAFK();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (isInLayerMask(other.gameObject))
+        {
+            enemy.goToHuman(other.transform);
         }
     }
 
