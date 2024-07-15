@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestEnemyAI : MonoBehaviour, EnemyAI
+public class CoreEnemyAI : MonoBehaviour, EnemyAI
 {
     //TODO: enemy AI
-    MeleeWeapon meleeWeapon;
-    [SerializeField] MeleeWeaponConfig config;
     [SerializeField] Transform attackPoint;
     [SerializeField] LayerMask layer;
     [SerializeField] CharacterController2D controller2D;
@@ -20,9 +18,6 @@ public class TestEnemyAI : MonoBehaviour, EnemyAI
 
     void Start()
     {
-        meleeWeapon = GetComponent<MeleeWeapon>();
-        meleeWeapon.initData(config);
-
         positionToMove = transform.position;
     }
 
@@ -31,7 +26,7 @@ public class TestEnemyAI : MonoBehaviour, EnemyAI
         if (!isAFK)
             return;
 
-        if (Vector2.Distance((Vector2)transform.position, positionToMove) <= 0.02f)
+        if (Vector2.Distance((Vector2)transform.position, positionToMove) <= 0.1f)
         {
             setNewPositionToMove();
             attackPointController.rotateAttackPoint(positionToMove);
@@ -50,9 +45,9 @@ public class TestEnemyAI : MonoBehaviour, EnemyAI
     {
         isAFK = false;
 
-        if (Vector2.Distance((Vector2)attackPoint.position, position.position) <= meleeWeapon.attackSize)
+        if (Vector2.Distance((Vector2)attackPoint.position, position.position) <= enemy.weapon.attackSize)
         {
-            meleeWeapon.attack(attackPoint, layer);
+            enemy.weapon.attack(attackPoint, layer);
         }
 
         controller2D.move(position.position);
@@ -75,7 +70,7 @@ public class TestEnemyAI : MonoBehaviour, EnemyAI
     private void OnDrawGizmos()
     {
         if (attackPoint != null)
-            Gizmos.DrawWireSphere(attackPoint.position, config.attackSize);
+            Gizmos.DrawWireSphere(attackPoint.position, enemy.weaponConfig.attackSize);
         if (enemy != null)
         {
             Gizmos.DrawWireSphere(transform.position, enemy.config.AFKRadius);

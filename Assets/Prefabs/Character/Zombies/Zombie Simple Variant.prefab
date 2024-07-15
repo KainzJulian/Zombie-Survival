@@ -255,7 +255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fcfa206034190b42b04d5e4a59099fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 1133200a9e4e8ab45bd14837c0c65b5e, type: 2}
   attackPoint: {fileID: 8491680305666019929}
   layer:
     serializedVersion: 2
@@ -279,6 +278,19 @@ MonoBehaviour:
   seekArea: {fileID: 5524772661157825204}
   characterController2D: {fileID: 3856826552066642941}
   health: {fileID: 4079194051988996329}
+  weapon: {fileID: 8210714624668186829}
+  weaponConfig: {fileID: 11400000, guid: 1133200a9e4e8ab45bd14837c0c65b5e, type: 2}
+--- !u!114 &8210714624668186829 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6219912617398239339, guid: 68317e1326a1e47499325923916467df, type: 3}
+  m_PrefabInstance: {fileID: 2856338660319410342}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6615561104571369601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbdddc3d5f271804785ef468cf307dea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8491680305666019929 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5943417661003852543, guid: 68317e1326a1e47499325923916467df, type: 3}

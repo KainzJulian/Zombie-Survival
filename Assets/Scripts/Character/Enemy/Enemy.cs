@@ -12,9 +12,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] EnemyAI enemyAI;
     [SerializeField] Health health;
 
+    public MeleeWeapon weapon;
+    public MeleeWeaponConfig weaponConfig;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        weapon = GetComponent<MeleeWeapon>();
+        weapon.initData(weaponConfig);
+
         enemyAI = GetComponent<EnemyAI>();
 
         health.health = config.health;
