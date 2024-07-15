@@ -28,7 +28,6 @@ public class TestEnemyAI : MonoBehaviour, EnemyAI
 
     void Update()
     {
-        // meleeWeapon.attack(attackPoint, layer);
         if (!isAFK)
             return;
 

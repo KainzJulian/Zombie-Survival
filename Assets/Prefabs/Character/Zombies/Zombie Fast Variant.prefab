@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7151030431426035396
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 189.24333
+      objectReference: {fileID: 0}
+    - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 278.4504
+      objectReference: {fileID: 0}
+    - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215314386894423663, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215314386894423663, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215314386894423663, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615561104571369601, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_Name
+      value: Zombie Fast Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157865302835085311, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: config
+      value: 
+      objectReference: {fileID: 11400000, guid: c196e7fde9ef6084bb56bd404c418065, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
