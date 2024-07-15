@@ -26,7 +26,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void move(Vector2 position)
     {
-        Vector2 positionToFollow = (new Vector3(position.x, position.y, 0) - transform.position).normalized;
-        move(positionToFollow.x, positionToFollow.y);
+        Vector2 newPosition = (new Vector3(position.x, position.y, 0) - transform.position).normalized;
+        move(newPosition.x, newPosition.y);
     }
 }

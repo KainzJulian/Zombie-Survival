@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyAI))]
+[RequireComponent(typeof(ZombieAI))]
 public class Enemy : MonoBehaviour
 {
 
     public EnemyConfig config;
     [SerializeField] CircleCollider2D seekArea;
     [SerializeField] CharacterController2D characterController2D;
-    [SerializeField] EnemyAI enemyAI;
+    [SerializeField] ZombieAI enemyAI;
     [SerializeField] Health health;
 
     public MeleeWeapon weapon;
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
         weapon = GetComponent<MeleeWeapon>();
         weapon.initData(weaponConfig);
 
-        enemyAI = GetComponent<EnemyAI>();
+        enemyAI = GetComponent<ZombieAI>();
 
         health.health = config.health;
 

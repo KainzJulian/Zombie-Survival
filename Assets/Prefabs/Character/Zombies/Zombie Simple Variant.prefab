@@ -195,7 +195,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 569386554469212065}
+      addedObject: {fileID: 6155376816333266077}
     - targetCorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9157865302835085311}
@@ -243,7 +243,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
   m_PrefabInstance: {fileID: 2856338660319410342}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &569386554469212065
+--- !u!114 &6155376816333266077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,13 +252,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6615561104571369601}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fcfa206034190b42b04d5e4a59099fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cee815e7f818f24eb1e183d59725c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 8491680305666019929}
   layer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 384
   controller2D: {fileID: 3856826552066642941}
   attackPointController: {fileID: 3835969564338369067}
   enemy: {fileID: 9157865302835085311}

@@ -4359,11 +4359,11 @@ PrefabInstance:
       objectReference: {fileID: 491776619}
     - target: {fileID: 8901655225986151274, guid: f2487676c46e332409c2facf244f9c50, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -120.5
       objectReference: {fileID: 0}
     - target: {fileID: 8901655225986151274, guid: f2487676c46e332409c2facf244f9c50, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 23.7
       objectReference: {fileID: 0}
     - target: {fileID: 8901655225986151274, guid: f2487676c46e332409c2facf244f9c50, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4416,11 +4416,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7367596554317615118, guid: c6870c7510bf719429074172d876bae9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 189.24333
+      value: -190.1
       objectReference: {fileID: 0}
     - target: {fileID: 7367596554317615118, guid: c6870c7510bf719429074172d876bae9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 278.4504
+      value: 437.6
       objectReference: {fileID: 0}
     - target: {fileID: 7367596554317615118, guid: c6870c7510bf719429074172d876bae9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4469,11 +4469,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 189.24333
+      value: 229
       objectReference: {fileID: 0}
     - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 278.4504
+      value: 56.9
       objectReference: {fileID: 0}
     - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4506,6 +4506,10 @@ PrefabInstance:
     - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155376816333266077, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: layer.m_Bits
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 6615561104571369601, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
       propertyPath: m_Name
