@@ -16,14 +16,11 @@ public abstract class CoreZombieAI : MonoBehaviour, ZombieAI
 
     protected bool isAFK = true;
 
+    [SerializeField] protected float waitTimeBetweenMove = 2f;
+
     private void Awake()
     {
         positionToMove = transform.position;
-    }
-
-    protected bool checkAFK()
-    {
-        return !isAFK;
     }
 
     protected bool checkDistance()
@@ -39,19 +36,6 @@ public abstract class CoreZombieAI : MonoBehaviour, ZombieAI
     protected void waitSetPositionToMove(float timeSeconds)
     {
         Invoke("setNewPositionToMove", timeSeconds);
-    }
-
-    protected void waitExecute(float timeSeconds, System.Action action)
-    {
-        StartCoroutine(waitExecuteAction(timeSeconds, action));
-        Debug.LogWarning("test");
-    }
-
-    IEnumerator waitExecuteAction(float timeSeconds, System.Action callback)
-    {
-        yield return new WaitForSeconds(timeSeconds);
-
-        callback?.Invoke();
     }
 
     protected void rotateAttackPoint(Vector2 position)
@@ -82,7 +66,36 @@ public abstract class CoreZombieAI : MonoBehaviour, ZombieAI
 
     protected void performAFK()
     {
-        controller2D.move(positionToMove);
+        if (!isAFK)
+            return;
+
+        if (!checkDistance())
+        {
+            rotateAttackPoint(positionToMove);
+            controller2D.move(positionToMove);
+            return;
+        }
+
+        positionToMove = transform.position;
+        setNewPositionToMove();
+        isAFK = true;
+        waitExecute(2f, () => { isAFK = false; });
+    }
+
+    protected void waitExecute(float timeSeconds, System.Action action)
+    {
+        isAFK = false;
+        StartCoroutine(waitExecuteAction(timeSeconds, action));
+    }
+
+    IEnumerator waitExecuteAction(float timeSeconds, System.Action callback)
+    {
+
+        Debug.LogWarning("begin 2 seconds");
+        yield return new WaitForSeconds(timeSeconds);
+        Debug.LogWarning("end 2 seconds");
+        callback?.Invoke();
+        isAFK = true;
     }
 
     private void OnDrawGizmos()

@@ -6,7 +6,7 @@ public class SimpleZombieAI : CoreZombieAI
 {
     private void Update()
     {
-        if (checkAFK())
+        if (!isAFK)
             return;
 
         if (checkDistance())
