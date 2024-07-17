@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
+[RequireComponent(typeof(NoiseSource))]
 public class Weapon : MonoBehaviour
 {
     //TODO Add Throwable (Grenades, Knifes, bottle, items which are throwable)
@@ -17,6 +18,13 @@ public class Weapon : MonoBehaviour
     protected float helpAttackTime;
 
     public int noiseRadius;
+
+    public NoiseSource noiseSource;
+
+    private void Start()
+    {
+        noiseSource = GetComponent<NoiseSource>();
+    }
 
     public void initData(WeaponConfig config)
     {
@@ -39,8 +47,8 @@ public class Weapon : MonoBehaviour
     {
         if (canAttack)
         {
-            helpAttackTime = 1;
             canAttack = false;
+            helpAttackTime = 1;
         }
     }
 }

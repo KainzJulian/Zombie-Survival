@@ -8,17 +8,17 @@ public class FastZombieAI : CoreZombieAI
 
     private void Start()
     {
-        setNewPositionToMove();
+        // setNewPositionToMove();
     }
 
     private void Update()
     {
-        performAFK();
+        // performAFK();
     }
 
-    public override void goAFK()
-    {
-        isAFK = true;
-        setNewPositionToMove();
-    }
+    // public override void goAFK()
+    // {
+    //     isAFK = true;
+    //     setNewPositionToMove();
+    // }
 }

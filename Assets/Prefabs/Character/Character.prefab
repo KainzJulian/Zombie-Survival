@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 8834399069518151660}
   - component: {fileID: 7248187500158030339}
   - component: {fileID: 6219912617398239339}
+  - component: {fileID: 4539001117178180456}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -344,6 +345,7 @@ MonoBehaviour:
   damage: 0
   attackSpeed: 0
   canAttack: 0
+  noiseRadius: 0
   projectileCount: 0
   projectilePrefab: {fileID: 0}
   angle: 0
@@ -370,5 +372,20 @@ MonoBehaviour:
   damage: 0
   attackSpeed: 0
   canAttack: 0
+  noiseRadius: 0
   attackSize: 0
-  meleeWeaponConfig: {fileID: 0}
+--- !u!114 &4539001117178180456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8965806107412115495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb53ddc0c07bbe846b5834ad5d24d9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 4294967295

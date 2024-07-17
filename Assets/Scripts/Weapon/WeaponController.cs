@@ -59,6 +59,7 @@ public class WeaponController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
         {
             weapon?.attack(attackPoint, attackLayers);
+
             onAttack?.Invoke();
 
             if (weapon is RangeWeapon range)

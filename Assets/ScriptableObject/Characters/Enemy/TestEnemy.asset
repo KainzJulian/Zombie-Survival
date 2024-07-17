@@ -15,3 +15,4 @@ MonoBehaviour:
   movementSpeed: 40
   seekRadius: 200
   AFKRadius: 50
+  health: 100
