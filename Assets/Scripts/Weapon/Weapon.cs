@@ -16,12 +16,15 @@ public class Weapon : MonoBehaviour
 
     protected float helpAttackTime;
 
+    public int noiseRadius;
+
     public void initData(WeaponConfig config)
     {
         weaponType = config.weaponType;
         duration = config.duration;
         damage = config.damage;
         attackSpeed = config.attackSpeed;
+        noiseRadius = config.noiseRadius;
     }
 
     public void setData(WeaponData config)

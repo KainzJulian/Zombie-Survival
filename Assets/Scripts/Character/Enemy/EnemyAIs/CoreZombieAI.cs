@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CoreZombieAI : MonoBehaviour, ZombieAI
+public abstract class CoreZombieAI : MonoBehaviour, ZombieAI, Hearable
 {
     //TODO: enemy AI
     [SerializeField] protected Transform attackPoint;
@@ -110,5 +110,10 @@ public abstract class CoreZombieAI : MonoBehaviour, ZombieAI
 
         Gizmos.color = new Color(1, 0, 0, 1);
         Gizmos.DrawSphere(positionToMove, 3);
+    }
+
+    public void heardNoise(Transform transform)
+    {
+        goToHuman(transform);
     }
 }

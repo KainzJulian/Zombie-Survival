@@ -4507,10 +4507,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6155376816333266077, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
-      propertyPath: layer.m_Bits
-      value: 192
-      objectReference: {fileID: 0}
     - target: {fileID: 6615561104571369601, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
       propertyPath: m_Name
       value: Zombie Simple

@@ -4,7 +4,6 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 
-[RequireComponent(typeof(Health))]
 public class PlayerManager : MonoBehaviour
 {
     CharacterController2D characterController;

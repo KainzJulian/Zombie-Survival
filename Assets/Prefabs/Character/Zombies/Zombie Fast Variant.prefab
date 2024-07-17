@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 189.24333
+      value: -190.1
       objectReference: {fileID: 0}
     - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 278.4504
+      value: 437.6
       objectReference: {fileID: 0}
     - target: {fileID: 361244879496834762, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4103519834111096389}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b169990e5f40b846b88e3d819436f8b, type: 3}
   m_Name: 
@@ -117,6 +117,7 @@ MonoBehaviour:
   controller2D: {fileID: 6249768243042594105}
   attackPointController: {fileID: 6197385970853154031}
   enemy: {fileID: 2029669546179428667}
+  waitTimeBetweenMove: 2
 --- !u!114 &6197385970853154031 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3835969564338369067, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
