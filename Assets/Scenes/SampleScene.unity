@@ -4425,6 +4425,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3856826552066642941, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4079194051988996329, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
       propertyPath: onHealthChange.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -4436,6 +4440,14 @@ PrefabInstance:
     - target: {fileID: 6615561104571369601, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
       propertyPath: m_Name
       value: Zombie Simple
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210714624668186829, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157865302835085311, guid: d288e1472211ec943b9c2d9435709ee2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

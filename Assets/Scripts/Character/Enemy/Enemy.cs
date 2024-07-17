@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
 {
 
     public EnemyConfig config;
-    [SerializeField] CircleCollider2D seekArea;
     [SerializeField] CharacterController2D characterController2D;
     [SerializeField] ZombieAI enemyAI;
     [SerializeField] Health health;
@@ -26,7 +25,6 @@ public class Enemy : MonoBehaviour
 
         health.health = config.health;
 
-        seekArea.radius = config.seekRadius;
         characterController2D.speed = config.movementSpeed;
     }
 

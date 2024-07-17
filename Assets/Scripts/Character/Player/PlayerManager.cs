@@ -45,7 +45,7 @@ public class PlayerManager : MonoBehaviour
     private void FixedUpdate()
     {
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        characterController.moveFixed(movement.x, movement.y);
+        characterController.moveFixed(movement.x, movement.y, CharacterController2D.SpeedType.WALK);
 
         attackPointController.rotateAttackPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }

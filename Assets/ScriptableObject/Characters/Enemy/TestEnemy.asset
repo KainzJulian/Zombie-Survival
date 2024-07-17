@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TestEnemy
   m_EditorClassIdentifier: 
   movementSpeed: 40
-  seekRadius: 200
+  seekRadius: 0
   AFKRadius: 50
   health: 100
