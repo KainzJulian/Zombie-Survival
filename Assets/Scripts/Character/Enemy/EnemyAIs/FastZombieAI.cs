@@ -20,6 +20,5 @@ public class FastZombieAI : CoreZombieAI
     {
         isAFK = true;
         setNewPositionToMove();
-        // waitExecute(2f, performAFK);
     }
 }
