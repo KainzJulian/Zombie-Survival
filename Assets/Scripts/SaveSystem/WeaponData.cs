@@ -11,11 +11,9 @@ public class WeaponData
     public int damage;
     public float attackSpeed;
 
-    public WeaponData(Weapon weapon)
-    {
-        weaponType = weapon.weaponType;
-        duration = weapon.duration;
-        damage = weapon.damage;
-        attackSpeed = weapon.attackSpeed;
-    }
+    public bool canAttack = true;
+
+    public int noiseRadius;
+
+    public float attackTimer;
 }

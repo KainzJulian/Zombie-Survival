@@ -7,18 +7,13 @@ using UnityEngine;
 public class RangeWeaponData : WeaponData
 {
     public int projectileCount;
+
+    [Range(1, 180)]
     public float angle;
     public int magazinSize;
     public float reloadTime;
 
     public int currentAmmoAmount;
 
-    public RangeWeaponData(RangeWeapon weapon) : base(weapon)
-    {
-        projectileCount = weapon.projectileCount;
-        angle = weapon.angle;
-        magazinSize = weapon.magazinSize;
-        reloadTime = weapon.reloadTime;
-        currentAmmoAmount = weapon.currentAmmoAmount;
-    }
+    public bool isReloading = false;
 }

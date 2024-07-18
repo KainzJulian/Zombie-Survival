@@ -7,9 +7,4 @@ using UnityEngine;
 public class MeleeWeaponData : WeaponData
 {
     public int attackSize;
-
-    public MeleeWeaponData(MeleeWeapon weapon) : base(weapon)
-    {
-        attackSize = weapon.attackSize;
-    }
 }

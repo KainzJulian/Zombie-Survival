@@ -7,59 +7,57 @@ using UnityEngine.Events;
 [Serializable]
 public class RangeWeapon : Weapon
 {
-    public int projectileCount;
     public GameObject projectilePrefab;
-    public float angle;
-    public int magazinSize;
-    public float reloadTime;
 
-    public int currentAmmoAmount;
-
-    private bool isReloading = false;
+    public RangeWeaponData data;
 
     public UnityEvent<int> onCurrentAmmoChange = new UnityEvent<int>();
 
     private void Update()
     {
-        if (helpAttackTime <= 0 && !canAttack && !isReloading)
+        if (data.attackTimer <= 0 && !data.canAttack && !data.isReloading)
         {
-            canAttack = true;
-            helpAttackTime = 1;
+            data.canAttack = true;
+            data.attackTimer = 1;
         }
 
-        if (helpAttackTime > 0)
+        if (data.attackTimer > 0)
         {
-            helpAttackTime -= Time.deltaTime * attackSpeed;
+            data.attackTimer -= Time.deltaTime * data.attackSpeed;
         }
     }
 
     public override void attack(Transform attackPoint, LayerMask layer)
     {
-        if (!canAttack || isReloading)
+        if (!data.canAttack || data.isReloading)
             return;
 
-        if (currentAmmoAmount <= 0)
+        if (data.currentAmmoAmount <= 0)
             return;
 
 
         // is attacking
         Debug.Log("range Weapon attack");
-        currentAmmoAmount -= 1;
-        onCurrentAmmoChange?.Invoke(currentAmmoAmount);
+        data.currentAmmoAmount -= 1;
+        onCurrentAmmoChange?.Invoke(data.currentAmmoAmount);
 
-        noiseSource.generateNoise(noiseRadius);
+        noiseSource.generateNoise(data.noiseRadius);
 
-        for (int i = 0; i < projectileCount; i++)
+        for (int i = 0; i < data.projectileCount; i++)
         {
             // add spread to the bullets
-            float newAngle = attackPoint.rotation.eulerAngles.z + UnityEngine.Random.Range(-angle, angle);
+            float newAngle = attackPoint.rotation.eulerAngles.z + UnityEngine.Random.Range(-data.angle, data.angle);
             GameObject projectile = Instantiate(projectilePrefab, attackPoint.position, Quaternion.Euler(0f, 0f, newAngle));
 
             // set damage of bullet
-            projectile.GetComponent<DamageEntity>().damage = damage;
+            projectile.GetComponent<DamageEntity>().damage = data.damage;
         }
 
-        base.attack(attackPoint, layer);
+        if (data.canAttack)
+        {
+            data.canAttack = false;
+            data.attackTimer = 1;
+        }
     }
 
     public void reload()
@@ -69,34 +67,12 @@ public class RangeWeapon : Weapon
 
     private IEnumerator reloading()
     {
-        isReloading = true;
+        data.isReloading = true;
 
-        yield return new WaitForSeconds(reloadTime);
+        yield return new WaitForSeconds(data.reloadTime);
 
-        isReloading = false;
-        currentAmmoAmount = magazinSize;
-        onCurrentAmmoChange?.Invoke(currentAmmoAmount);
-    }
-
-    public void initData(RangeWeaponConfig config)
-    {
-        base.initData(config);
-
-        projectileCount = config.projectileCount;
-        projectilePrefab = config.projectilePrefab;
-        angle = config.angle;
-        magazinSize = config.magazinSize;
-        reloadTime = config.reloadTime;
-    }
-
-    public void setData(RangeWeaponData config)
-    {
-        projectileCount = config.projectileCount;
-        angle = config.angle;
-        magazinSize = config.magazinSize;
-        reloadTime = config.reloadTime;
-        currentAmmoAmount = config.currentAmmoAmount;
-
-        base.setData(config);
+        data.isReloading = false;
+        data.currentAmmoAmount = data.magazinSize;
+        onCurrentAmmoChange?.Invoke(data.currentAmmoAmount);
     }
 }

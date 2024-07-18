@@ -19,7 +19,6 @@ public class Enemy : MonoBehaviour
     {
 
         weapon = GetComponent<MeleeWeapon>();
-        weapon.initData(weaponConfig);
 
         enemyAI = GetComponent<ZombieAI>();
 

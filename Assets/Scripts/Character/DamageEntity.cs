@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class DamageEntity : MonoBehaviour
 {
-
     public int damage = 0;
 
     private Damagable damagable;

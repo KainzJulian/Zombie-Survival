@@ -7,7 +7,11 @@ using UnityEngine.Events;
 public class WeaponController : MonoBehaviour
 {
     public WeaponConfig weaponConfig;
-    public Weapon weapon;
+    // public Weapon weapon;
+
+    public GameObject weaponObject;
+
+    public Weapon currentWeapon;
 
     [SerializeField] RangeWeaponUIHandler rangeWeaponUI;
 
@@ -26,44 +30,46 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        setWeapon(weaponConfig);
+        currentWeapon = weaponObject.GetComponentInChildren<Weapon>();
+
+        // setWeapon(weaponConfig);
     }
 
-    public void setWeapon(WeaponConfig config)
-    {
-        if (config is RangeWeaponConfig rangeWeaponConfig)
-        {
-            onEquipRange?.Invoke();
+    // public void setWeapon(WeaponConfig config)
+    // {
+    //     if (config is RangeWeaponConfig rangeWeaponConfig)
+    //     {
+    //         onEquipRange?.Invoke();
 
-            GetComponent<RangeWeapon>().initData(rangeWeaponConfig);
-            weapon = GetComponent<RangeWeapon>();
-        }
+    //         // GetComponent<RangeWeapon>().initData(rangeWeaponConfig);
+    //         weapon = GetComponent<RangeWeapon>();
+    //     }
 
-        if (config is MeleeWeaponConfig meleeWeaponConfig)
-        {
-            onEquipMelee?.Invoke();
+    //     if (config is MeleeWeaponConfig meleeWeaponConfig)
+    //     {
+    //         onEquipMelee?.Invoke();
 
-            GetComponent<MeleeWeapon>().initData(meleeWeaponConfig);
-            weapon = GetComponent<MeleeWeapon>();
-        }
-    }
+    //         // GetComponent<MeleeWeapon>().initData(meleeWeaponConfig);
+    //         weapon = GetComponent<MeleeWeapon>();
+    //     }
+    // }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && weapon is RangeWeapon rangeWeapon)
+        if (Input.GetKeyDown(KeyCode.R) && currentWeapon is RangeWeapon rangeWeapon)
         {
             rangeWeapon.reload();
-            rangeWeaponUI.setCurrentAmmoText(rangeWeapon.currentAmmoAmount);
+            rangeWeaponUI.setCurrentAmmoText(rangeWeapon.data.currentAmmoAmount);
         }
 
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
         {
-            weapon?.attack(attackPoint, attackLayers);
+            currentWeapon?.attack(attackPoint, attackLayers);
 
             onAttack?.Invoke();
 
-            if (weapon is RangeWeapon range)
-                rangeWeaponUI.setCurrentAmmoText(range.currentAmmoAmount);
+            if (currentWeapon is RangeWeapon range)
+                rangeWeaponUI.setCurrentAmmoText(range.data.currentAmmoAmount);
         }
     }
 
