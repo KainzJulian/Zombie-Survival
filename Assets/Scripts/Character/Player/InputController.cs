@@ -103,6 +103,7 @@ public class InputController : MonoBehaviour
     private void sprint()
     {
         Debug.Log("sprint");
+
     }
 
     private void sneak()

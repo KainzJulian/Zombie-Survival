@@ -2,21 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyAI))]
+[RequireComponent(typeof(ZombieAI))]
 public class Enemy : MonoBehaviour
 {
 
     public EnemyConfig config;
-    [SerializeField] CircleCollider2D seekArea;
     [SerializeField] CharacterController2D characterController2D;
-    [SerializeField] EnemyAI enemyAI;
+    [SerializeField] ZombieAI enemyAI;
+    [SerializeField] Health health;
+
+    public MeleeWeapon weapon;
+    public MeleeWeaponConfig weaponConfig;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyAI = GetComponent<EnemyAI>();
 
-        seekArea.radius = config.seekRadius;
+        weapon = GetComponent<MeleeWeapon>();
+        weapon.initData(weaponConfig);
+
+        enemyAI = GetComponent<ZombieAI>();
+
+        health.health = config.health;
+
         characterController2D.speed = config.movementSpeed;
     }
 

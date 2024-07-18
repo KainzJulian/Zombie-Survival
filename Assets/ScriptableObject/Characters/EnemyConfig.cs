@@ -10,4 +10,6 @@ public class EnemyConfig : NPCConfig
 
     [Tooltip("Radius in which a random position will be chosen and then gone to")]
     public int AFKRadius;
+
+    public int health;
 }

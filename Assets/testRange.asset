@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   duration: 1
-  damage: 1
-  attackSpeed: 10
-  projectileCount: 1
+  damage: 10
+  attackSpeed: 1
+  noiseRadius: 400
+  projectileCount: 10
   projectilePrefab: {fileID: 5977094512605975314, guid: 7eeaac6c6026d564f8abadcea05301ca, type: 3}
-  angle: 10
-  magazinSize: 30
-  reloadTime: 2
+  angle: 15
+  magazinSize: 5
+  reloadTime: 1

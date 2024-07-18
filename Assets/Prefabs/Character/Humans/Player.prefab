@@ -147,6 +147,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6102759493574979055}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onClosePause:
     m_PersistentCalls:
       m_Calls:
@@ -163,6 +175,18 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 4034647331464593795}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 6102759493574979055}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -196,11 +220,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2495177455688210028, guid: 68317e1326a1e47499325923916467df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -120.5
       objectReference: {fileID: 0}
     - target: {fileID: 2495177455688210028, guid: 68317e1326a1e47499325923916467df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 242
+      value: 23.7
       objectReference: {fileID: 0}
     - target: {fileID: 2495177455688210028, guid: 68317e1326a1e47499325923916467df, type: 3}
       propertyPath: m_LocalPosition.z
@@ -233,6 +257,10 @@ PrefabInstance:
     - target: {fileID: 2495177455688210028, guid: 68317e1326a1e47499325923916467df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539001117178180456, guid: 68317e1326a1e47499325923916467df, type: 3}
+      propertyPath: layer.m_Bits
+      value: 384
       objectReference: {fileID: 0}
     - target: {fileID: 4931507290990717744, guid: 68317e1326a1e47499325923916467df, type: 3}
       propertyPath: m_Layer
@@ -341,6 +369,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponConfig: {fileID: 11400000, guid: 911368c4e8ceba540bfe8628cbf64211, type: 2}
+  weapon: {fileID: 0}
+  noiseSource: {fileID: 7481723187869062766}
   rangeWeaponUI: {fileID: 6582673911388014362}
   attackLayers:
     serializedVersion: 2
@@ -513,6 +543,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 401f164c10e4fa645a451e52bb7dd4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7481723187869062766 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4539001117178180456, guid: 68317e1326a1e47499325923916467df, type: 3}
+  m_PrefabInstance: {fileID: 6424858684139808006}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2685658065619850529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb53ddc0c07bbe846b5834ad5d24d9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &8901655225986151274 stripped

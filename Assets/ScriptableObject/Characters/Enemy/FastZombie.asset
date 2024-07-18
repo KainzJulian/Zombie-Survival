@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 680ce2a7f9d3fec448b36fb7c6991a74, type: 3}
-  m_Name: TestEnemy
+  m_Name: FastZombie
   m_EditorClassIdentifier: 
-  movementSpeed: 40
+  movementSpeed: 100
   seekRadius: 0
   AFKRadius: 50
   health: 100

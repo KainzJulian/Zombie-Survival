@@ -17,6 +17,8 @@ public abstract class WeaponConfig : ScriptableObject
 
     [Tooltip("Time between two Attacks (lower number = slower attack)")]
     public float attackSpeed;
+
+    public int noiseRadius;
 }
 
 [Serializable]

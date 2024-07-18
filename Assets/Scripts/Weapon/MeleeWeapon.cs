@@ -34,9 +34,10 @@ public class MeleeWeapon : Weapon
 
     public override void attack(Transform attackPoint, LayerMask layer)
     {
-
         if (!canAttack)
             return;
+
+        noiseSource.generateNoise(noiseRadius);
 
         Debug.Log("melee Attack");
 

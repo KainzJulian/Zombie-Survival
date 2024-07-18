@@ -41,9 +41,13 @@ public class RangeWeapon : Weapon
         if (currentAmmoAmount <= 0)
             return;
 
+
+        // is attacking
         Debug.Log("range Weapon attack");
         currentAmmoAmount -= 1;
         onCurrentAmmoChange?.Invoke(currentAmmoAmount);
+
+        noiseSource.generateNoise(noiseRadius);
 
         for (int i = 0; i < projectileCount; i++)
         {
