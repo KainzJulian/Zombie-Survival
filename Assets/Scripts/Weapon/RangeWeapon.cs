@@ -11,7 +11,7 @@ public class RangeWeapon : Weapon
 
     public RangeWeaponData data;
 
-    public UnityEvent<int> onCurrentAmmoChange = new UnityEvent<int>();
+    public UnityEvent<int> onAmmoChange = new UnityEvent<int>();
 
     private void Update()
     {
@@ -39,7 +39,7 @@ public class RangeWeapon : Weapon
         // is attacking
         Debug.Log("range Weapon attack");
         data.currentAmmoAmount -= 1;
-        onCurrentAmmoChange?.Invoke(data.currentAmmoAmount);
+        onAmmoChange?.Invoke(data.currentAmmoAmount);
 
         noiseSource.generateNoise(data.noiseRadius);
 
@@ -73,6 +73,7 @@ public class RangeWeapon : Weapon
 
         data.isReloading = false;
         data.currentAmmoAmount = data.magazinSize;
-        onCurrentAmmoChange?.Invoke(data.currentAmmoAmount);
+
+        onAmmoChange?.Invoke(data.currentAmmoAmount);
     }
 }

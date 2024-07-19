@@ -33,7 +33,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void baseMove(float horizontal, float vertical, SpeedType type, float deltaTime)
     {
-        helpTime -= Time.deltaTime * getStepSpeed(type);
+        helpTime -= deltaTime * getStepSpeed(type);
 
         if (horizontal == 0 && vertical == 0)
             return;
@@ -41,7 +41,7 @@ public class CharacterController2D : MonoBehaviour
         float speedTypeMultiplier = (int)type / 100;
         Vector2 posVector = new Vector2(horizontal, vertical);
 
-        rb.MovePosition(rb.position + posVector * speed * Time.fixedDeltaTime * speedTypeMultiplier);
+        rb.MovePosition(rb.position + posVector * speed * deltaTime * speedTypeMultiplier);
 
         if (helpTime <= 0)
         {
@@ -88,7 +88,7 @@ public class CharacterController2D : MonoBehaviour
     public void moveFixed(Vector2 position, SpeedType type = SpeedType.WALK)
     {
         Vector2 newPosition = (new Vector3(position.x, position.y, 0) - transform.position).normalized;
-        baseMove(newPosition.x, newPosition.y, type, Time.deltaTime);
+        baseMove(newPosition.x, newPosition.y, type, Time.fixedDeltaTime);
     }
 
     public void move(Vector2 position, SpeedType type = SpeedType.WALK)

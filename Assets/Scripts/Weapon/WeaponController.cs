@@ -24,13 +24,11 @@ public class WeaponController : MonoBehaviour
     [SerializeField] LayerMask attackLayers;
     [SerializeField] Transform attackPoint;
 
-    [SerializeField] UnityEvent onEquipRange = new UnityEvent();
-    [SerializeField] UnityEvent onEquipMelee = new UnityEvent();
-    [SerializeField] UnityEvent onAttack = new UnityEvent();
-
     private void Start()
     {
         currentWeapon = weaponObject.GetComponentInChildren<Weapon>();
+
+        getWeaponAsRange()?.onAmmoChange.AddListener(rangeWeaponUI.setCurrentAmmoText);
 
         // setWeapon(weaponConfig);
     }
@@ -59,17 +57,11 @@ public class WeaponController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && currentWeapon is RangeWeapon rangeWeapon)
         {
             rangeWeapon.reload();
-            rangeWeaponUI.setCurrentAmmoText(rangeWeapon.data.currentAmmoAmount);
         }
 
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
         {
             currentWeapon?.attack(attackPoint, attackLayers);
-
-            onAttack?.Invoke();
-
-            if (currentWeapon is RangeWeapon range)
-                rangeWeaponUI.setCurrentAmmoText(range.data.currentAmmoAmount);
         }
     }
 
@@ -77,5 +69,19 @@ public class WeaponController : MonoBehaviour
     {
         if (attackPoint != null)
             Gizmos.DrawWireSphere(attackPoint.position, 10);
+    }
+
+    public MeleeWeapon getWeaponAsMelee()
+    {
+        if (currentWeapon is MeleeWeapon meleeWeapon)
+            return meleeWeapon;
+        return null;
+    }
+
+    public RangeWeapon getWeaponAsRange()
+    {
+        if (currentWeapon is RangeWeapon rangeWeapon)
+            return rangeWeapon;
+        return null;
     }
 }

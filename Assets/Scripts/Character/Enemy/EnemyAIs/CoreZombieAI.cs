@@ -47,9 +47,9 @@ public abstract class CoreZombieAI : MonoBehaviour, ZombieAI, Hearable
     {
         isAFK = false;
 
-        if (Vector2.Distance((Vector2)attackPoint.position, position.position) <= enemy.weapon.data.attackSize)
+        if (Vector2.Distance((Vector2)attackPoint.position, position.position) <= enemy.getWeaponAsMelee().data.attackSize)
         {
-            enemy.weapon.attack(attackPoint, layer);
+            enemy.currentWeapon.attack(attackPoint, layer);
         }
 
         controller2D.move(position.position);
@@ -100,16 +100,16 @@ public abstract class CoreZombieAI : MonoBehaviour, ZombieAI, Hearable
 
     private void OnDrawGizmos()
     {
-        if (attackPoint != null)
-            Gizmos.DrawWireSphere(attackPoint.position, enemy.weaponConfig.attackSize);
-        if (enemy != null)
-        {
-            Gizmos.DrawWireSphere(transform.position, enemy.config.AFKRadius);
-            Gizmos.DrawWireSphere(transform.position, enemy.config.seekRadius);
-        }
+        // if (attackPoint != null)
+        //     Gizmos.DrawWireSphere(attackPoint.position, enemy.currentWeapon.attackSize);
+        // if (enemy != null)
+        // {
+        //     Gizmos.DrawWireSphere(transform.position, enemy.config.AFKRadius);
+        //     Gizmos.DrawWireSphere(transform.position, enemy.config.seekRadius);
+        // }
 
-        Gizmos.color = new Color(1, 0, 0, 1);
-        Gizmos.DrawSphere(positionToMove, 3);
+        // Gizmos.color = new Color(1, 0, 0, 1);
+        // Gizmos.DrawSphere(positionToMove, 3);
     }
 
     public void heardNoise(Transform transform)
