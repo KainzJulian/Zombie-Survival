@@ -53,5 +53,6 @@ public class Health : MonoBehaviour, Damagable
     {
         gameObject.SetActive(false);
         onDie?.Invoke();
+        Destroy(gameObject);
     }
 }
