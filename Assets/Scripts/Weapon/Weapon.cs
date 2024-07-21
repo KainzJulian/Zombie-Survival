@@ -5,20 +5,11 @@ using UnityEngine;
 
 [Serializable]
 [RequireComponent(typeof(NoiseSource))]
-public class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
     //TODO Add Throwable (Grenades, Knifes, bottle, items which are throwable)
-    public WeaponType weaponType;
-    public float duration;
-    public int damage;
-    public float attackSpeed;
 
-    public bool canAttack = true;
-
-    protected float helpAttackTime;
-
-    public int noiseRadius;
-
+    [HideInInspector]
     public NoiseSource noiseSource;
 
     private void Start()
@@ -26,29 +17,5 @@ public class Weapon : MonoBehaviour
         noiseSource = GetComponent<NoiseSource>();
     }
 
-    public void initData(WeaponConfig config)
-    {
-        weaponType = config.weaponType;
-        duration = config.duration;
-        damage = config.damage;
-        attackSpeed = config.attackSpeed;
-        noiseRadius = config.noiseRadius;
-    }
-
-    public void setData(WeaponData config)
-    {
-        weaponType = config.weaponType;
-        duration = config.duration;
-        damage = config.damage;
-        attackSpeed = config.attackSpeed;
-    }
-
-    public virtual void attack(Transform attackPoint, LayerMask layer)
-    {
-        if (canAttack)
-        {
-            canAttack = false;
-            helpAttackTime = 1;
-        }
-    }
+    public abstract void attack(Transform attackPoint, LayerMask layer);
 }

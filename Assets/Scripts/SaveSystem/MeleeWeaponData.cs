@@ -6,10 +6,6 @@ using UnityEngine;
 [Serializable]
 public class MeleeWeaponData : WeaponData
 {
+    [Tooltip("Size of the Attack")]
     public int attackSize;
-
-    public MeleeWeaponData(MeleeWeapon weapon) : base(weapon)
-    {
-        attackSize = weapon.attackSize;
-    }
 }

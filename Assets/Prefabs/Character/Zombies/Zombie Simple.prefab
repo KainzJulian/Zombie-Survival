@@ -209,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
       propertyPath: m_Name
-      value: Zombie Simple Variant
+      value: Zombie Simple
       objectReference: {fileID: 0}
     - target: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
       propertyPath: m_Layer
@@ -230,6 +230,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4305795859953427132, guid: 68317e1326a1e47499325923916467df, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4244728334283909722}
+    - targetCorrespondingSourceObject: {fileID: 8942811016987368221, guid: 68317e1326a1e47499325923916467df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1487912412465389203}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
       insertIndex: -1
@@ -276,6 +279,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2f262ea8559f34db54f7bf9c0345f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &6609313781819827131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8942811016987368221, guid: 68317e1326a1e47499325923916467df, type: 3}
+  m_PrefabInstance: {fileID: 2856338660319410342}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6615561104571369601 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
@@ -314,24 +322,83 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: d98a8b3e1dbf2d742a229e9fe8b5231f, type: 2}
-  seekArea: {fileID: 0}
   characterController2D: {fileID: 3856826552066642941}
   health: {fileID: 4079194051988996329}
-  weapon: {fileID: 8210714624668186829}
-  weaponConfig: {fileID: 11400000, guid: 1133200a9e4e8ab45bd14837c0c65b5e, type: 2}
---- !u!114 &8210714624668186829 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6219912617398239339, guid: 68317e1326a1e47499325923916467df, type: 3}
+  weaponObject: {fileID: 8415469539248879179}
+  currentWeapon: {fileID: 0}
+--- !u!1 &8415469539248879179 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6010616746086567661, guid: 68317e1326a1e47499325923916467df, type: 3}
   m_PrefabInstance: {fileID: 2856338660319410342}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6615561104571369601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbdddc3d5f271804785ef468cf307dea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8491680305666019929 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5943417661003852543, guid: 68317e1326a1e47499325923916467df, type: 3}
   m_PrefabInstance: {fileID: 2856338660319410342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8203295730854079204
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6609313781819827131}
+    m_Modifications:
+    - target: {fileID: 4954394713675373002, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+      propertyPath: m_Name
+      value: TestMeleeWeaponPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969609251137502395, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+      propertyPath: layer.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309859471032710263, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309859471032710263, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309859471032710263, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309859471032710263, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309859471032710263, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309859471032710263, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309859471032710263, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309859471032710263, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309859471032710263, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309859471032710263, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+--- !u!4 &1487912412465389203 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7309859471032710263, guid: 45a4b22ad43d9044b9a1e35002da71de, type: 3}
+  m_PrefabInstance: {fileID: 8203295730854079204}
   m_PrefabAsset: {fileID: 0}

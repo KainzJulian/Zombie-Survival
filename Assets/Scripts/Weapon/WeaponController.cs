@@ -7,7 +7,11 @@ using UnityEngine.Events;
 public class WeaponController : MonoBehaviour
 {
     public WeaponConfig weaponConfig;
-    public Weapon weapon;
+    // public Weapon weapon;
+
+    public GameObject weaponObject;
+
+    public Weapon currentWeapon;
 
     [SerializeField] RangeWeaponUIHandler rangeWeaponUI;
 
@@ -20,50 +24,44 @@ public class WeaponController : MonoBehaviour
     [SerializeField] LayerMask attackLayers;
     [SerializeField] Transform attackPoint;
 
-    [SerializeField] UnityEvent onEquipRange = new UnityEvent();
-    [SerializeField] UnityEvent onEquipMelee = new UnityEvent();
-    [SerializeField] UnityEvent onAttack = new UnityEvent();
-
     private void Start()
     {
-        setWeapon(weaponConfig);
+        currentWeapon = weaponObject.GetComponentInChildren<Weapon>();
+
+        getWeaponAsRange()?.onAmmoChange.AddListener(rangeWeaponUI.setCurrentAmmoText);
+
+        // setWeapon(weaponConfig);
     }
 
-    public void setWeapon(WeaponConfig config)
-    {
-        if (config is RangeWeaponConfig rangeWeaponConfig)
-        {
-            onEquipRange?.Invoke();
+    // public void setWeapon(WeaponConfig config)
+    // {
+    //     if (config is RangeWeaponConfig rangeWeaponConfig)
+    //     {
+    //         onEquipRange?.Invoke();
 
-            GetComponent<RangeWeapon>().initData(rangeWeaponConfig);
-            weapon = GetComponent<RangeWeapon>();
-        }
+    //         // GetComponent<RangeWeapon>().initData(rangeWeaponConfig);
+    //         weapon = GetComponent<RangeWeapon>();
+    //     }
 
-        if (config is MeleeWeaponConfig meleeWeaponConfig)
-        {
-            onEquipMelee?.Invoke();
+    //     if (config is MeleeWeaponConfig meleeWeaponConfig)
+    //     {
+    //         onEquipMelee?.Invoke();
 
-            GetComponent<MeleeWeapon>().initData(meleeWeaponConfig);
-            weapon = GetComponent<MeleeWeapon>();
-        }
-    }
+    //         // GetComponent<MeleeWeapon>().initData(meleeWeaponConfig);
+    //         weapon = GetComponent<MeleeWeapon>();
+    //     }
+    // }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && weapon is RangeWeapon rangeWeapon)
+        if (Input.GetKeyDown(KeyCode.R) && currentWeapon is RangeWeapon rangeWeapon)
         {
             rangeWeapon.reload();
-            rangeWeaponUI.setCurrentAmmoText(rangeWeapon.currentAmmoAmount);
         }
 
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
         {
-            weapon?.attack(attackPoint, attackLayers);
-
-            onAttack?.Invoke();
-
-            if (weapon is RangeWeapon range)
-                rangeWeaponUI.setCurrentAmmoText(range.currentAmmoAmount);
+            currentWeapon?.attack(attackPoint, attackLayers);
         }
     }
 
@@ -71,5 +69,19 @@ public class WeaponController : MonoBehaviour
     {
         if (attackPoint != null)
             Gizmos.DrawWireSphere(attackPoint.position, 10);
+    }
+
+    public MeleeWeapon getWeaponAsMelee()
+    {
+        if (currentWeapon is MeleeWeapon meleeWeapon)
+            return meleeWeapon;
+        return null;
+    }
+
+    public RangeWeapon getWeaponAsRange()
+    {
+        if (currentWeapon is RangeWeapon rangeWeapon)
+            return rangeWeapon;
+        return null;
     }
 }

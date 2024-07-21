@@ -6,48 +6,40 @@ using UnityEngine;
 [Serializable]
 public class MeleeWeapon : Weapon
 {
-    public int attackSize;
+    public MeleeWeaponData data;
 
     private void Update()
     {
-        if (helpAttackTime <= 0 && !canAttack)
+        if (data.attackTimer <= 0 && !data.canAttack)
         {
-            canAttack = true;
-            helpAttackTime = 1;
+            data.canAttack = true;
+            data.attackTimer = 1;
         }
 
-        if (helpAttackTime > 0)
-            helpAttackTime -= Time.deltaTime * attackSpeed;
-    }
-
-    public void initData(MeleeWeaponConfig config)
-    {
-        base.initData(config);
-        attackSize = config.attackSize;
-    }
-
-    public void setData(MeleeWeaponData meleeWeapon)
-    {
-        attackSize = meleeWeapon.attackSize;
-        base.setData(meleeWeapon);
+        if (data.attackTimer > 0)
+            data.attackTimer -= Time.deltaTime * data.attackSpeed;
     }
 
     public override void attack(Transform attackPoint, LayerMask layer)
     {
-        if (!canAttack)
+        if (!data.canAttack)
             return;
 
-        noiseSource.generateNoise(noiseRadius);
+        noiseSource.generateNoise(data.noiseRadius);
 
         Debug.Log("melee Attack");
 
-        Collider2D[] hit = Physics2D.OverlapCircleAll(attackPoint.position, attackSize, layer);
+        Collider2D[] hit = Physics2D.OverlapCircleAll(attackPoint.position, data.attackSize, layer);
 
         foreach (var i in hit)
         {
-            i.GetComponent<Health>().takeDamage(damage);
+            i.GetComponent<Health>().takeDamage(data.damage);
         }
 
-        base.attack(attackPoint, layer);
+        if (data.canAttack)
+        {
+            data.canAttack = false;
+            data.attackTimer = 1;
+        }
     }
 }

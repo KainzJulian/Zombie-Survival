@@ -160,6 +160,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4305795859953427132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6010616746086567661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8942811016987368221}
+  m_Layer: 0
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8942811016987368221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6010616746086567661}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2495177455688210028}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8965806107412115495
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,8 +205,6 @@ GameObject:
   - component: {fileID: 2251788270696233039}
   - component: {fileID: 141969976913321157}
   - component: {fileID: 8834399069518151660}
-  - component: {fileID: 7248187500158030339}
-  - component: {fileID: 6219912617398239339}
   - component: {fileID: 4539001117178180456}
   m_Layer: 0
   m_Name: Character
@@ -199,6 +228,7 @@ Transform:
   m_Children:
   - {fileID: 8727779394005611447}
   - {fileID: 4305795859953427132}
+  - {fileID: 8942811016987368221}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1307719205448559451
@@ -328,52 +358,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7248187500158030339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8965806107412115495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abe1c47ab229f7a4db983bf3877f4581, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponType: 0
-  duration: 0
-  damage: 0
-  attackSpeed: 0
-  canAttack: 0
-  noiseRadius: 0
-  projectileCount: 0
-  projectilePrefab: {fileID: 0}
-  angle: 0
-  magazinSize: 0
-  reloadTime: 0
-  currentAmmoAmount: 0
-  onCurrentAmmoChange:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &6219912617398239339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8965806107412115495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbdddc3d5f271804785ef468cf307dea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponType: 1
-  duration: 0
-  damage: 0
-  attackSpeed: 0
-  canAttack: 0
-  noiseRadius: 0
-  attackSize: 0
 --- !u!114 &4539001117178180456
 MonoBehaviour:
   m_ObjectHideFlags: 0
