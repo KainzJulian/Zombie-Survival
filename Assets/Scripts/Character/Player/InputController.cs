@@ -12,6 +12,9 @@ public class InputController : MonoBehaviour
     public UnityEvent onOpenPause = new UnityEvent();
     public UnityEvent onClosePause = new UnityEvent();
 
+    private bool isSneaking = false;
+    private bool isSprinting = false;
+
     private void Start()
     {
         sceneController = SceneController.instance;
