@@ -10,6 +10,7 @@ public class FollowPoint : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = point.transform.position + new Vector3(0, 0, -135);
+        if (point != null)
+            transform.position = point.transform.position + new Vector3(0, 0, -135);
     }
 }

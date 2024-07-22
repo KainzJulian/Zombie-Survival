@@ -207,6 +207,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8834399069518151660, guid: 68317e1326a1e47499325923916467df, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 448
+      objectReference: {fileID: 0}
     - target: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
       propertyPath: m_Name
       value: Zombie Simple

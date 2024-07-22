@@ -68,7 +68,7 @@ MonoBehaviour:
     damage: 10
     attackSpeed: 2
     canAttack: 1
-    noiseRadius: 60
+    noiseRadius: 200
     attackTimer: 0
     projectileCount: 3
     angle: 10
@@ -76,6 +76,6 @@ MonoBehaviour:
     reloadTime: 1
     currentAmmoAmount: 0
     isReloading: 0
-  onCurrentAmmoChange:
+  onAmmoChange:
     m_PersistentCalls:
       m_Calls: []
