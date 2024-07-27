@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06a5ebe1a862fe469f46da847b64ba7, type: 3}
   m_Name: Test4
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 3e5042599da7ea24aa6306429849f8aa, type: 2}
+  tile: {fileID: 11400000, guid: 7693dae781b66834c8e11cd392e5aa21, type: 2}
   neighbors:
-  - {fileID: 11400000, guid: ed588cc506649b642a95706447b02f03, type: 2}
-  - {fileID: 0}
-  value: 2
-  spawnChance: 0.5
+  - {fileID: 11400000, guid: fad05fc4db1f2ac439541ad03bb8d447, type: 2}
+  - {fileID: 11400000, guid: 37d075dd8c1edfc48b985acff7786168, type: 2}
+  value: 4
+  spawnChance: 0.33

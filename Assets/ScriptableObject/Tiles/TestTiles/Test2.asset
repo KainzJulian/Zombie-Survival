@@ -15,6 +15,6 @@ MonoBehaviour:
   tile: {fileID: 11400000, guid: 3e5042599da7ea24aa6306429849f8aa, type: 2}
   neighbors:
   - {fileID: 11400000, guid: ed588cc506649b642a95706447b02f03, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: fad05fc4db1f2ac439541ad03bb8d447, type: 2}
   value: 2
-  spawnChance: 0.5
+  spawnChance: 0.33
