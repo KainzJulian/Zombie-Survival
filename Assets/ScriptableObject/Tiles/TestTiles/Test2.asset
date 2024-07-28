@@ -12,9 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06a5ebe1a862fe469f46da847b64ba7, type: 3}
   m_Name: Test2
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 3e5042599da7ea24aa6306429849f8aa, type: 2}
-  neighbors:
-  - {fileID: 11400000, guid: ed588cc506649b642a95706447b02f03, type: 2}
-  - {fileID: 11400000, guid: fad05fc4db1f2ac439541ad03bb8d447, type: 2}
-  value: 2
-  spawnChance: 0.33
+  id: 2
+  tile: {fileID: 11400000, guid: 77c79209cd0e727468d47dc71623fe6b, type: 2}
+  topNeighbors:
+  - spawnChance: 0.33
+    tile: {fileID: 11400000, guid: ed588cc506649b642a95706447b02f03, type: 2}
+  - spawnChance: 0.33
+    tile: {fileID: 11400000}
+  - spawnChance: 0.34
+    tile: {fileID: 11400000, guid: 117d571c846442247a7d61755370d4b2, type: 2}
+  rightNeighbors:
+  - spawnChance: 0.33
+    tile: {fileID: 11400000, guid: ed588cc506649b642a95706447b02f03, type: 2}
+  - spawnChance: 0.33
+    tile: {fileID: 11400000}
+  - spawnChance: 0.34
+    tile: {fileID: 11400000, guid: 117d571c846442247a7d61755370d4b2, type: 2}
+  bottomNeighbors:
+  - spawnChance: 0.33
+    tile: {fileID: 11400000, guid: ed588cc506649b642a95706447b02f03, type: 2}
+  - spawnChance: 0.33
+    tile: {fileID: 11400000}
+  - spawnChance: 0.34
+    tile: {fileID: 11400000, guid: 117d571c846442247a7d61755370d4b2, type: 2}
+  leftNeighbors:
+  - spawnChance: 0.33
+    tile: {fileID: 11400000, guid: ed588cc506649b642a95706447b02f03, type: 2}
+  - spawnChance: 0.33
+    tile: {fileID: 11400000}
+  - spawnChance: 0.34
+    tile: {fileID: 11400000, guid: 117d571c846442247a7d61755370d4b2, type: 2}
