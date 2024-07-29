@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using EditorAttributes;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Tilemaps;
 
 public class WaveFunctionCollapse : MonoBehaviour
@@ -28,8 +30,17 @@ public class WaveFunctionCollapse : MonoBehaviour
     [Button("Print Entropie Map")]
     public void _PrintEntropieMap() => printEntropieMap();
 
-    HashSet<int> possibleTiles = new HashSet<int>();
+    [Button("Test HashSet")]
+    public void _TestHashSet() => testHashSet();
 
+
+    HashSet<ChanceTile> possibleTiles = new HashSet<ChanceTile>();
+
+    [Title("Testing", 30)]
+    [SerializeField] Vector3Int testPosition;
+
+    [Button("get Field Neighbors")]
+    public void _test() => printField();
 
     private void Start()
     {
@@ -55,7 +66,7 @@ public class WaveFunctionCollapse : MonoBehaviour
     {
         string testStr = "";
 
-        for (int y = 0; y < height; y++)
+        for (int y = height - 1; y >= 0; y--)
         {
             for (int x = 0; x < width; x++)
             {
@@ -68,26 +79,25 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     private void updateEntrophieMap(Vector3Int position, int newValue)
     {
-        if (entrophieLevelMap.GetLength(0) > position.y || entrophieLevelMap.GetLength(1) > position.x)
+        if (isValidPosition(position))
             return;
 
-        entrophieLevelMap[position.x, position.y] = newValue;
+        if (entrophieLevelMap[position.y, position.x] == -1)
+            return;
+
+
+        entrophieLevelMap[position.y, position.x] = newValue;
     }
 
-    private int getEntrophie(Vector3Int position)
+    private bool isValidPosition(Vector3Int position)
     {
-        return entrophieLevelMap[position.x, position.y];
+        return entrophieLevelMap.GetLength(0) <= position.y ||
+                entrophieLevelMap.GetLength(1) <= position.x ||
+                position.x < 0 ||
+                position.y < 0;
     }
 
-
-    [Title("Testing", 30)]
-    [SerializeField] Vector3Int testPosition;
-
-    [Button("get Field Neighbors")]
-    public void _test() => printField();
-
-
-    public void generateWorld()
+    public async void generateWorld()
     {
         deleteWorld();
         init();
@@ -99,17 +109,44 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         setTile(position, getRandomTile().tile);
 
-        // [loop until no empty fields]
         // calculate entrophie (what kind of tile it can be at begin all are lenght of tile array)
-
         calculateEntrophie(position);
 
-        // select least entrophie tile
-        // collapse it to one of the random neighbors
-        // restart loop
+        // [loop until no empty fields]
+        for (int i = 0; i < width * height - 1; i++)
+        {
+            await Task.Delay(1000);
+
+            // select least entrophie tile
+            Vector3Int entrophiePosition = getLeastEntrophiePosition();
+
+            // collapse it to one of the random neighbors
+            collapseTile(entrophiePosition);
+            // restart loop
+        }
 
 
     }
+
+    private Vector3Int getLeastEntrophiePosition()
+    {
+        int entropieLevel = 999;
+        Vector3Int position = new Vector3Int();
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (entrophieLevelMap[y, x] <= entropieLevel && entrophieLevelMap[y, x] != -1)
+                {
+                    entropieLevel = entrophieLevelMap[y, x];
+                    position = new Vector3Int(x, y);
+                }
+            }
+        }
+        return position;
+    }
+
 
     private void setTile(Vector3Int position, TileBase tile)
     {
@@ -119,10 +156,28 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     private void addPossibleTiles(ChanceTile[] tiles)
     {
+        if (tiles == null)
+            return;
+
         foreach (ChanceTile item in tiles)
         {
-            possibleTiles.Add(item.tile.id);
+            possibleTiles.Add(item);
         }
+    }
+
+    private void testHashSet()
+    {
+        addPossibleTiles(tiles[1].topNeighbors);
+        addPossibleTiles(tiles[1].bottomNeighbors);
+        addPossibleTiles(tiles[1].rightNeighbors);
+        addPossibleTiles(tiles[1].leftNeighbors);
+
+        foreach (var item in possibleTiles)
+        {
+            Debug.LogWarning(item.tile.id);
+        }
+
+        Assert.AreEqual(2, possibleTiles.Count);
     }
 
     private void calculateEntrophie(Vector3Int position)
@@ -166,6 +221,14 @@ public class WaveFunctionCollapse : MonoBehaviour
         });
     }
 
+    public Tile getTileByID(int id)
+    {
+        return tiles.Find((tile) =>
+        {
+            return tile.id == id;
+        });
+    }
+
     public void deleteWorld()
     {
         tilemap.ClearAllTiles();
@@ -184,25 +247,44 @@ public class WaveFunctionCollapse : MonoBehaviour
         );
     }
 
-    public TileBase getRandomTileNeighbor(Tile neighbor)
+    public void collapseTile(Vector3Int position)
     {
-        // float weight = 0f;
-        // List<float> weightList = new List<float>();
 
-        // foreach (Tile chance in neighbor.neighbors)
-        // {
-        //     weight += chance.spawnChance;
-        //     weightList.Add(weight);
-        // }
+        ChanceTile[] top = getTileByTileBase(tilemap.GetTile(Vector3Int.up + position))?.bottomNeighbors;
+        ChanceTile[] right = getTileByTileBase(tilemap.GetTile(Vector3Int.right + position))?.rightNeighbors;
+        ChanceTile[] left = getTileByTileBase(tilemap.GetTile(Vector3Int.left + position))?.leftNeighbors;
+        ChanceTile[] down = getTileByTileBase(tilemap.GetTile(Vector3Int.down + position))?.bottomNeighbors;
 
-        // float randomValue = UnityEngine.Random.Range(0, weight);
+        addPossibleTiles(top);
+        addPossibleTiles(right);
+        addPossibleTiles(left);
+        addPossibleTiles(down);
 
-        // for (int i = 0; i < weightList.Count; i++)
-        // {
-        //     if (randomValue < weightList[i])
-        //         return neighbor.neighbors[i].tile;
-        // }
+        Debug.LogWarning(possibleTiles.ToString());
 
-        return neighbor.tile;
+        float weight = 0f;
+        List<float> weightList = new List<float>();
+
+        foreach (ChanceTile tile in possibleTiles)
+        {
+            weight += tile.spawnChance;
+            weightList.Add(weight);
+        }
+
+        float randomValue = UnityEngine.Random.Range(0, weight);
+
+        int counter = 0;
+
+        foreach (ChanceTile tile1 in possibleTiles)
+        {
+            if (randomValue < weightList[counter])
+            {
+                setTile(position, tile1.tile.tile);
+                break;
+            }
+            counter++;
+        }
+
+        calculateEntrophie(position);
     }
 }

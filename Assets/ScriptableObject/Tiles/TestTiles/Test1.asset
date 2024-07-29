@@ -18,19 +18,19 @@ MonoBehaviour:
   - spawnChance: 0.5
     tile: {fileID: 11400000}
   - spawnChance: 0.5
-    tile: {fileID: 11400000, guid: 117d571c846442247a7d61755370d4b2, type: 2}
+    tile: {fileID: 11400000, guid: ccfb3c88976a2ad41a6c7d6e5ca98180, type: 2}
   rightNeighbors:
   - spawnChance: 0.5
     tile: {fileID: 11400000}
   - spawnChance: 0.5
-    tile: {fileID: 11400000, guid: 117d571c846442247a7d61755370d4b2, type: 2}
+    tile: {fileID: 11400000, guid: ccfb3c88976a2ad41a6c7d6e5ca98180, type: 2}
   bottomNeighbors:
   - spawnChance: 0.5
     tile: {fileID: 11400000}
   - spawnChance: 0.5
-    tile: {fileID: 11400000, guid: 117d571c846442247a7d61755370d4b2, type: 2}
+    tile: {fileID: 11400000, guid: ccfb3c88976a2ad41a6c7d6e5ca98180, type: 2}
   leftNeighbors:
   - spawnChance: 0.5
     tile: {fileID: 11400000}
   - spawnChance: 0.5
-    tile: {fileID: 11400000, guid: 117d571c846442247a7d61755370d4b2, type: 2}
+    tile: {fileID: 11400000, guid: ccfb3c88976a2ad41a6c7d6e5ca98180, type: 2}

@@ -9,6 +9,7 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "Tile", menuName = "Tile", order = 0)]
 public class Tile : ScriptableObject
 {
+    [Required]
     public int id;
 
     [AssetPreview]
