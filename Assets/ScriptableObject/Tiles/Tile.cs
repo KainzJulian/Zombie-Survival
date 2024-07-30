@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(fileName = "Tile", menuName = "Tile", order = 0)]
-public class Tile : ScriptableObject
+public class Tile : ScriptableObject, IEquatable<Tile>
 {
     [Required]
     public int id;
@@ -17,16 +17,16 @@ public class Tile : ScriptableObject
 
 
     [DataTable]
-    public ChanceTile[] topNeighbors;
+    public List<ChanceTile> topNeighbors = new List<ChanceTile>();
 
     [DataTable]
-    public ChanceTile[] rightNeighbors;
+    public List<ChanceTile> rightNeighbors = new List<ChanceTile>();
 
     [DataTable]
-    public ChanceTile[] bottomNeighbors;
+    public List<ChanceTile> bottomNeighbors = new List<ChanceTile>();
 
     [DataTable]
-    public ChanceTile[] leftNeighbors;
+    public List<ChanceTile> leftNeighbors = new List<ChanceTile>();
 
 
     public override int GetHashCode()
@@ -35,19 +35,17 @@ public class Tile : ScriptableObject
     }
 
 
-    public override bool Equals(object obj)
+    public bool Equals(Tile obj)
     {
         if (obj == null || GetType() != obj.GetType())
             return false;
 
-        Tile other = (Tile)obj;
-
-        return id == other.id;
+        return id == obj.id;
     }
 }
 
 [Serializable]
-public class ChanceTile
+public class ChanceTile : IEquatable<ChanceTile>
 {
     [Range(0f, 1f)]
     public float spawnChance;
@@ -62,12 +60,11 @@ public class ChanceTile
         return hash;
     }
 
-    public override bool Equals(object obj)
+    public bool Equals(ChanceTile obj)
     {
         if (obj == null || GetType() != obj.GetType())
             return false;
 
-        ChanceTile other = (ChanceTile)obj;
-        return spawnChance == other.spawnChance && tile.Equals(other.tile);
+        return spawnChance == obj.spawnChance && tile.Equals(obj);
     }
 }

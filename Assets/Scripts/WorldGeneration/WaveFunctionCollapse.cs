@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EditorAttributes;
 using Unity.Mathematics;
+using Unity.Properties;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -34,7 +35,7 @@ public class WaveFunctionCollapse : MonoBehaviour
     public void _TestHashSet() => testHashSet();
 
 
-    HashSet<ChanceTile> possibleTiles = new HashSet<ChanceTile>();
+    List<ChanceTile> possibleTiles = new List<ChanceTile>();
 
     [Title("Testing", 30)]
     [SerializeField] Vector3Int testPosition;
@@ -85,7 +86,6 @@ public class WaveFunctionCollapse : MonoBehaviour
         if (entrophieLevelMap[position.y, position.x] == -1)
             return;
 
-
         entrophieLevelMap[position.y, position.x] = newValue;
     }
 
@@ -103,7 +103,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         init();
 
         // select random position
-        Vector3Int position = randomPosition();
+        Vector3Int position = getRandomPosition();
 
         // set random tile
 
@@ -115,7 +115,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         // [loop until no empty fields]
         for (int i = 0; i < width * height - 1; i++)
         {
-            await Task.Delay(1000);
+            await Task.Delay(300);
 
             // select least entrophie tile
             Vector3Int entrophiePosition = getLeastEntrophiePosition();
@@ -150,20 +150,10 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     private void setTile(Vector3Int position, TileBase tile)
     {
-        tilemap.SetTile(position, getRandomTile().tile);
+        tilemap.SetTile(position, tile);
         updateEntrophieMap(position, -1);
     }
 
-    private void addPossibleTiles(ChanceTile[] tiles)
-    {
-        if (tiles == null)
-            return;
-
-        foreach (ChanceTile item in tiles)
-        {
-            possibleTiles.Add(item);
-        }
-    }
 
     private void testHashSet()
     {
@@ -171,11 +161,6 @@ public class WaveFunctionCollapse : MonoBehaviour
         addPossibleTiles(tiles[1].bottomNeighbors);
         addPossibleTiles(tiles[1].rightNeighbors);
         addPossibleTiles(tiles[1].leftNeighbors);
-
-        foreach (var item in possibleTiles)
-        {
-            Debug.LogWarning(item.tile.id);
-        }
 
         Assert.AreEqual(2, possibleTiles.Count);
     }
@@ -221,14 +206,6 @@ public class WaveFunctionCollapse : MonoBehaviour
         });
     }
 
-    public Tile getTileByID(int id)
-    {
-        return tiles.Find((tile) =>
-        {
-            return tile.id == id;
-        });
-    }
-
     public void deleteWorld()
     {
         tilemap.ClearAllTiles();
@@ -239,7 +216,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         return tiles[UnityEngine.Random.Range(0, tiles.Count)];
     }
 
-    private Vector3Int randomPosition()
+    private Vector3Int getRandomPosition()
     {
         return new Vector3Int(
             UnityEngine.Random.Range(0, width),
@@ -247,20 +224,52 @@ public class WaveFunctionCollapse : MonoBehaviour
         );
     }
 
+    // ich muss machen dass nur die Tiles in possibleTiles gespeichert werden die in allen teilen vorhanden sind 
+    // nicht jede nur einmal
+    private void addPossibleTiles(List<ChanceTile> tiles)
+    {
+        if (tiles == null)
+            return;
+
+        possibleTiles = possibleTiles.Intersect(tiles).ToList();
+
+        foreach (var item in possibleTiles)
+        {
+            Debug.Log(item.tile.name);
+        }
+    }
+
     public void collapseTile(Vector3Int position)
     {
+        // possibleTiles.AddRange(tiles[0].topNeighbors);
+        // possibleTiles.AddRange(tiles[1].topNeighbors);
+        // possibleTiles.AddRange(tiles[2].topNeighbors);
 
-        ChanceTile[] top = getTileByTileBase(tilemap.GetTile(Vector3Int.up + position))?.bottomNeighbors;
-        ChanceTile[] right = getTileByTileBase(tilemap.GetTile(Vector3Int.right + position))?.rightNeighbors;
-        ChanceTile[] left = getTileByTileBase(tilemap.GetTile(Vector3Int.left + position))?.leftNeighbors;
-        ChanceTile[] down = getTileByTileBase(tilemap.GetTile(Vector3Int.down + position))?.bottomNeighbors;
+        Debug.LogError(position.ToString());
+        List<ChanceTile> bottomNeighbors = getTileByTileBase(tilemap.GetTile(Vector3Int.up + position))?.bottomNeighbors;
+        List<ChanceTile> leftNeighbors = getTileByTileBase(tilemap.GetTile(Vector3Int.right + position))?.leftNeighbors;
+        List<ChanceTile> rightNeighbors = getTileByTileBase(tilemap.GetTile(Vector3Int.left + position))?.rightNeighbors;
+        List<ChanceTile> topNeighbors = getTileByTileBase(tilemap.GetTile(Vector3Int.down + position))?.topNeighbors;
 
-        addPossibleTiles(top);
-        addPossibleTiles(right);
-        addPossibleTiles(left);
-        addPossibleTiles(down);
+        addPossibleTiles(bottomNeighbors);
+        addPossibleTiles(leftNeighbors);
+        addPossibleTiles(rightNeighbors);
+        addPossibleTiles(topNeighbors);
+        // Debug.Log("                 top          right          left         down");
+        // Debug.Log("ChanceTiles: " + bottomNeighbors + "  " + leftNeighbors + "  " + rightNeighbors + "  " + topNeighbors);
 
-        Debug.LogWarning(possibleTiles.ToString());
+
+
+        Debug.Log("possible Tiles");
+        foreach (var item in possibleTiles)
+        {
+            Debug.LogWarning(item.tile.id);
+        }
+
+        if (possibleTiles.Count == 2)
+        {
+            Debug.LogError("2 Tiles");
+        }
 
         float weight = 0f;
         List<float> weightList = new List<float>();
@@ -275,16 +284,21 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         int counter = 0;
 
-        foreach (ChanceTile tile1 in possibleTiles)
+        foreach (ChanceTile chanceTile in possibleTiles)
         {
             if (randomValue < weightList[counter])
             {
-                setTile(position, tile1.tile.tile);
+                setTile(position, chanceTile.tile.tile);
                 break;
             }
             counter++;
         }
 
         calculateEntrophie(position);
+    }
+
+    private static List<ChanceTile> setPossibleTiles(IEnumerable<ChanceTile> intersect)
+    {
+        return intersect.ToList();
     }
 }
