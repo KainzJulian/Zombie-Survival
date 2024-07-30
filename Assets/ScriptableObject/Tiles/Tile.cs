@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using EditorAttributes;
-using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -34,37 +34,20 @@ public class Tile : ScriptableObject, IEquatable<Tile>
         return tile.GetHashCode() * 31 + id.GetHashCode();
     }
 
-
-    public bool Equals(Tile obj)
+    public bool Equals(Tile other)
     {
-        if (obj == null || GetType() != obj.GetType())
+        if (other == null)
             return false;
 
-        return id == obj.id;
-    }
-}
-
-[Serializable]
-public class ChanceTile : IEquatable<ChanceTile>
-{
-    [Range(0f, 1f)]
-    public float spawnChance;
-
-    public Tile tile;
-
-    public override int GetHashCode()
-    {
-        int hash = 17;
-        hash = hash * 31 + spawnChance.GetHashCode();
-        hash = hash * 31 + (tile != null ? tile.GetHashCode() : 0);
-        return hash;
+        return id == other.id && tile == other.tile;
     }
 
-    public bool Equals(ChanceTile obj)
+    public override bool Equals(object obj)
     {
-        if (obj == null || GetType() != obj.GetType())
-            return false;
-
-        return spawnChance == obj.spawnChance && tile.Equals(obj);
+        if (obj is Tile tileObj)
+        {
+            return Equals(tileObj);
+        }
+        return false;
     }
 }
