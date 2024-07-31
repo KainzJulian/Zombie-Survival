@@ -15,7 +15,6 @@ public class Tile : ScriptableObject, IEquatable<Tile>
     [AssetPreview]
     public TileBase tile;
 
-
     [DataTable]
     public List<ChanceTile> topNeighbors = new List<ChanceTile>();
 
@@ -28,6 +27,8 @@ public class Tile : ScriptableObject, IEquatable<Tile>
     [DataTable]
     public List<ChanceTile> leftNeighbors = new List<ChanceTile>();
 
+    // [DataTable]
+    // public List<ChanceTile> neighbors = new List<ChanceTile>();
 
     public override int GetHashCode()
     {

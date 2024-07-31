@@ -12,7 +12,6 @@ public class ChanceTile : IEquatable<ChanceTile>
    public override int GetHashCode()
    {
       int hash = 17;
-      hash = hash * 31 + spawnChance.GetHashCode();
       hash = hash * 31 + (tile != null ? tile.GetHashCode() : 0);
       return hash;
    }
@@ -22,8 +21,7 @@ public class ChanceTile : IEquatable<ChanceTile>
       if (other == null)
          return false;
 
-      return spawnChance == other.spawnChance &&
-             (tile != null ? tile.Equals(other.tile) : other.tile == null);
+      return tile != null ? tile.id == other.tile.id : other.tile == null;
    }
 
 

@@ -3,48 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [Serializable]
 public class PossibleTilesMap
 {
    public int[,] entrophieLevelMap;
-   public int[,,] chanceTileMap;
 
    public HashSet<ChanceTile> possibleTiles = new HashSet<ChanceTile>();
    private List<ChanceTile> possibleTiles_copy = new List<ChanceTile>();
 
    public List<Tile> tiles;
 
-   public int width
-   {
-      get
-      {
-         return chanceTileMap.GetLength(2);
-      }
-      private set { }
-   }
-
-   public int height
-   {
-      get
-      {
-         return chanceTileMap.GetLength(1);
-      }
-      private set { }
-   }
-
-   // public int depth
-   // {
-   //     get
-   //     {
-   //         return chanceTileMap.GetLength(0);
-   //     }
-   //     private set { }
-   // }
-
+   public int width;
+   public int height;
 
    public PossibleTilesMap(int width, int height, List<Tile> tiles)
    {
+      this.width = width;
+      this.height = height;
+
       foreach (Tile tile in tiles)
       {
          possibleTiles.AddRange(tile.topNeighbors);
@@ -55,22 +33,18 @@ public class PossibleTilesMap
 
       if (possibleTiles.Count != tiles.Count())
       {
+
          Debug.LogWarning(possibleTiles.Count + "  " + tiles.Count());
+         foreach (ChanceTile item in possibleTiles)
+         {
+            Debug.Log(item.tile.tile);
+         }
          throw new Exception("There are too many ChanceTiles in the Tiles provided");
       }
 
       this.tiles = tiles;
 
       possibleTiles_copy = possibleTiles.ToList();
-
-      chanceTileMap = new int[possibleTiles.Count, height, width];
-
-      ChanceTile[] arr = possibleTiles.ToArray();
-
-      for (int z = 0; z < possibleTiles.Count; z++)
-         for (int y = 0; y < height; y++)
-            for (int x = 0; x < width; x++)
-               chanceTileMap[z, y, x] = arr[z].tile.id;
 
       entrophieLevelMap = new int[height, width];
 
@@ -115,33 +89,63 @@ public class PossibleTilesMap
       return tiles[UnityEngine.Random.Range(0, tiles.Count)];
    }
 
-   #region print Statements
-   public void printIDs()
+   public Vector3Int getLeastEntrophiePosition()
    {
-      string help = "";
+      int entropieLevel = 999;
+      Vector3Int position = new Vector3Int();
 
-      for (int z = 0; z < chanceTileMap.GetLength(0); z++)
+      for (int y = 0; y < height; y++)
       {
-         for (int y = 0; y < chanceTileMap.GetLength(1); y++)
+         for (int x = 0; x < width; x++)
          {
-            for (int x = 0; x < chanceTileMap.GetLength(2); x++)
+            if (entrophieLevelMap[y, x] <= entropieLevel && entrophieLevelMap[y, x] != -1)
             {
-               help += chanceTileMap[z, y, x] + " ";
+               entropieLevel = entrophieLevelMap[y, x];
+               position = new Vector3Int(x, y);
             }
-            help += "\n";
          }
-         Debug.Log(help);
-         help = "";
       }
+      return position;
+   }
+
+   public Tile getTileByTileBase(TileBase tileBase)
+   {
+      return tiles.Find((tile) =>
+      {
+         return tile.tile == tileBase;
+      });
+   }
+
+   public void addPossibleTiles(List<ChanceTile> tiles)
+   {
+      if (tiles == null)
+         return;
+
+      possibleTiles_copy = possibleTiles_copy.Intersect(tiles).ToList();
+
+      // foreach (var item in possibleTiles_copy)
+      // {
+      //    Debug.Log(item.tile.name);
+      // }
+   }
+
+   public void restartPossibleTiles()
+   {
+      possibleTiles_copy.AddRange(possibleTiles);
+   }
+
+   public List<ChanceTile> getPossibleTiles()
+   {
+      return possibleTiles_copy;
    }
 
    public void printEntropieMap()
    {
       string testStr = "";
 
-      for (int y = chanceTileMap.GetLength(1) - 1; y >= 0; y--)
+      for (int y = height - 1; y >= 0; y--)
       {
-         for (int x = 0; x < chanceTileMap.GetLength(2); x++)
+         for (int x = 0; x < width; x++)
          {
             testStr += entrophieLevelMap[y, x] + " ";
          }
@@ -149,5 +153,4 @@ public class PossibleTilesMap
          testStr = "";
       }
    }
-   #endregion
 }
