@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EditorAttributes;
 using Unity.Mathematics;
 using Unity.Properties;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Tilemaps;
+using EditorAttributes;
 
 public class WaveFunctionCollapse : MonoBehaviour
 {
@@ -87,17 +87,18 @@ public class WaveFunctionCollapse : MonoBehaviour
     {
         int newEntrophie;
         TileBase tileBase = tilemap.GetTile(position);
+        Tile tile = map.getTileByTileBase(tileBase);
 
-        newEntrophie = map.getTileByTileBase(tileBase).topNeighbors.Count();
+        newEntrophie = tile.getNeighbor(Vector3Int.up).Count();
         map.updateEntrophieMap(new Vector3Int(position.x, position.y + 1), newEntrophie);
 
-        newEntrophie = map.getTileByTileBase(tileBase).rightNeighbors.Count();
+        newEntrophie = tile.getNeighbor(Vector3Int.right).Count();
         map.updateEntrophieMap(new Vector3Int(position.x + 1, position.y), newEntrophie);
 
-        newEntrophie = map.getTileByTileBase(tileBase).bottomNeighbors.Count();
+        newEntrophie = tile.getNeighbor(Vector3Int.down).Count();
         map.updateEntrophieMap(new Vector3Int(position.x, position.y - 1), newEntrophie);
 
-        newEntrophie = map.getTileByTileBase(tileBase).leftNeighbors.Count();
+        newEntrophie = tile.getNeighbor(Vector3Int.left).Count();
         map.updateEntrophieMap(new Vector3Int(position.x - 1, position.y), newEntrophie);
     }
 
@@ -113,11 +114,10 @@ public class WaveFunctionCollapse : MonoBehaviour
     {
         map.restartPossibleTiles();
 
-        // Debug.LogError(position.ToString());
-        List<ChanceTile> bottomNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.up + position))?.bottomNeighbors;
-        List<ChanceTile> leftNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.right + position))?.leftNeighbors;
-        List<ChanceTile> rightNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.left + position))?.rightNeighbors;
-        List<ChanceTile> topNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.down + position))?.topNeighbors;
+        List<ChanceTile> bottomNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.up + position))?.getNeighbor(Vector3Int.down);
+        List<ChanceTile> leftNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.right + position))?.getNeighbor(Vector3Int.left);
+        List<ChanceTile> rightNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.left + position))?.getNeighbor(Vector3Int.right);
+        List<ChanceTile> topNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.down + position))?.getNeighbor(Vector3Int.up);
 
         map.addPossibleTiles(bottomNeighbors);
         map.addPossibleTiles(leftNeighbors);

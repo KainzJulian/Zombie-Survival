@@ -25,10 +25,10 @@ public class PossibleTilesMap
 
       foreach (Tile tile in tiles)
       {
-         possibleTiles.AddRange(tile.topNeighbors);
-         possibleTiles.AddRange(tile.rightNeighbors);
-         possibleTiles.AddRange(tile.leftNeighbors);
-         possibleTiles.AddRange(tile.bottomNeighbors);
+         possibleTiles.AddRange(tile.getNeighbor(Vector3Int.up));
+         possibleTiles.AddRange(tile.getNeighbor(Vector3Int.right));
+         possibleTiles.AddRange(tile.getNeighbor(Vector3Int.down));
+         possibleTiles.AddRange(tile.getNeighbor(Vector3Int.left));
       }
 
       if (possibleTiles.Count != tiles.Count())
@@ -105,6 +105,10 @@ public class PossibleTilesMap
             }
          }
       }
+
+      if (entropieLevel == 0)
+         Debug.LogError("entropie Level should never be 0 if so then something should be done");
+
       return position;
    }
 

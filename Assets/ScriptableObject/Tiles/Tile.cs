@@ -2,33 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using EditorAttributes;
+using NaughtyAttributes;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(fileName = "Tile", menuName = "Tile", order = 0)]
-public class Tile : ScriptableObject, IEquatable<Tile>
+public abstract class Tile : ScriptableObject, IEquatable<Tile>, ITile
 {
-    [Required]
+    [EditorAttributes.Required]
     public int id;
 
     [AssetPreview]
     public TileBase tile;
-
-    [DataTable]
-    public List<ChanceTile> topNeighbors = new List<ChanceTile>();
-
-    [DataTable]
-    public List<ChanceTile> rightNeighbors = new List<ChanceTile>();
-
-    [DataTable]
-    public List<ChanceTile> bottomNeighbors = new List<ChanceTile>();
-
-    [DataTable]
-    public List<ChanceTile> leftNeighbors = new List<ChanceTile>();
-
-    // [DataTable]
-    // public List<ChanceTile> neighbors = new List<ChanceTile>();
 
     public override int GetHashCode()
     {
@@ -51,4 +36,6 @@ public class Tile : ScriptableObject, IEquatable<Tile>
         }
         return false;
     }
+
+    public abstract List<ChanceTile> getNeighbor(Vector3Int direction = new Vector3Int());
 }
