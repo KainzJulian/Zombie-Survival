@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Tilemaps;
 using EditorAttributes;
+using UnityEditor.Tilemaps;
 
 public class WaveFunctionCollapse : MonoBehaviour
 {
@@ -53,18 +54,12 @@ public class WaveFunctionCollapse : MonoBehaviour
         deleteWorld();
         init();
 
-        // // select random position
-        Vector3Int position = map.getRandomPosition();
+        begin();
 
-        // // set random tile
-
-        setTile(position, map.getRandomTile().tile);
-
-        // calculate entrophie (what kind of tile it can be at begin all are lenght of tile array)
-        calculateEntrophie(position);
+        int counter = 0;
 
         // [loop until no empty fields]
-        for (int i = 0; i < map.width * map.height - 1; i++)
+        for (; counter < map.width * map.height - 1; counter++)
         {
             await Task.Delay(speedInMilliSeconds);
 
@@ -72,7 +67,7 @@ public class WaveFunctionCollapse : MonoBehaviour
             Vector3Int entrophiePosition = map.getLeastEntrophiePosition();
 
             // collapse it to one of the random neighbors
-            collapseTile(entrophiePosition);
+            collapseTile(entrophiePosition, ref counter);
             // restart loop
         }
     }
@@ -89,7 +84,10 @@ public class WaveFunctionCollapse : MonoBehaviour
         TileBase tileBase = tilemap.GetTile(position);
         Tile tile = map.getTileByTileBase(tileBase);
 
-        newEntrophie = tile.getNeighbor(Vector3Int.up).Count();
+        // if (tile == null)
+        //     return;
+
+        newEntrophie = tile.getNeighbor(Vector3Int.up).Count(); // Hier wird fehler geworfen
         map.updateEntrophieMap(new Vector3Int(position.x, position.y + 1), newEntrophie);
 
         newEntrophie = tile.getNeighbor(Vector3Int.right).Count();
@@ -110,7 +108,7 @@ public class WaveFunctionCollapse : MonoBehaviour
     // ich muss machen dass nur die Tiles in possibleTiles gespeichert werden die in allen teilen vorhanden sind 
     // nicht jede nur einmal
 
-    public void collapseTile(Vector3Int position)
+    public void collapseTile(Vector3Int position, ref int counter)
     {
         map.restartPossibleTiles();
 
@@ -129,6 +127,21 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         List<ChanceTile> possibleTiles = map.getPossibleTiles();
 
+        if (possibleTiles.Count == 0)
+        {
+            counter = 0;
+
+            Debug.LogWarning("Restart...");
+
+            map.restartPossibleTiles();
+            begin();
+            init();
+            deleteWorld();
+            return;
+        }
+
+        Debug.Log(possibleTiles.Count);
+
         foreach (ChanceTile tile in possibleTiles)
         {
             weight += tile.spawnChance;
@@ -137,18 +150,50 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         float randomValue = UnityEngine.Random.Range(0, weight);
 
-        int counter = 0;
+        int i = 0;
 
         foreach (ChanceTile chanceTile in possibleTiles)
         {
-            if (randomValue < weightList[counter])
+            if (randomValue < weightList[i])
             {
                 setTile(position, chanceTile.tile.tile);
                 break;
             }
-            counter++;
+            i++;
         }
 
+        calculateEntrophie(position); // und hier aufgerufen
+    }
+
+    // private void deleteTilesAroundPosition(Vector3Int position)
+    // {
+    //     Vector3Int newPosition = position + Vector3Int.up;
+    //     calculateEntrophie(newPosition);
+    //     tilemap.SetTile(newPosition, null);
+
+    //     newPosition = position + Vector3Int.right;
+    //     calculateEntrophie(newPosition);
+    //     tilemap.SetTile(newPosition, null);
+
+    //     newPosition = position + Vector3Int.down;
+    //     calculateEntrophie(newPosition);
+    //     tilemap.SetTile(newPosition, null);
+
+    //     newPosition = position + Vector3Int.left;
+    //     calculateEntrophie(newPosition);
+    //     tilemap.SetTile(newPosition, null);
+    // }
+
+    private void begin()
+    {
+        // select random position
+        Vector3Int position = map.getRandomPosition();
+
+        // set random tile
+
+        setTile(position, map.getRandomTile().tile);
+
+        // calculate entrophie (what kind of tile it can be at begin all are lenght of tile array)
         calculateEntrophie(position);
     }
 }

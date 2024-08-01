@@ -18,6 +18,8 @@ public class PossibleTilesMap
    public int width;
    public int height;
 
+   public Vector3Int currentPosition;
+
    public PossibleTilesMap(int width, int height, List<Tile> tiles)
    {
       this.width = width;
@@ -59,10 +61,15 @@ public class PossibleTilesMap
 
    public Vector3Int getRandomPosition()
    {
-      return new Vector3Int(
+
+      Vector3Int position = new Vector3Int(
           UnityEngine.Random.Range(0, width),
           UnityEngine.Random.Range(0, height)
       );
+
+      currentPosition = position;
+
+      return position;
    }
 
    public void updateEntrophieMap(Vector3Int position, int newValue)
@@ -106,8 +113,7 @@ public class PossibleTilesMap
          }
       }
 
-      if (entropieLevel == 0)
-         Debug.LogError("entropie Level should never be 0 if so then something should be done");
+      currentPosition = position;
 
       return position;
    }
@@ -126,11 +132,6 @@ public class PossibleTilesMap
          return;
 
       possibleTiles_copy = possibleTiles_copy.Intersect(tiles).ToList();
-
-      // foreach (var item in possibleTiles_copy)
-      // {
-      //    Debug.Log(item.tile.name);
-      // }
    }
 
    public void restartPossibleTiles()
