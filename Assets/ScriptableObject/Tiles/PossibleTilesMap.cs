@@ -77,7 +77,7 @@ public class PossibleTilesMap
       if (isValidPosition(position))
          return;
 
-      if (entrophieLevelMap[position.y, position.x] == -1)
+      if (entrophieLevelMap[position.y, position.x] == -1 && newValue != -2)
          return;
 
       entrophieLevelMap[position.y, position.x] = newValue;
@@ -157,5 +157,27 @@ public class PossibleTilesMap
          Debug.Log(testStr);
          testStr = "";
       }
+   }
+
+   public int getEntropieCount(int entropie)
+   {
+      int help = 0;
+
+      for (int y = 0; y < height; y++)
+      {
+         for (int x = 0; x < width; x++)
+         {
+            if (entrophieLevelMap[y, x] == entropie)
+               help++;
+         }
+      }
+      return help;
+   }
+
+   public bool hasEmptyField()
+   {
+      // Debug.Log("Entropie Count: " + getEntropieCount(-1));
+
+      return getEntropieCount(-1) != width * height;
    }
 }

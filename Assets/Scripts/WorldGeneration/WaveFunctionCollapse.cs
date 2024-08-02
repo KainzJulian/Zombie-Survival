@@ -11,6 +11,7 @@ using UnityEngine.Assertions;
 using UnityEngine.Tilemaps;
 using EditorAttributes;
 using UnityEditor.Tilemaps;
+using UnityEngine.Android;
 
 public class WaveFunctionCollapse : MonoBehaviour
 {
@@ -31,6 +32,17 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     [Button("Delete World")]
     public void _DeleteWorld() => deleteWorld();
+
+    [Button("Test delete tiles around position")]
+    public void _DeleteTilesAroundPosition() => deleteTilesAroundPosition(testPosition);
+
+    [Button("calculate Entropie")]
+    public void _calcEntropie() => calculateEntrophieToPosition(testPosition);
+
+    int test;
+
+    [Button("collapse Entropie", 32)]
+    public void _testcollapse() => collapseTile(testPosition);
 
     // List<ChanceTile> possibleTiles = new List<ChanceTile>();
 
@@ -54,12 +66,18 @@ public class WaveFunctionCollapse : MonoBehaviour
         deleteWorld();
         init();
 
-        begin();
+        // select random position
+        Vector3Int position = map.getRandomPosition();
 
-        int counter = 0;
+        // set random tile
+
+        setTile(position, map.getRandomTile().tile);
+
+        // calculate entrophie (what kind of tile it can be at begin all are lenght of tile array)
+        calculateEntrophie(position);
 
         // [loop until no empty fields]
-        for (; counter < map.width * map.height - 1; counter++)
+        while (map.hasEmptyField())
         {
             await Task.Delay(speedInMilliSeconds);
 
@@ -67,8 +85,9 @@ public class WaveFunctionCollapse : MonoBehaviour
             Vector3Int entrophiePosition = map.getLeastEntrophiePosition();
 
             // collapse it to one of the random neighbors
-            collapseTile(entrophiePosition, ref counter);
+            collapseTile(entrophiePosition);
             // restart loop
+
         }
     }
 
@@ -84,10 +103,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         TileBase tileBase = tilemap.GetTile(position);
         Tile tile = map.getTileByTileBase(tileBase);
 
-        // if (tile == null)
-        //     return;
-
-        newEntrophie = tile.getNeighbor(Vector3Int.up).Count(); // Hier wird fehler geworfen
+        newEntrophie = tile.getNeighbor(Vector3Int.up).Count();
         map.updateEntrophieMap(new Vector3Int(position.x, position.y + 1), newEntrophie);
 
         newEntrophie = tile.getNeighbor(Vector3Int.right).Count();
@@ -100,6 +116,28 @@ public class WaveFunctionCollapse : MonoBehaviour
         map.updateEntrophieMap(new Vector3Int(position.x - 1, position.y), newEntrophie);
     }
 
+    private void calculateEntrophieToPosition(Vector3Int position)
+    {
+
+        map.restartPossibleTiles();
+
+        Tile tileTop = map.getTileByTileBase(tilemap.GetTile(position + Vector3Int.up));
+        Tile tileRight = map.getTileByTileBase(tilemap.GetTile(position + Vector3Int.right));
+        Tile tileDown = map.getTileByTileBase(tilemap.GetTile(position + Vector3Int.down));
+        Tile tileLeft = map.getTileByTileBase(tilemap.GetTile(position + Vector3Int.left));
+
+        if (tileTop != null)
+            map.addPossibleTiles(tileTop.getNeighbor(Vector3Int.down));
+        if (tileRight != null)
+            map.addPossibleTiles(tileRight.getNeighbor(Vector3Int.left));
+        if (tileDown != null)
+            map.addPossibleTiles(tileDown.getNeighbor(Vector3Int.up));
+        if (tileLeft != null)
+            map.addPossibleTiles(tileLeft.getNeighbor(Vector3Int.right));
+
+        map.updateEntrophieMap(position, map.getPossibleTiles().Count);
+    }
+
     public void deleteWorld()
     {
         tilemap.ClearAllTiles();
@@ -108,7 +146,7 @@ public class WaveFunctionCollapse : MonoBehaviour
     // ich muss machen dass nur die Tiles in possibleTiles gespeichert werden die in allen teilen vorhanden sind 
     // nicht jede nur einmal
 
-    public void collapseTile(Vector3Int position, ref int counter)
+    public void collapseTile(Vector3Int position)
     {
         map.restartPossibleTiles();
 
@@ -129,18 +167,13 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         if (possibleTiles.Count == 0)
         {
-            counter = 0;
+            deleteTilesAroundPosition(position);
 
-            Debug.LogWarning("Restart...");
-
-            map.restartPossibleTiles();
-            begin();
-            init();
-            deleteWorld();
+            Debug.LogWarning("found position");
             return;
         }
 
-        Debug.Log(possibleTiles.Count);
+        // Debug.Log(possibleTiles.Count);
 
         foreach (ChanceTile tile in possibleTiles)
         {
@@ -165,35 +198,24 @@ public class WaveFunctionCollapse : MonoBehaviour
         calculateEntrophie(position); // und hier aufgerufen
     }
 
-    // private void deleteTilesAroundPosition(Vector3Int position)
-    // {
-    //     Vector3Int newPosition = position + Vector3Int.up;
-    //     calculateEntrophie(newPosition);
-    //     tilemap.SetTile(newPosition, null);
-
-    //     newPosition = position + Vector3Int.right;
-    //     calculateEntrophie(newPosition);
-    //     tilemap.SetTile(newPosition, null);
-
-    //     newPosition = position + Vector3Int.down;
-    //     calculateEntrophie(newPosition);
-    //     tilemap.SetTile(newPosition, null);
-
-    //     newPosition = position + Vector3Int.left;
-    //     calculateEntrophie(newPosition);
-    //     tilemap.SetTile(newPosition, null);
-    // }
-
-    private void begin()
+    private void deleteTilesAroundPosition(Vector3Int position)
     {
-        // select random position
-        Vector3Int position = map.getRandomPosition();
+        // map.printEntropieMap();
+        Vector3Int newPosition = position + Vector3Int.up;
+        tilemap.SetTile(newPosition, null);
+        map.updateEntrophieMap(newPosition, -2);
 
-        // set random tile
+        newPosition = position + Vector3Int.right;
+        tilemap.SetTile(newPosition, null);
+        map.updateEntrophieMap(newPosition, -2);
 
-        setTile(position, map.getRandomTile().tile);
+        newPosition = position + Vector3Int.down;
+        tilemap.SetTile(newPosition, null);
+        map.updateEntrophieMap(newPosition, -2);
 
-        // calculate entrophie (what kind of tile it can be at begin all are lenght of tile array)
-        calculateEntrophie(position);
+        newPosition = position + Vector3Int.left;
+        tilemap.SetTile(newPosition, null);
+        map.updateEntrophieMap(newPosition, -2);
+        map.printEntropieMap();
     }
 }
