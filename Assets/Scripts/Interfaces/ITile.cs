@@ -5,6 +5,9 @@ using UnityEngine;
 
 public interface ITile
 {
-    public List<ChanceTile> getNeighbor(Vector3Int direction = new Vector3Int());
+    public List<ChanceTile> getTopNeighbor();
+    public List<ChanceTile> getRightNeighbor();
+    public List<ChanceTile> getBottomNeighbor();
+    public List<ChanceTile> getLeftNeighbor();
 }
 

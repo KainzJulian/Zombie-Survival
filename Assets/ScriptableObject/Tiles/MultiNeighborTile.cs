@@ -18,17 +18,23 @@ public class MultiNeighborTile : Tile
     [DataTable]
     public List<ChanceTile> leftNeighbors;
 
-
-    public override List<ChanceTile> getNeighbor(Vector3Int direction = new Vector3Int())
+    public override List<ChanceTile> getBottomNeighbor()
     {
-        if (direction == Vector3Int.down)
-            return topNeighbors;
-        if (direction == Vector3Int.up)
-            return bottomNeighbors;
-        if (direction == Vector3Int.right)
-            return leftNeighbors;
-        if (direction == Vector3Int.left)
-            return rightNeighbors;
-        return null;
+        return bottomNeighbors;
+    }
+
+    public override List<ChanceTile> getLeftNeighbor()
+    {
+        return leftNeighbors;
+    }
+
+    public override List<ChanceTile> getRightNeighbor()
+    {
+        return rightNeighbors;
+    }
+
+    public override List<ChanceTile> getTopNeighbor()
+    {
+        return topNeighbors;
     }
 }

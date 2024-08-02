@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc58df04416c084c9c324c8444c344b, type: 3}
   m_Name: Grass5
   m_EditorClassIdentifier: 
-  id: 5
+  id: 1510542656
   tile: {fileID: 11400000, guid: 6457c5c69d4967c4a90eaf7c4c91d465, type: 2}
   neighbors:
   - spawnChance: 0.5

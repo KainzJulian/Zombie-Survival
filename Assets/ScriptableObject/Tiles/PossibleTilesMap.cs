@@ -27,10 +27,10 @@ public class PossibleTilesMap
 
       foreach (Tile tile in tiles)
       {
-         possibleTiles.AddRange(tile.getNeighbor(Vector3Int.up));
-         possibleTiles.AddRange(tile.getNeighbor(Vector3Int.right));
-         possibleTiles.AddRange(tile.getNeighbor(Vector3Int.down));
-         possibleTiles.AddRange(tile.getNeighbor(Vector3Int.left));
+         possibleTiles.AddRange(tile.getTopNeighbor());
+         possibleTiles.AddRange(tile.getRightNeighbor());
+         possibleTiles.AddRange(tile.getBottomNeighbor());
+         possibleTiles.AddRange(tile.getLeftNeighbor());
       }
 
       if (possibleTiles.Count != tiles.Count())

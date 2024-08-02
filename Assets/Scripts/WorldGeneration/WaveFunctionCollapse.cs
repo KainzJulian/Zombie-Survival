@@ -103,16 +103,16 @@ public class WaveFunctionCollapse : MonoBehaviour
         TileBase tileBase = tilemap.GetTile(position);
         Tile tile = map.getTileByTileBase(tileBase);
 
-        newEntrophie = tile.getNeighbor(Vector3Int.up).Count();
+        newEntrophie = tile.getTopNeighbor().Count();
         map.updateEntrophieMap(new Vector3Int(position.x, position.y + 1), newEntrophie);
 
-        newEntrophie = tile.getNeighbor(Vector3Int.right).Count();
+        newEntrophie = tile.getRightNeighbor().Count();
         map.updateEntrophieMap(new Vector3Int(position.x + 1, position.y), newEntrophie);
 
-        newEntrophie = tile.getNeighbor(Vector3Int.down).Count();
+        newEntrophie = tile.getBottomNeighbor().Count();
         map.updateEntrophieMap(new Vector3Int(position.x, position.y - 1), newEntrophie);
 
-        newEntrophie = tile.getNeighbor(Vector3Int.left).Count();
+        newEntrophie = tile.getLeftNeighbor().Count();
         map.updateEntrophieMap(new Vector3Int(position.x - 1, position.y), newEntrophie);
     }
 
@@ -127,13 +127,13 @@ public class WaveFunctionCollapse : MonoBehaviour
         Tile tileLeft = map.getTileByTileBase(tilemap.GetTile(position + Vector3Int.left));
 
         if (tileTop != null)
-            map.addPossibleTiles(tileTop.getNeighbor(Vector3Int.down));
+            map.addPossibleTiles(tileTop.getBottomNeighbor());
         if (tileRight != null)
-            map.addPossibleTiles(tileRight.getNeighbor(Vector3Int.left));
+            map.addPossibleTiles(tileRight.getLeftNeighbor());
         if (tileDown != null)
-            map.addPossibleTiles(tileDown.getNeighbor(Vector3Int.up));
+            map.addPossibleTiles(tileDown.getTopNeighbor());
         if (tileLeft != null)
-            map.addPossibleTiles(tileLeft.getNeighbor(Vector3Int.right));
+            map.addPossibleTiles(tileLeft.getRightNeighbor());
 
         map.updateEntrophieMap(position, map.getPossibleTiles().Count);
     }
@@ -150,10 +150,10 @@ public class WaveFunctionCollapse : MonoBehaviour
     {
         map.restartPossibleTiles();
 
-        List<ChanceTile> bottomNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.up + position))?.getNeighbor(Vector3Int.down);
-        List<ChanceTile> leftNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.right + position))?.getNeighbor(Vector3Int.left);
-        List<ChanceTile> rightNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.left + position))?.getNeighbor(Vector3Int.right);
-        List<ChanceTile> topNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.down + position))?.getNeighbor(Vector3Int.up);
+        List<ChanceTile> bottomNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.up + position))?.getBottomNeighbor();
+        List<ChanceTile> leftNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.right + position))?.getLeftNeighbor();
+        List<ChanceTile> rightNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.left + position))?.getRightNeighbor();
+        List<ChanceTile> topNeighbors = map.getTileByTileBase(tilemap.GetTile(Vector3Int.down + position))?.getTopNeighbor();
 
         map.addPossibleTiles(bottomNeighbors);
         map.addPossibleTiles(leftNeighbors);
@@ -168,8 +168,6 @@ public class WaveFunctionCollapse : MonoBehaviour
         if (possibleTiles.Count == 0)
         {
             deleteTilesAroundPosition(position);
-
-            Debug.LogWarning("found position");
             return;
         }
 
@@ -200,7 +198,6 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     private void deleteTilesAroundPosition(Vector3Int position)
     {
-        // map.printEntropieMap();
         Vector3Int newPosition = position + Vector3Int.up;
         tilemap.SetTile(newPosition, null);
         map.updateEntrophieMap(newPosition, -2);
@@ -216,6 +213,5 @@ public class WaveFunctionCollapse : MonoBehaviour
         newPosition = position + Vector3Int.left;
         tilemap.SetTile(newPosition, null);
         map.updateEntrophieMap(newPosition, -2);
-        map.printEntropieMap();
     }
 }

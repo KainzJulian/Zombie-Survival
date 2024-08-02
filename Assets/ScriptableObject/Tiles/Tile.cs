@@ -1,18 +1,19 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using EditorAttributes;
 using NaughtyAttributes;
-using UnityEditor.PackageManager;
+using Unity.Mathematics;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public abstract class Tile : ScriptableObject, IEquatable<Tile>, ITile
 {
-    [EditorAttributes.Required]
-    public int id;
+    [EditorAttributes.ReadOnly]
+    public int id = 0;
 
-    [AssetPreview]
+    [ShowAssetPreview]
     public TileBase tile;
 
     public override int GetHashCode()
@@ -37,5 +38,17 @@ public abstract class Tile : ScriptableObject, IEquatable<Tile>, ITile
         return false;
     }
 
-    public abstract List<ChanceTile> getNeighbor(Vector3Int direction = new Vector3Int());
+    public abstract List<ChanceTile> getTopNeighbor();
+
+    public abstract List<ChanceTile> getRightNeighbor();
+
+    public abstract List<ChanceTile> getBottomNeighbor();
+
+    public abstract List<ChanceTile> getLeftNeighbor();
+
+    void OnEnable()
+    {
+        id = Guid.NewGuid().GetHashCode();
+    }
 }
+
