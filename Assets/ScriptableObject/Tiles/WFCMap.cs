@@ -6,9 +6,10 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 [Serializable]
-public class PossibleTilesMap
+public class WFCMap
 {
    public int[,] entrophieLevelMap;
+   public IDTilesMap IDMap = new IDTilesMap();
 
    public HashSet<ChanceTile> possibleTiles = new HashSet<ChanceTile>();
    private List<ChanceTile> possibleTiles_copy = new List<ChanceTile>();
@@ -20,7 +21,7 @@ public class PossibleTilesMap
 
    public Vector3Int currentPosition;
 
-   public PossibleTilesMap(int width, int height, List<Tile> tiles)
+   public WFCMap(int width, int height, List<Tile> tiles)
    {
       this.width = width;
       this.height = height;
@@ -181,3 +182,16 @@ public class PossibleTilesMap
       return getEntropieCount(-1) != width * height;
    }
 }
+
+[Serializable]
+public class IDRowTiles
+{
+   public List<int> row = new List<int>();
+}
+
+[Serializable]
+public class IDTilesMap
+{
+   public List<IDRowTiles> column = new List<IDRowTiles>();
+}
+

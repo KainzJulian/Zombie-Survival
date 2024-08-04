@@ -23,7 +23,7 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     [SerializeField] int speedInMilliSeconds = 0;
 
-    PossibleTilesMap map;
+    WFCMap map;
 
     [SerializeField] Tilemap tilemap;
 
@@ -56,7 +56,7 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     private void init()
     {
-        map = new PossibleTilesMap(width, height, tiles);
+        map = new WFCMap(width, height, tiles);
 
         // map.printEntropieMap();
     }

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c65e6d1a74188c4b9f5282010e34802, type: 3}
+  m_Name: BottomLeftWater
+  m_EditorClassIdentifier: 
+  id: 1709991657
+  tile: {fileID: 11400000, guid: dc4f014ecd67b0044ad595584ce1a852, type: 2}
+  topNeighbors:
+  - spawnChance: 1
+    tile: {fileID: 11400000, guid: ec7e06c963d74784cb6f3f14d2670e91, type: 2}
+  rightNeighbors:
+  - spawnChance: 1
+    tile: {fileID: 11400000, guid: 6cdc805d31d4d5841b37c2069de090be, type: 2}
+  bottomNeighbors:
+  - spawnChance: 1
+    tile: {fileID: 11400000, guid: daf2829372f49e5498575f5c6d3ef3b1, type: 2}
+  leftNeighbors:
+  - spawnChance: 1
+    tile: {fileID: 11400000, guid: daf2829372f49e5498575f5c6d3ef3b1, type: 2}
