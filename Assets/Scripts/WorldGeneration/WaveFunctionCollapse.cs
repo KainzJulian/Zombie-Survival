@@ -39,7 +39,8 @@ public class WaveFunctionCollapse : MonoBehaviour
     [Button("calculate Entropie")]
     public void _calcEntropie() => calculateEntrophieToPosition(testPosition);
 
-    int test;
+    [SerializeField] bool generateWithTilemap = false;
+    [SerializeField] Tilemap tilemapTilesGeneration;
 
     [Button("collapse Entropie", 32)]
     public void _testcollapse() => collapseTile(testPosition);
