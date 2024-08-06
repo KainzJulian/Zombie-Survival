@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using EditorAttributes;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(fileName = "MultiNeighbor", menuName = "Tile/MultiNeighbor", order = 0)]
 public class MultiNeighborTile : Tile
@@ -17,6 +18,12 @@ public class MultiNeighborTile : Tile
 
     [DataTable]
     public List<ChanceTile> leftNeighbors;
+
+    public MultiNeighborTile(int id, TileBase tile)
+    {
+        this.id = id;
+        this.tile = tile;
+    }
 
     public override List<ChanceTile> getBottomNeighbor()
     {

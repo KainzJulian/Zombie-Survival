@@ -12,11 +12,13 @@ using UnityEngine.Tilemaps;
 using EditorAttributes;
 using UnityEditor.Tilemaps;
 using UnityEngine.Android;
+using UnityEditor.PackageManager;
 
 public class WaveFunctionCollapse : MonoBehaviour
 {
 
-    [SerializeField] List<Tile> tiles = new List<Tile>();
+    [HideField(nameof(generateWithTilemap))]
+    [SerializeField] List<Tile> tiles;
 
     [SerializeField] int height;
     [SerializeField] int width;
@@ -40,7 +42,8 @@ public class WaveFunctionCollapse : MonoBehaviour
     public void _calcEntropie() => calculateEntrophieToPosition(testPosition);
 
     [SerializeField] bool generateWithTilemap = false;
-    [SerializeField] Tilemap tilemapTilesGeneration;
+    [ShowField(nameof(generateWithTilemap))]
+    [SerializeField] Tilemap tilemapSample;
 
     [Button("collapse Entropie", 32)]
     public void _testcollapse() => collapseTile(testPosition);
@@ -49,6 +52,7 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     [Title("Testing", 30)]
     [SerializeField] Vector3Int testPosition;
+    [SerializeField] Texture2D image;
 
     private void Start()
     {
@@ -62,34 +66,65 @@ public class WaveFunctionCollapse : MonoBehaviour
         // map.printEntropieMap();
     }
 
-    public async void generateWorld()
+    public /*async*/ void generateWorld()
     {
         deleteWorld();
-        init();
+        // init();
+
+
+        if (generateWithTilemap == false)
+        {
+            throw new Exception("dont forget to make this part");
+        }
+
+        List<MultiNeighborTile> mntTiles = new List<MultiNeighborTile>();
+
+        // get all tiles
+
+        tilemapSample.CompressBounds();
+        TileBase help;
+
+        foreach (var item in tilemapSample.cellBounds.allPositionsWithin)
+        {
+            help = tilemapSample.GetTile(item);
+
+            if (help != null)
+            {
+                Debug.Log(item);
+                Debug.Log(help.name);
+                mntTiles.Add(new MultiNeighborTile(1, help));
+            }
+        }
+
+
+        // get neighbor of tile
+        // add neighbor tiles to tile
+
+
 
         // select random position
-        Vector3Int position = map.getRandomPosition();
+        // Vector3Int position = map.getRandomPosition();
 
-        // set random tile
+        // // set random tile
 
-        setTile(position, map.getRandomTile().tile);
+        // setTile(position, map.getRandomTile().tile);
 
-        // calculate entrophie (what kind of tile it can be at begin all are lenght of tile array)
-        calculateEntrophie(position);
+        // // calculate entrophie (what kind of tile it can be at begin all are lenght of tile array)
+        // calculateEntrophie(position);
 
-        // [loop until no empty fields]
-        while (map.hasEmptyField())
-        {
-            await Task.Delay(speedInMilliSeconds);
+        // // [loop until no empty fields]
+        // while (map.hasEmptyField())
+        // {
+        //     await Task.Delay(speedInMilliSeconds);
 
-            // select least entrophie tile
-            Vector3Int entrophiePosition = map.getLeastEntrophiePosition();
+        //     // select least entrophie tile
+        //     Vector3Int entrophiePosition = map.getLeastEntrophiePosition();
 
-            // collapse it to one of the random neighbors
-            collapseTile(entrophiePosition);
-            // restart loop
+        //     // collapse it to one of the random neighbors
+        //     collapseTile(entrophiePosition);
+        //     // restart loop
 
-        }
+        // }
     }
 
     private void setTile(Vector3Int position, TileBase tile)
