@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public abstract class Tile : ScriptableObject, IEquatable<Tile>, ITile
+public abstract class Tile : IEquatable<Tile>, ITile
 {
     [EditorAttributes.ReadOnly]
     public int id = 0;
@@ -45,10 +45,4 @@ public abstract class Tile : ScriptableObject, IEquatable<Tile>, ITile
     public abstract List<ChanceTile> getBottomNeighbor();
 
     public abstract List<ChanceTile> getLeftNeighbor();
-
-    void OnEnable()
-    {
-        id = Guid.NewGuid().GetHashCode();
-    }
 }
-

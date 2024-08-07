@@ -1,13 +1,26 @@
 using System;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [Serializable]
 public class ChanceTile : IEquatable<ChanceTile>
 {
    [Range(0f, 1f)]
-   public float spawnChance;
+   public int weight;
 
-   public Tile tile;
+   public TileBase tile;
+
+   public ChanceTile(Tile tile, int weight = 1)
+   {
+      this.tile = tile.tile;
+      this.weight = weight;
+   }
+
+   public ChanceTile(TileBase tile, int weight = 1)
+   {
+      this.tile = tile;
+      this.weight = weight;
+   }
 
    public override int GetHashCode()
    {
@@ -21,9 +34,8 @@ public class ChanceTile : IEquatable<ChanceTile>
       if (other == null)
          return false;
 
-      return tile != null ? tile.id == other.tile.id : other.tile == null;
+      return tile != null ? tile == other.tile : other.tile == null;
    }
-
 
    public override bool Equals(object obj)
    {

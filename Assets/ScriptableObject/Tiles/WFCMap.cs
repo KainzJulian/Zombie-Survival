@@ -14,14 +14,14 @@ public class WFCMap
    public HashSet<ChanceTile> possibleTiles = new HashSet<ChanceTile>();
    private List<ChanceTile> possibleTiles_copy = new List<ChanceTile>();
 
-   public List<Tile> tiles;
+   public List<MultiNeighborTile> tiles;
 
    public int width;
    public int height;
 
    public Vector3Int currentPosition;
 
-   public WFCMap(int width, int height, List<Tile> tiles)
+   public WFCMap(int width, int height, List<MultiNeighborTile> tiles)
    {
       this.width = width;
       this.height = height;
@@ -40,7 +40,7 @@ public class WFCMap
          Debug.LogWarning(possibleTiles.Count + "  " + tiles.Count());
          foreach (ChanceTile item in possibleTiles)
          {
-            Debug.Log(item.tile.tile);
+            Debug.Log(item.tile);
          }
          throw new Exception("There are too many ChanceTiles in the Tiles provided");
       }

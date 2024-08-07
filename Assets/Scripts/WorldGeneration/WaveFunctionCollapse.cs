@@ -16,10 +16,6 @@ using UnityEditor.PackageManager;
 
 public class WaveFunctionCollapse : MonoBehaviour
 {
-
-    [HideField(nameof(generateWithTilemap))]
-    [SerializeField] List<Tile> tiles;
-
     [SerializeField] int height;
     [SerializeField] int width;
 
@@ -41,14 +37,10 @@ public class WaveFunctionCollapse : MonoBehaviour
     [Button("calculate Entropie")]
     public void _calcEntropie() => calculateEntrophieToPosition(testPosition);
 
-    [SerializeField] bool generateWithTilemap = false;
-    [ShowField(nameof(generateWithTilemap))]
     [SerializeField] Tilemap tilemapSample;
 
     [Button("collapse Entropie", 32)]
     public void _testcollapse() => collapseTile(testPosition);
-
-    // List<ChanceTile> possibleTiles = new List<ChanceTile>();
 
     [Title("Testing", 30)]
     [SerializeField] Vector3Int testPosition;
@@ -61,76 +53,146 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     private void init()
     {
-        map = new WFCMap(width, height, tiles);
+        // map = new WFCMap(width, height, tiles);
 
         // map.printEntropieMap();
     }
 
-    public /*async*/ void generateWorld()
+    public async void generateWorld()
     {
         deleteWorld();
         // init();
 
-
-        if (generateWithTilemap == false)
-        {
-            throw new Exception("dont forget to make this part");
-        }
-
-        List<MultiNeighborTile> mntTiles = new List<MultiNeighborTile>();
-
         // get all tiles
 
         tilemapSample.CompressBounds();
-        TileBase help;
 
-        foreach (var item in tilemapSample.cellBounds.allPositionsWithin)
+        List<TileBase> list = getTileBases();
+
+        List<MultiNeighborTile> mntTiles = new List<MultiNeighborTile>();
+
+        foreach (var item in list)
         {
-            help = tilemapSample.GetTile(item);
+            mntTiles.Add(new MultiNeighborTile(item));
+        }
 
-            if (help != null)
+        foreach (var item in mntTiles)
+        {
+            Debug.Log(item);
+        }
+
+        Debug.LogWarning("positions: ");
+
+        for (int i = 0; i < mntTiles.Count; i++)
+        {
+            foreach (var pos in getPositions(mntTiles[i].tile))
             {
-                Debug.Log(item);
-                Debug.Log(help.name);
-                mntTiles.Add(new MultiNeighborTile(1, help));
+                Debug.Log(pos);
+
+                if (tilemapSample.GetTile(pos + Vector3Int.up) != null)
+                    mntTiles[i].topNeighbors.Add(new ChanceTile(tilemapSample.GetTile(pos + Vector3Int.up)));
+
+                if (tilemapSample.GetTile(pos + Vector3Int.right) != null)
+                    mntTiles[i].rightNeighbors.Add(new ChanceTile(tilemapSample.GetTile(pos + Vector3Int.right)));
+
+                if (tilemapSample.GetTile(pos + Vector3Int.down) != null)
+                    mntTiles[i].bottomNeighbors.Add(new ChanceTile(tilemapSample.GetTile(pos + Vector3Int.down)));
+
+                if (tilemapSample.GetTile(pos + Vector3Int.left) != null)
+                    mntTiles[i].leftNeighbors.Add(new ChanceTile(tilemapSample.GetTile(pos + Vector3Int.left)));
             }
         }
 
 
-        // get neighbor of tile
-        // add neighbor tiles to tile
+        foreach (MultiNeighborTile tile in mntTiles)
+        {
+            Debug.Log(tile.tile.name);
 
+            foreach (var item in tile.topNeighbors)
+                Debug.Log("top\t" + item.tile);
 
+            foreach (var item in tile.rightNeighbors)
+                Debug.Log("right\t" + item.tile);
+
+            foreach (var item in tile.bottomNeighbors)
+                Debug.Log("bottom\t" + item.tile);
+
+            foreach (var item in tile.leftNeighbors)
+                Debug.Log("left\t" + item.tile);
+        }
+
+        map = new WFCMap(width, height, mntTiles);
 
         // select random position
-        // Vector3Int position = map.getRandomPosition();
+        Vector3Int position = map.getRandomPosition();
 
-        // // set random tile
+        // set random tile
 
-        // setTile(position, map.getRandomTile().tile);
+        setTile(position, map.getRandomTile().tile);
 
-        // // calculate entrophie (what kind of tile it can be at begin all are lenght of tile array)
-        // calculateEntrophie(position);
+        // calculate entrophie (what kind of tile it can be at begin all are lenght of tile array)
+        calculateEntrophie(position);
 
-        // // [loop until no empty fields]
-        // while (map.hasEmptyField())
-        // {
-        //     await Task.Delay(speedInMilliSeconds);
+        // [loop until no empty fields]
+        while (map.hasEmptyField())
+        {
+            await Task.Delay(speedInMilliSeconds);
 
-        //     // select least entrophie tile
-        //     Vector3Int entrophiePosition = map.getLeastEntrophiePosition();
+            // select least entrophie tile
+            Vector3Int entrophiePosition = map.getLeastEntrophiePosition();
 
-        //     // collapse it to one of the random neighbors
-        //     collapseTile(entrophiePosition);
-        //     // restart loop
+            // collapse it to one of the random neighbors
+            collapseTile(entrophiePosition);
+            // restart loop
 
-        // }
+        }
+    }
+
+    private MultiNeighborTile getTileByTilebase(List<MultiNeighborTile> mntTiles, TileBase tileBase)
+    {
+        return mntTiles.Find((tile) =>
+        {
+            return tile.tile == tileBase;
+        });
+    }
+
+    private List<TileBase> getTileBases()
+    {
+        HashSet<TileBase> mntTiles = new HashSet<TileBase>();
+
+        foreach (var item in tilemapSample.GetTilesBlock(tilemapSample.cellBounds))
+        {
+            if (item != null)
+            {
+                Debug.Log(item);
+                mntTiles.Add(item);
+            }
+        }
+
+        return mntTiles.ToList();
     }
 
     private void setTile(Vector3Int position, TileBase tile)
     {
         tilemap.SetTile(position, tile);
         map.updateEntrophieMap(position, -1);
+    }
+
+    private List<Vector3Int> getPositions(TileBase tilebase)
+    {
+        List<Vector3Int> help = new List<Vector3Int>();
+
+        foreach (var position in tilemapSample.cellBounds.allPositionsWithin)
+        {
+            Debug.Log(position);
+            if (tilemapSample.GetTile(position) != null && tilemapSample.GetTile(position).Equals(tilebase))
+            {
+                Debug.LogWarning("Added tile at position " + position + " of tile " + tilebase);
+                help.Add(position);
+            }
+        }
+
+        return help;
     }
 
     private void calculateEntrophie(Vector3Int position)
@@ -196,8 +258,6 @@ public class WaveFunctionCollapse : MonoBehaviour
         map.addPossibleTiles(rightNeighbors);
         map.addPossibleTiles(topNeighbors);
 
-        float weight = 0f;
-        List<float> weightList = new List<float>();
 
         List<ChanceTile> possibleTiles = map.getPossibleTiles();
 
@@ -209,27 +269,29 @@ public class WaveFunctionCollapse : MonoBehaviour
 
         // Debug.Log(possibleTiles.Count);
 
-        foreach (ChanceTile tile in possibleTiles)
+        float totalWeight = 0;
+
+        foreach (var item in possibleTiles)
+            totalWeight += item.weight;
+
+        TileBase newTile = null;
+
+        foreach (var item in possibleTiles)
         {
-            weight += tile.spawnChance;
-            weightList.Add(weight);
-        }
-
-        float randomValue = UnityEngine.Random.Range(0, weight);
-
-        int i = 0;
-
-        foreach (ChanceTile chanceTile in possibleTiles)
-        {
-            if (randomValue < weightList[i])
+            if (UnityEngine.Random.Range(0f, totalWeight) < item.weight)
             {
-                setTile(position, chanceTile.tile.tile);
+                newTile = item.tile;
                 break;
             }
-            i++;
+            else
+            {
+                totalWeight -= item.weight;
+            }
         }
 
-        calculateEntrophie(position); // und hier aufgerufen
+        setTile(position, newTile);
+
+        calculateEntrophie(position);
     }
 
     private void deleteTilesAroundPosition(Vector3Int position)

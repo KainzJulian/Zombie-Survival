@@ -1,47 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using EditorAttributes;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(fileName = "MultiNeighbor", menuName = "Tile/MultiNeighbor", order = 0)]
+[Serializable]
 public class MultiNeighborTile : Tile
 {
     [DataTable]
-    public List<ChanceTile> topNeighbors;
+    public HashSet<ChanceTile> topNeighbors = new HashSet<ChanceTile>();
 
     [DataTable]
-    public List<ChanceTile> rightNeighbors;
+    public HashSet<ChanceTile> rightNeighbors = new HashSet<ChanceTile>();
 
     [DataTable]
-    public List<ChanceTile> bottomNeighbors;
+    public HashSet<ChanceTile> bottomNeighbors = new HashSet<ChanceTile>();
 
     [DataTable]
-    public List<ChanceTile> leftNeighbors;
+    public HashSet<ChanceTile> leftNeighbors = new HashSet<ChanceTile>();
 
-    public MultiNeighborTile(int id, TileBase tile)
+    public MultiNeighborTile(TileBase tile)
     {
-        this.id = id;
+        // id = Guid.NewGuid().GetHashCode();
         this.tile = tile;
     }
 
     public override List<ChanceTile> getBottomNeighbor()
     {
-        return bottomNeighbors;
+        return bottomNeighbors.ToList();
     }
 
     public override List<ChanceTile> getLeftNeighbor()
     {
-        return leftNeighbors;
+        return leftNeighbors.ToList();
     }
 
     public override List<ChanceTile> getRightNeighbor()
     {
-        return rightNeighbors;
+        return rightNeighbors.ToList();
     }
 
     public override List<ChanceTile> getTopNeighbor()
     {
-        return topNeighbors;
+        return topNeighbors.ToList();
     }
 }

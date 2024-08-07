@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using EditorAttributes;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SingleNeighbor", menuName = "Tile/SingleNeighbor", order = 0)]
 public class SingleNeighborTile : Tile
 {
    [DataTable]
