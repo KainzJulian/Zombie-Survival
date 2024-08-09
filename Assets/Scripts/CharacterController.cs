@@ -17,7 +17,7 @@ public class CharacterController2D : MonoBehaviour
     {
         SNEAK = 50,
         WALK = 100,
-        SPRINT = 180
+        SPRINT = 300
     }
 
     private void Start()
@@ -38,7 +38,8 @@ public class CharacterController2D : MonoBehaviour
         if (horizontal == 0 && vertical == 0)
             return;
 
-        float speedTypeMultiplier = (int)type / 100;
+        float speedTypeMultiplier = (float)type / 100f;
+        Debug.Log("speed multiplier: " + speedTypeMultiplier);
         Vector2 posVector = new Vector2(horizontal, vertical);
 
         rb.MovePosition(rb.position + posVector * speed * deltaTime * speedTypeMultiplier);

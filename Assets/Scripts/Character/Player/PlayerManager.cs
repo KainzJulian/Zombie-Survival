@@ -19,6 +19,8 @@ public class PlayerManager : MonoBehaviour
 
     public static PlayerManager instance { get; private set; }
 
+    private CharacterController2D.SpeedType speedType;
+
     private void Awake()
     {
         if (instance == null)
@@ -45,7 +47,15 @@ public class PlayerManager : MonoBehaviour
     private void FixedUpdate()
     {
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        characterController.moveFixed(movement.x, movement.y, CharacterController2D.SpeedType.WALK);
+        speedType = CharacterController2D.SpeedType.WALK;
+
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            speedType = CharacterController2D.SpeedType.SNEAK;
+
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+            speedType = CharacterController2D.SpeedType.SPRINT;
+
+        characterController.moveFixed(movement.x, movement.y, speedType);
 
         attackPointController.rotateAttackPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
