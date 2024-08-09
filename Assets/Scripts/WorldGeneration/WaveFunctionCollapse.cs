@@ -5,6 +5,9 @@ using EditorAttributes;
 
 public class WaveFunctionCollapse : MonoBehaviour
 {
+
+    // TODO: add a boolean value to use singleneighborTiles instead of MultineighborTiles for the tilemapSample
+    // TODO: add multiple tilemaps so only the tilemaps next to the player can be loaded => performance 
     [SerializeField] int height;
     [SerializeField] int width;
 
