@@ -9,15 +9,16 @@ public class InputController : MonoBehaviour
 
     private SceneController sceneController;
 
+    [SerializeField] WeaponController weaponController;
+    [SerializeField] RangeWeaponUIHandler rangeWeaponUI;
+
     public UnityEvent onOpenPause = new UnityEvent();
     public UnityEvent onClosePause = new UnityEvent();
-
-    private bool isSneaking = false;
-    private bool isSprinting = false;
 
     private void Start()
     {
         sceneController = SceneController.instance;
+        weaponController.getWeaponAsRange()?.onAmmoChange.AddListener(rangeWeaponUI.setCurrentAmmoText);
     }
 
     void Update()
@@ -51,6 +52,14 @@ public class InputController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
             weapon3();
+
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
+            attack();
+    }
+
+    private void attack()
+    {
+        weaponController.attack();
     }
 
     private void loot()
@@ -101,6 +110,7 @@ public class InputController : MonoBehaviour
     private void reload()
     {
         Debug.Log("reload");
+        weaponController.reloadWeapon();
     }
 
     private void sprint()

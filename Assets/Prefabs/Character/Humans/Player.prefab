@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdde27717f43e544a470cef0d29c2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponController: {fileID: 6102759493574979055}
+  rangeWeaponUI: {fileID: 6582673911388014362}
   onOpenPause:
     m_PersistentCalls:
       m_Calls:
@@ -408,44 +410,10 @@ MonoBehaviour:
   weaponConfig: {fileID: 11400000, guid: 911368c4e8ceba540bfe8628cbf64211, type: 2}
   weaponObject: {fileID: 3055290988472079326}
   currentWeapon: {fileID: 0}
-  rangeWeaponUI: {fileID: 6582673911388014362}
   attackLayers:
     serializedVersion: 2
     m_Bits: 384
   attackPoint: {fileID: 815974179111587833}
-  onEquipRange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6582673911388014362}
-        m_TargetAssemblyTypeName: RangeWeaponUIHandler, Assembly-CSharp
-        m_MethodName: switchUI
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  onEquipMelee:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6582673911388014362}
-        m_TargetAssemblyTypeName: RangeWeaponUIHandler, Assembly-CSharp
-        m_MethodName: switchUI
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onAttack:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &8039157430685141745
 MonoBehaviour:
   m_ObjectHideFlags: 0

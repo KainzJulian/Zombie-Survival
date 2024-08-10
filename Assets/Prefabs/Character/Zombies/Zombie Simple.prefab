@@ -290,6 +290,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9157865302835085311}
+    - targetCorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7782935402896367932}
   m_SourcePrefab: {fileID: 100100000, guid: 68317e1326a1e47499325923916467df, type: 3}
 --- !u!4 &2045340552245975578 stripped
 Transform:
@@ -375,7 +378,27 @@ MonoBehaviour:
   characterController2D: {fileID: 3856826552066642941}
   health: {fileID: 4079194051988996329}
   weaponObject: {fileID: 8415469539248879179}
+  weaponController: {fileID: 7782935402896367932}
   currentWeapon: {fileID: 0}
+--- !u!114 &7782935402896367932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6615561104571369601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adbe3118ed95a0d47acbae35f39f0336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponConfig: {fileID: 11400000, guid: 1133200a9e4e8ab45bd14837c0c65b5e, type: 2}
+  weaponObject: {fileID: 8415469539248879179}
+  currentWeapon: {fileID: 0}
+  attackLayers:
+    serializedVersion: 2
+    m_Bits: 192
+  attackPoint: {fileID: 8491680305666019929}
 --- !u!1 &8415469539248879179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6010616746086567661, guid: 68317e1326a1e47499325923916467df, type: 3}

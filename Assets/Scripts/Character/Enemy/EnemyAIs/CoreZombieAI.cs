@@ -47,9 +47,9 @@ public abstract class CoreZombieAI : MonoBehaviour, ZombieAI, Hearable
     {
         isAFK = false;
 
-        if (Vector2.Distance((Vector2)attackPoint.position, position.position) <= enemy.getWeaponAsMelee().data.attackSize)
+        if (Vector2.Distance((Vector2)enemy.weaponController.attackPoint.position, position.position) <= enemy.getWeaponAsMelee().data.attackSize)
         {
-            enemy.currentWeapon.attack(attackPoint, layer);
+            enemy.weaponController.attack();
         }
 
         controller2D.move(position.position);

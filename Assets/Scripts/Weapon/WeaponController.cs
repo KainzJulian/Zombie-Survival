@@ -7,30 +7,17 @@ using UnityEngine.Events;
 public class WeaponController : MonoBehaviour
 {
     public WeaponConfig weaponConfig;
-    // public Weapon weapon;
 
     public GameObject weaponObject;
 
     public Weapon currentWeapon;
 
-    [SerializeField] RangeWeaponUIHandler rangeWeaponUI;
+    public LayerMask attackLayers;
+    public Transform attackPoint;
 
-    // public MeleeWeaponConfig primaryWeaponConfig;
-    // [SerializeField] MeleeWeapon primaryWeapon;
-
-    // public RangeWeaponConfig secondaryWeaponConfig;
-    // [SerializeField] RangeWeapon secondaryWeapon;
-
-    [SerializeField] LayerMask attackLayers;
-    [SerializeField] Transform attackPoint;
-
-    private void Start()
+    private void Awake()
     {
         currentWeapon = weaponObject.GetComponentInChildren<Weapon>();
-
-        getWeaponAsRange()?.onAmmoChange.AddListener(rangeWeaponUI.setCurrentAmmoText);
-
-        // setWeapon(weaponConfig);
     }
 
     // public void setWeapon(WeaponConfig config)
@@ -52,23 +39,21 @@ public class WeaponController : MonoBehaviour
     //     }
     // }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R) && currentWeapon is RangeWeapon rangeWeapon)
-        {
-            rangeWeapon.reload();
-        }
-
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
-        {
-            currentWeapon?.attack(attackPoint, attackLayers);
-        }
-    }
-
     private void OnDrawGizmos()
     {
         if (attackPoint != null)
             Gizmos.DrawWireSphere(attackPoint.position, 10);
+    }
+
+    public void reloadWeapon()
+    {
+        if (currentWeapon is RangeWeapon rangeWeapon)
+            rangeWeapon.reload();
+    }
+
+    public void attack()
+    {
+        currentWeapon?.attack(attackPoint, attackLayers);
     }
 
     public MeleeWeapon getWeaponAsMelee()

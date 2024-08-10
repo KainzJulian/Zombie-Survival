@@ -10,15 +10,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] CharacterController2D characterController2D;
     [SerializeField] ZombieAI enemyAI;
     [SerializeField] Health health;
-    [SerializeField] GameObject weaponObject;
 
-    public Weapon currentWeapon;
+    public WeaponController weaponController;
 
-    // Start is called before the first frame update
     void Start()
     {
-        currentWeapon = weaponObject.GetComponentInChildren<Weapon>();
-
         enemyAI = GetComponent<ZombieAI>();
 
         health.health = config.health;
@@ -40,15 +36,11 @@ public class Enemy : MonoBehaviour
     //er auch für Enemy funktioniert weil dort gibts sowas schon
     public MeleeWeapon getWeaponAsMelee()
     {
-        if (currentWeapon is MeleeWeapon meleeWeapon)
-            return meleeWeapon;
-        return null;
+        return weaponController.getWeaponAsMelee();
     }
 
     public RangeWeapon getWeaponAsRange()
     {
-        if (currentWeapon is RangeWeapon rangeWeapon)
-            return rangeWeapon;
-        return null;
+        return weaponController.getWeaponAsRange();
     }
 }
