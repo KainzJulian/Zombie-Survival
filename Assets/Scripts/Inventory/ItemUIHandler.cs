@@ -36,24 +36,19 @@ public class ItemUIHandler : MonoBehaviour
 
     public void updateNameText()
     {
-        if (!isNull(nameText))
+        if (nameText != null)
             this.nameText.SetText(item.item.name);
     }
 
     public void updateImage()
     {
-        if (!isNull(image))
+        if (image != null)
             this.image.sprite = item.item.sprite;
     }
 
     public void updateInfoText()
     {
-        if (!isNull(infoText))
+        if (infoText != null)
             this.infoText.SetText(item.amount.ToString());
-    }
-
-    public bool isNull(Object obj)
-    {
-        return obj == null;
     }
 }

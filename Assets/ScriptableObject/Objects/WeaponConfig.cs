@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class WeaponConfig : ScriptableObject
+public abstract class WeaponConfig : ItemConfig
 {
-
     [Tooltip("Type of weapon")]
     public WeaponType weaponType;
 
@@ -24,7 +23,8 @@ public abstract class WeaponConfig : ScriptableObject
 [Serializable]
 public enum WeaponType
 {
-    RANGE,
+    SIDEARM,
+    LONGARM,
     MELEE,
     THROWABLE
 }
