@@ -5,9 +5,6 @@ using UnityEngine;
 
 public abstract class WeaponConfig : ItemConfig
 {
-    [Tooltip("Type of weapon")]
-    public WeaponType weaponType;
-
     [Tooltip("Duration of one attack animation")]
     public float duration;
 
@@ -18,13 +15,4 @@ public abstract class WeaponConfig : ItemConfig
     public float attackSpeed;
 
     public int noiseRadius;
-}
-
-[Serializable]
-public enum WeaponType
-{
-    SIDEARM,
-    LONGARM,
-    MELEE,
-    THROWABLE
 }

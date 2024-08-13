@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class Item : MonoBehaviour
 {
     public ItemConfig item;
-    public int amount = 0;
+    public int amount = 1;
 
     [SerializeField] UnityEvent onDataChange = new UnityEvent();
 

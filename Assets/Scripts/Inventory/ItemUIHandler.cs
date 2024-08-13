@@ -26,7 +26,7 @@ public class ItemUIHandler : MonoBehaviour
 
     public void updateInfoText(string infoText)
     {
-        this.infoText.SetText(infoText);
+        this.infoText?.SetText(infoText);
     }
 
     public void updateNameText(string name)
