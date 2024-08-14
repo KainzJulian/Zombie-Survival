@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 7278416036860832295, guid: 1b2c08a6e8a74c44ba9107ddf385fc6e, type: 3}
+  allowedItemTypes: 0300000004000000050000000600000007000000
 --- !u!114 &5316095741565985522
 MonoBehaviour:
   m_ObjectHideFlags: 0

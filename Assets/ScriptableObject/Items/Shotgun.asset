@@ -15,3 +15,4 @@ MonoBehaviour:
   sprite: {fileID: 0}
   name: 
   description: 
+  type: 1

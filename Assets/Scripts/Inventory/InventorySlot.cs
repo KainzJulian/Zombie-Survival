@@ -8,12 +8,17 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 {
     [SerializeField] GameObject itemPrefab;
 
+    [SerializeField] List<ItemType> allowedItemTypes = new List<ItemType>();
+
     public void OnDrop(PointerEventData eventData)
     {
-        if (transform.childCount != 0)
+        GameObject dropped = eventData.pointerDrag;
+
+        ItemType type = dropped.GetComponent<Item>().item.type;
+
+        if (transform.childCount != 0 || !allowedItemTypes.Contains(type))
             return;
 
-        GameObject dropped = eventData.pointerDrag;
         DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
 
         draggableItem.parentAfterDrag = transform;

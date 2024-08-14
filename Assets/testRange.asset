@@ -15,7 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   name: Test Range weapon
   description: 'This is a Test big range weapon '
-  weaponType: 1
+  type: 1
   duration: 1
   damage: 10
   attackSpeed: 1

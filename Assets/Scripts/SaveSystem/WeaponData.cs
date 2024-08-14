@@ -6,9 +6,6 @@ using UnityEngine;
 [Serializable]
 public class WeaponData
 {
-    [Tooltip("Type of weapon")]
-    public WeaponType weaponType;
-
     [Tooltip("Duration of one attack animation")]
     public float duration;
 

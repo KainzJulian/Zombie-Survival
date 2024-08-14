@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,5 +29,10 @@ public enum ItemType
     HEALING,
     CONSUMABLE,
     CRAFTABLE,
-    ITEM
+    ITEM,
+    HAT,
+    CHESTWEAR,
+    PANTS,
+    BOOT,
+    BAG
 }
