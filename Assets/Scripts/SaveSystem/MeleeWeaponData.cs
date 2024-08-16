@@ -8,4 +8,9 @@ public class MeleeWeaponData : WeaponData
 {
     [Tooltip("Size of the Attack")]
     public int attackSize;
+
+    public MeleeWeaponData(MeleeWeaponConfig config) : base(config)
+    {
+        attackSize = config.attackSize;
+    }
 }

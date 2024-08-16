@@ -25,4 +25,12 @@ public class RangeWeaponData : WeaponData
 
     [Tooltip("Wheter the weapon is reloading or not")]
     public bool isReloading = false;
+
+    public RangeWeaponData(RangeWeaponConfig config) : base(config)
+    {
+        projectileCount = config.projectileCount;
+        angle = config.angle;
+        magazinSize = config.magazinSize;
+        reloadTime = config.reloadTime;
+    }
 }

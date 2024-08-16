@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -19,12 +20,12 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] UnityEvent onOpenInventory = new UnityEvent();
     [SerializeField] UnityEvent onCloseInventory = new UnityEvent();
 
+    [SerializeField] List<GameObject> hotBar = new List<GameObject>();
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-
             inventoryController.itemsOnGround.Clear();
 
             Collider2D[] items = Physics2D.OverlapCircleAll(pickupArea.transform.position, pickRange, itemLayers);
@@ -44,11 +45,29 @@ public class InventorySystem : MonoBehaviour
         bool isActive = inventoryUI.activeSelf;
 
         if (!isActive)
+        {
+            switchHotbar(true);
             onOpenInventory?.Invoke();
+        }
         else
+        {
+            switchHotbar(false);
             onCloseInventory?.Invoke();
-
+        }
         inventoryUI.SetActive(!isActive);
+    }
+
+    public void switchHotbar(bool state)
+    {
+        foreach (GameObject item in hotBar)
+        {
+            item.GetComponent<Image>().raycastTarget = state;
+
+            foreach (Image image in item.GetComponentsInChildren<Image>())
+            {
+                image.raycastTarget = state;
+            }
+        }
     }
 
     public void disableInput()

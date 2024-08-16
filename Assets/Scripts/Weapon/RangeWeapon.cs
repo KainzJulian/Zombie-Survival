@@ -11,7 +11,15 @@ public class RangeWeapon : Weapon
 
     public RangeWeaponData data;
 
+    public RangeWeaponConfig config;
+
     public UnityEvent<int> onAmmoChange = new UnityEvent<int>();
+
+    private void Start()
+    {
+        data = new RangeWeaponData(config);
+        projectilePrefab = config.projectilePrefab;
+    }
 
     private void Update()
     {

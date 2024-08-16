@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6019a5e0badc4f642aebf643c943bf3b, type: 3}
   m_Name: testRange
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 6b608edfea5e7db4786d24dd739d732a, type: 3}
   name: Test Range weapon
   description: 'This is a Test big range weapon '
   type: 1

@@ -23,4 +23,12 @@ public class WeaponData
 
     [HideInInspector]
     public float attackTimer;
+
+    public WeaponData(WeaponConfig config)
+    {
+        duration = config.duration;
+        damage = config.damage;
+        attackSpeed = config.attackSpeed;
+        noiseRadius = config.noiseRadius;
+    }
 }

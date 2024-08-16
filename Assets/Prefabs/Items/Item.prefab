@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.69411767}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -337,9 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a9b17b2bc25f74794f494c9b9647c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hideOnDrag:
-  - {fileID: 1886545123355985304}
-  - {fileID: 3749165984551911349}
+  hideOnDrag: []
   disableRaycastOnDrag:
   - {fileID: 5662636002210453301}
   - {fileID: 1183068102548127175}
