@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f16b7687db7774459929808d8912749, type: 3}
-  m_Name: Shotgun
+  m_Script: {fileID: 11500000, guid: defb917e95488ee44b81ca71303683bd, type: 3}
+  m_Name: WearableConfig
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  name: 
-  description: 
-  type: 1
+  sprite: {fileID: 1979159658, guid: 573387361ec24ad49a1ecdc7bf15212b, type: 3}
+  name: Hat
+  description: This is hat
+  type: 8
+  armor: 1
+  health: 59

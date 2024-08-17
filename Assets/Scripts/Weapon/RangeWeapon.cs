@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+// TODO: alle Weapons von item erben lassen damit ich im inventar auch die daten welche nicht in scriptable obj dabei sind
+// speichern kann ohne irgendwelche Probleme 
 [Serializable]
 public class RangeWeapon : Weapon
 {
@@ -17,6 +19,8 @@ public class RangeWeapon : Weapon
 
     private void Start()
     {
+        GetComponent<Item>()?.setItem(config);
+
         data = new RangeWeaponData(config);
         projectilePrefab = config.projectilePrefab;
     }

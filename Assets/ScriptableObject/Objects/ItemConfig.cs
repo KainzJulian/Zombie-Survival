@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ItemConfig", menuName = "Item")]
+[Serializable]
+[CreateAssetMenu(fileName = "ItemConfig", menuName = "Item/Item")]
 public class ItemConfig : ScriptableObject
 {
     [Tooltip("Sprite of the item which will be displayed in inventory or ground")]

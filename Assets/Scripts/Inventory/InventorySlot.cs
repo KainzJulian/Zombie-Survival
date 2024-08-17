@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class InventorySlot : MonoBehaviour, IDropHandler
@@ -11,6 +12,8 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     [SerializeField] List<ItemType> allowedItemTypes = new List<ItemType>();
 
     [SerializeField] InventoryController invController;
+
+    public UnityEvent<Item> onItemInput = new UnityEvent<Item>();
 
     private void Start()
     {
@@ -46,6 +49,8 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         });
 
         invController.itemsOnGround.Remove(help);
+
+        onItemInput?.Invoke(droppedItem);
 
         if (help != null && help.gameObject != null)
             Destroy(help.gameObject);

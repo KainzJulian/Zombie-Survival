@@ -6,7 +6,6 @@ using UnityEngine;
 [Serializable]
 public class RangeWeaponData : WeaponData
 {
-
     [Tooltip("Amount of projectiles per shot")]
     public int projectileCount;
 

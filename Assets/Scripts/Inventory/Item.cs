@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[SerializeField]
+[Serializable]
 public class Item : MonoBehaviour
 {
     public ItemConfig item;
