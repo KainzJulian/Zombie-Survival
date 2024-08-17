@@ -14,7 +14,8 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     private void Start()
     {
-        invController = GetComponentInParent<InventoryController>();
+        if (invController == null)
+            invController = GetComponentInParent<InventoryController>();
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -44,9 +45,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             return item.amount == droppedItem.amount && item.item == droppedItem.item;
         });
 
-        Debug.Log("deleted: " + help.item.name);
+        invController.itemsOnGround.Remove(help);
 
-        Destroy(help.gameObject);
+        if (help != null && help.gameObject != null)
+            Destroy(help.gameObject);
 
         Destroy(dropped);
     }

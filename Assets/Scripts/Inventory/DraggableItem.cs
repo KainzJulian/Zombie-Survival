@@ -23,7 +23,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         foreach (var item in disableRaycastOnDrag)
             item.raycastTarget = false;
-
     }
 
     public void OnDrag(PointerEventData eventData)

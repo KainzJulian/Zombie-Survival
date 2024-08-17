@@ -17,6 +17,24 @@ public class ItemConfig : ScriptableObject
 
     [Tooltip("Type of Item")]
     public ItemType type;
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+            return false;
+
+        ItemConfig other = (ItemConfig)obj;
+
+        return name == other.name &&
+               sprite == other.sprite &&
+               description == other.description &&
+               type == other.type;
+    }
+
+    public override int GetHashCode()
+    {
+        return (name, sprite, description, type).GetHashCode();
+    }
 }
 
 [Serializable]

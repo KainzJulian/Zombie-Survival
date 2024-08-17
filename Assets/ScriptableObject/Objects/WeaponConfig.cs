@@ -15,4 +15,24 @@ public abstract class WeaponConfig : ItemConfig
     public float attackSpeed;
 
     public int noiseRadius;
+
+    // TODO: add for all child classes of this one and itemconfig an equals and hashcode method
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+            return false;
+
+        WeaponConfig other = (WeaponConfig)obj;
+
+        return base.Equals(other)
+            && duration == other.duration
+            && damage == other.damage
+            && attackSpeed == other.attackSpeed
+            && noiseRadius == other.noiseRadius;
+    }
+
+    public override int GetHashCode()
+    {
+        return (name, sprite, description, type).GetHashCode() + base.GetHashCode();
+    }
 }
