@@ -10,23 +10,22 @@ public class InventoryController : MonoBehaviour
     [SerializeField] GameObject groundItemPrefab;
     [SerializeField] GameObject groundPanel;
 
-    public List<GameObject> itemsOnGround;
+    public List<Item> itemsOnGround;
 
     public List<GameObject> inventorySlots;
 
     public void drawItemsOnGround()
     {
-        GameObject help;
+        GameObject gameObject;
 
-        foreach (GameObject groundItem in itemsOnGround)
+        foreach (Item groundItem in itemsOnGround)
         {
-            Item itemComponent = groundItem.GetComponent<Item>();
+            gameObject = Instantiate(groundItemPrefab, groundPanel.transform);
 
-            help = Instantiate(groundItemPrefab, groundPanel.transform);
-
-            help.AddComponent<Item>();
-            help.GetComponent<Item>().setAmount(itemComponent.amount);
-            help.GetComponent<Item>().setItem(itemComponent.item);
+            gameObject.AddComponent<Item>();
+            gameObject.GetComponent<Item>().setAmount(groundItem.amount);
+            gameObject.GetComponent<Item>().setItem(groundItem.item);
+            // groundItem.SetActive(false);
         }
     }
 

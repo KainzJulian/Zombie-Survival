@@ -32,7 +32,7 @@ public class InventorySystem : MonoBehaviour
 
             foreach (Collider2D item in items)
             {
-                inventoryController.itemsOnGround.Add(item.gameObject);
+                inventoryController.itemsOnGround.Add(item.GetComponent<Item>());
             }
 
             switchInventoryUI();
