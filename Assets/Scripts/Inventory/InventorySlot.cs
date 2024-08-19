@@ -26,7 +26,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         GameObject dropped = eventData.pointerDrag;
         Item droppedItem = dropped.GetComponent<Item>();
 
-        ItemType type = dropped.GetComponent<Item>().item.type;
+        ItemType type = dropped.GetComponent<Item>().config.type;
 
         if (transform.childCount != 0 || !allowedItemTypes.Contains(type))
             return;
@@ -35,10 +35,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
         draggableItem.parentAfterDrag = transform;
 
+        itemPrefab.GetComponent<Item>().setItem(droppedItem.data, droppedItem.config);
+
         GameObject newPrefab = Instantiate(itemPrefab, transform);
 
-        newPrefab.GetComponent<Item>().setItem(dropped.GetComponent<Item>().getItem());
-        newPrefab.GetComponent<Item>().setAmount(dropped.GetComponent<Item>().getAmount());
 
         // hier muss ich vom inventory System die entsprechenden Ground items löschen
         Debug.Log("Removed: " + dropped.name);

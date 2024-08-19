@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: defb917e95488ee44b81ca71303683bd, type: 3}
-  m_Name: WearableConfig
+  m_Name: Hat
   m_EditorClassIdentifier: 
   sprite: {fileID: 1979159658, guid: 573387361ec24ad49a1ecdc7bf15212b, type: 3}
   name: Hat

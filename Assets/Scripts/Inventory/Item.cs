@@ -4,56 +4,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[Serializable]
 public class Item : MonoBehaviour
 {
-    public ItemConfig item;
-    public int amount = 1;
-    private int id = 0;
+    public ItemData data;
+    public ItemConfig config;
 
     public int getID()
     {
-        return id;
+        return data.id;
     }
 
     public void setID(int id)
     {
-        this.id = id;
+        data.id = id;
     }
 
     [SerializeField] UnityEvent onDataChange = new UnityEvent();
 
-    private void Start()
+    private void Awake()
     {
-        if (id == 0)
-            id = Guid.NewGuid().GetHashCode();
+        if (config != null)
+            data = new ItemData(config);
     }
 
-    public void setItem(ItemConfig itemConfig)
+    public void setItem(ItemData data, ItemConfig config)
     {
-        item = itemConfig;
+        this.data = data;
+        this.config = config;
         onDataChange?.Invoke();
     }
 
     public ItemConfig getItem()
     {
-        return item;
+        return config;
     }
 
     public void setAmount(int amount)
     {
-        this.amount = amount;
+        data.amount = amount;
         onDataChange?.Invoke();
     }
 
     public int getAmount()
     {
-        return this.amount;
+        return data.amount;
     }
 
     public void deleteItem()
     {
-        setItem(null);
+        setItem(null, null);
         setAmount(0);
 
         onDataChange?.Invoke();

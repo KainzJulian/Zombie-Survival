@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class WeaponData
+public class WeaponData : ItemData
 {
     [Tooltip("Duration of one attack animation")]
     public float duration;
@@ -24,7 +24,7 @@ public class WeaponData
     [HideInInspector]
     public float attackTimer;
 
-    public WeaponData(WeaponConfig config)
+    public WeaponData(WeaponConfig config) : base(config)
     {
         duration = config.duration;
         damage = config.damage;

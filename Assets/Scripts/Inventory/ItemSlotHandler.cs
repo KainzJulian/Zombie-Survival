@@ -18,7 +18,7 @@ public class ItemSlotHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (item.item == null)
+        if (item.config == null)
             changeItemContainerState(false);
         else
         {
@@ -33,10 +33,10 @@ public class ItemSlotHandler : MonoBehaviour
         itemContainer.SetActive(state);
     }
 
-    public void setItem(ItemConfig item, int amount)
+    public void setItem(ItemData data, ItemConfig config, int amount)
     {
-        this.item.setItem(item);
-        this.item.setAmount(amount);
+        item.setItem(data, config);
+        item.setAmount(amount);
 
         changeItemContainerState(true);
 
@@ -46,17 +46,17 @@ public class ItemSlotHandler : MonoBehaviour
 
     public void updateIcon()
     {
-        icon.sprite = item.item.sprite;
+        icon.sprite = item.config.sprite;
     }
 
     public void updateInfo()
     {
-        info.SetText(item.amount.ToString());
+        info.SetText(item.getAmount().ToString());
     }
 
     private void OnDrawGizmos()
     {
-        if (item.item == null)
+        if (item.config == null)
             return;
 
         updateIcon();

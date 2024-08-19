@@ -37,18 +37,18 @@ public class ItemUIHandler : MonoBehaviour
     public void updateNameText()
     {
         if (nameText != null)
-            this.nameText.SetText(item.item.name);
+            this.nameText.SetText(item.config.name);
     }
 
     public void updateImage()
     {
         if (image != null)
-            this.image.sprite = item.item.sprite;
+            this.image.sprite = item.config.sprite;
     }
 
     public void updateInfoText()
     {
         if (infoText != null)
-            this.infoText.SetText(item.amount.ToString());
+            this.infoText.SetText(item.getAmount().ToString());
     }
 }

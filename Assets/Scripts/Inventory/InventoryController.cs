@@ -47,17 +47,13 @@ public class InventoryController : MonoBehaviour
 
     public void drawItemsOnGround()
     {
-        GameObject gameObject;
-
         foreach (Item groundItem in itemsOnGround)
         {
-            gameObject = Instantiate(groundItemPrefab, groundPanel.transform);
+            groundItemPrefab.GetComponent<Item>().setItem(groundItem.data, groundItem.config);
+            groundItemPrefab.GetComponent<Item>().setAmount(groundItem.getAmount());
+            groundItemPrefab.GetComponent<Item>().setID(groundItem.getID());
 
-            gameObject.AddComponent<Item>();
-            gameObject.GetComponent<Item>().setAmount(groundItem.amount);
-            gameObject.GetComponent<Item>().setItem(groundItem.item);
-            gameObject.GetComponent<Item>().setID(groundItem.getID());
-            // groundItem.SetActive(false);
+            Instantiate(groundItemPrefab, groundPanel.transform);
         }
     }
 
