@@ -56,6 +56,7 @@ public class InventoryController : MonoBehaviour
             gameObject.AddComponent<Item>();
             gameObject.GetComponent<Item>().setAmount(groundItem.amount);
             gameObject.GetComponent<Item>().setItem(groundItem.item);
+            gameObject.GetComponent<Item>().setID(groundItem.getID());
             // groundItem.SetActive(false);
         }
     }

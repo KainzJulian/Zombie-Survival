@@ -45,7 +45,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         Debug.Log("Should delete: " + droppedItem.name);
         Item help = invController.itemsOnGround.Find((item) =>
         {
-            return item.amount == droppedItem.amount && item.item == droppedItem.item;
+            return item.getID() == droppedItem.getID();
         });
 
         invController.itemsOnGround.Remove(help);

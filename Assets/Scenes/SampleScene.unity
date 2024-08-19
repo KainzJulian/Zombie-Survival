@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023cdaeff0002e94daa393a660237cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: e3629e404852b2a41b4c1d1016bc73d2, type: 2}
+  item: {fileID: 0}
   amount: 1
   onDataChange:
     m_PersistentCalls:
