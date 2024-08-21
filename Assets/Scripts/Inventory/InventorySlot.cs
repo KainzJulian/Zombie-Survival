@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,7 +14,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     [SerializeField] InventoryController invController;
 
-    public UnityEvent<Item> onItemInput = new UnityEvent<Item>();
+    [SerializeField] GameObject currentItem;
+
+    public UnityEvent<ItemData> onItemInput = new UnityEvent<ItemData>();
 
     private void Start()
     {
@@ -28,17 +31,15 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
         ItemType type = dropped.GetComponent<Item>().config.type;
 
-        if (transform.childCount != 0 || !allowedItemTypes.Contains(type))
+        if (currentItem != null || !allowedItemTypes.Contains(type))
             return;
 
         DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
-
         draggableItem.parentAfterDrag = transform;
 
         itemPrefab.GetComponent<Item>().setItem(droppedItem.data, droppedItem.config);
 
-        GameObject newPrefab = Instantiate(itemPrefab, transform);
-
+        currentItem = Instantiate(itemPrefab, transform);
 
         // hier muss ich vom inventory System die entsprechenden Ground items löschen
         Debug.Log("Removed: " + dropped.name);
@@ -50,7 +51,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
         invController.itemsOnGround.Remove(help);
 
-        onItemInput?.Invoke(droppedItem);
+        onItemInput?.Invoke(droppedItem.data);
 
         if (help != null && help.gameObject != null)
             Destroy(help.gameObject);

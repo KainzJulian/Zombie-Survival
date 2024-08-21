@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Wearable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public WearableConfig config;
+    public WearableData data;
+
+    private void Start()
     {
-        
+        data = new WearableData(config);
+        GetComponent<Item>()?.setItem(data, config);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

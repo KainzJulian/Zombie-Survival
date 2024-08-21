@@ -16,30 +16,30 @@ public class InventoryController : MonoBehaviour
     public List<GameObject> inventorySlots;
 
     [Title("Wearables", 32)]
-    public Item hat;
-    public Item cheastwear;
-    public Item pants;
-    public Item boots;
+    public ItemData hat;
+    public ItemData cheastwear;
+    public ItemData pants;
+    public ItemData boots;
 
-    public void setHat(Item newItem)
+    public void setHat(ItemData newItem)
     {
-        Debug.Log("setHat " + newItem.name);
+        Debug.Log("setHat " + newItem?.name);
         hat = newItem;
     }
 
-    public void setCheastwear(Item newItem)
+    public void setChestwear(ItemData newItem)
     {
         Debug.Log("setCheastwear " + newItem.name);
         cheastwear = newItem;
     }
 
-    public void setPants(Item newItem)
+    public void setPants(ItemData newItem)
     {
         Debug.Log("setPants " + newItem.name);
         pants = newItem;
     }
 
-    public void setBoots(Item newItem)
+    public void setBoots(ItemData newItem)
     {
         Debug.Log("setBoots " + newItem.name);
         boots = newItem;

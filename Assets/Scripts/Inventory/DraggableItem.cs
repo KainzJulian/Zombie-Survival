@@ -39,5 +39,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         foreach (var item in disableRaycastOnDrag)
             item.raycastTarget = true;
+
+
     }
 }

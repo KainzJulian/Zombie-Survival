@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
 
     private void Awake()
     {
-        if (config != null)
+        if (config != null && data == null)
             data = new ItemData(config);
     }
 
