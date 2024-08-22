@@ -24,6 +24,9 @@ public class ItemData
     [Tooltip("ID to determine whether two items are not the same")]
     public int id = 0;
 
+    [Tooltip("How many of this item can be in the same spot at once")]
+    public int stackLimit = 99;
+
     public ItemData(ItemConfig itemConfig)
     {
         sprite = itemConfig.sprite;
@@ -32,5 +35,10 @@ public class ItemData
         type = itemConfig.type;
         amount = 1;
         id = Guid.NewGuid().GetHashCode();
+    }
+
+    public bool isStackable()
+    {
+        return stackLimit > 1;
     }
 }

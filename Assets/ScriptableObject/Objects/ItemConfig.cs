@@ -19,6 +19,9 @@ public class ItemConfig : ScriptableObject
     [Tooltip("Type of Item")]
     public ItemType type;
 
+    [Tooltip("How many of this item can be in the same spot at once")]
+    public int stackLimit = 99;
+
     public override bool Equals(object obj)
     {
         if (obj == null || GetType() != obj.GetType())

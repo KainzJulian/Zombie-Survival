@@ -15,7 +15,8 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 6b608edfea5e7db4786d24dd739d732a, type: 3}
   name: Test Range weapon
   description: 'This is a Test big range weapon '
-  type: 1
+  type: 0
+  stackLimit: 64
   duration: 1
   damage: 10
   attackSpeed: 1

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6b608edfea5e7db4786d24dd739d732a, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -85,12 +85,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6743834417482336770}
   - component: {fileID: 1801268797180246635}
+  - component: {fileID: 580198687144316647}
   - component: {fileID: 1899716758708812160}
-  - component: {fileID: 5273994762267845859}
   - component: {fileID: 6020820083014772943}
-  - component: {fileID: 4081606368176891185}
+  - component: {fileID: 8716915262211922749}
   m_Layer: 5
-  m_Name: WeaponItem
+  m_Name: WeaponItem 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,70 +131,7 @@ MonoBehaviour:
   hideOnDrag: []
   disableRaycastOnDrag: []
   parentAfterDrag: {fileID: 0}
---- !u!114 &1899716758708812160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6141355934658109055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 023cdaeff0002e94daa393a660237cac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    sprite: {fileID: 0}
-    name: 
-    description: 
-    type: 0
-    amount: 0
-    id: 0
-    stackLimit: 0
-  config: {fileID: 11400000, guid: 911368c4e8ceba540bfe8628cbf64211, type: 2}
-  onDataChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6020820083014772943}
-        m_TargetAssemblyTypeName: ItemUIHandler, Assembly-CSharp
-        m_MethodName: updateImage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6020820083014772943}
-        m_TargetAssemblyTypeName: ItemUIHandler, Assembly-CSharp
-        m_MethodName: updateInfoText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5273994762267845859}
-        m_TargetAssemblyTypeName: RangeWeapon, Assembly-CSharp
-        m_MethodName: setData
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onInstantiate:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &5273994762267845859
+--- !u!114 &580198687144316647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,6 +169,54 @@ MonoBehaviour:
   onAmmoChange:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1899716758708812160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6141355934658109055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023cdaeff0002e94daa393a660237cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    sprite: {fileID: 0}
+    name: 
+    description: 
+    type: 0
+    amount: 0
+    id: 0
+    stackLimit: 0
+  config: {fileID: 0}
+  onDataChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6020820083014772943}
+        m_TargetAssemblyTypeName: ItemUIHandler, Assembly-CSharp
+        m_MethodName: updateImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6020820083014772943}
+        m_TargetAssemblyTypeName: ItemUIHandler, Assembly-CSharp
+        m_MethodName: updateInfoText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6020820083014772943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,7 +233,7 @@ MonoBehaviour:
   nameText: {fileID: 0}
   image: {fileID: 484332708045015327}
   item: {fileID: 1899716758708812160}
---- !u!114 &4081606368176891185
+--- !u!114 &8716915262211922749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

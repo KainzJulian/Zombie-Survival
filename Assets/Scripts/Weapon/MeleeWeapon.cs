@@ -7,6 +7,23 @@ using UnityEngine;
 public class MeleeWeapon : Weapon
 {
     public MeleeWeaponData data;
+    public MeleeWeaponConfig config;
+
+    private new void Start()
+    {
+        base.Start();
+        if (data == null && config != null)
+        {
+            data = new MeleeWeaponData(config);
+            GetComponent<Item>()?.setItem(data, config);
+        }
+    }
+
+    public void setData(MeleeWeaponData data, MeleeWeaponConfig config)
+    {
+        this.data = data;
+        this.config = config;
+    }
 
     private void Update()
     {

@@ -20,11 +20,15 @@ public class Item : MonoBehaviour
     }
 
     [SerializeField] UnityEvent onDataChange = new UnityEvent();
+    [SerializeField] UnityEvent<ItemData, ItemConfig> onInstantiate = new UnityEvent<ItemData, ItemConfig>();
 
     private void Awake()
     {
         if (config != null && data == null)
+        {
             data = new ItemData(config);
+            onInstantiate?.Invoke(data, config);
+        }
     }
 
     public void setItem(ItemData data, ItemConfig config)

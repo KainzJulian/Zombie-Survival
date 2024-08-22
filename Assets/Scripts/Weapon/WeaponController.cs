@@ -6,8 +6,6 @@ using UnityEngine.Events;
 
 public class WeaponController : MonoBehaviour
 {
-    public WeaponConfig weaponConfig;
-
     public GameObject weaponObject;
 
     public Weapon currentWeapon;
@@ -19,25 +17,6 @@ public class WeaponController : MonoBehaviour
     {
         currentWeapon = weaponObject.GetComponentInChildren<Weapon>();
     }
-
-    // public void setWeapon(WeaponConfig config)
-    // {
-    //     if (config is RangeWeaponConfig rangeWeaponConfig)
-    //     {
-    //         onEquipRange?.Invoke();
-
-    //         // GetComponent<RangeWeapon>().initData(rangeWeaponConfig);
-    //         weapon = GetComponent<RangeWeapon>();
-    //     }
-
-    //     if (config is MeleeWeaponConfig meleeWeaponConfig)
-    //     {
-    //         onEquipMelee?.Invoke();
-
-    //         // GetComponent<MeleeWeapon>().initData(meleeWeaponConfig);
-    //         weapon = GetComponent<MeleeWeapon>();
-    //     }
-    // }
 
     private void OnDrawGizmos()
     {

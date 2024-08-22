@@ -12,7 +12,7 @@ public abstract class Weapon : MonoBehaviour
     [HideInInspector]
     public NoiseSource noiseSource;
 
-    private void Start()
+    protected void Start()
     {
         noiseSource = GetComponent<NoiseSource>();
     }
