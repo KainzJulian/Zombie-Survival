@@ -15,34 +15,28 @@ public class InventoryController : MonoBehaviour
 
     public List<GameObject> inventorySlots;
 
-    [Title("Wearables", 32)]
-    public ItemData hat;
-    public ItemData cheastwear;
-    public ItemData pants;
-    public ItemData boots;
+    public List<GameObject> armorSlots = new List<GameObject>();
 
-    public void setHat(ItemData newItem)
-    {
-        Debug.Log("setHat " + newItem?.name);
-        hat = newItem;
-    }
+    [Button("getArmor")]
+    public void _getArmor() => getArmor();
 
-    public void setChestwear(ItemData newItem)
+    public int getArmor()
     {
-        Debug.Log("setCheastwear " + newItem.name);
-        cheastwear = newItem;
-    }
+        int help = 0;
 
-    public void setPants(ItemData newItem)
-    {
-        Debug.Log("setPants " + newItem.name);
-        pants = newItem;
-    }
+        Wearable wearable;
 
-    public void setBoots(ItemData newItem)
-    {
-        Debug.Log("setBoots " + newItem.name);
-        boots = newItem;
+        foreach (GameObject slot in armorSlots)
+        {
+            wearable = slot.GetComponentInChildren<Wearable>();
+
+            if (wearable != null)
+                help += wearable.data.armor;
+        }
+
+        Debug.Log("Current Armor amount: " + help);
+
+        return help;
     }
 
     public void drawItemsOnGround()
