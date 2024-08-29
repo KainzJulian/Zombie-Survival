@@ -40,10 +40,10 @@ public class WeaponSlot : MonoBehaviour, IDropHandler
 
         if (weapon != null)
         {
-            if (weapon is RangeWeapon)
-                itemPrefab.AddComponent<RangeWeapon>().setData();
-            if (weapon is MeleeWeapon)
-                itemPrefab.AddComponent<MeleeWeapon>().setData();
+            if (weapon is RangeWeapon rangeWeapon)
+                itemPrefab.AddComponent<RangeWeapon>().setData(rangeWeapon.data);
+            if (weapon is MeleeWeapon meleeWeapon)
+                itemPrefab.AddComponent<MeleeWeapon>().setData(meleeWeapon.data);
         }
 
         Instantiate(itemPrefab, transform);

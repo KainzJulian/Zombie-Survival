@@ -31,5 +31,6 @@ public class RangeWeaponData : WeaponData
         angle = config.angle;
         magazinSize = config.magazinSize;
         reloadTime = config.reloadTime;
+        currentAmmoAmount = 10;
     }
 }

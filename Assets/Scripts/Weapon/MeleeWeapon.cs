@@ -24,6 +24,12 @@ public class MeleeWeapon : Weapon
         };
     }
 
+    public void setData(MeleeWeaponData data)
+    {
+        config = (MeleeWeaponConfig)GetComponent<Item>().config;
+        this.data = data;
+    }
+
     private void Update()
     {
         if (data.attackTimer <= 0 && !data.canAttack)

@@ -44,7 +44,7 @@ public class InventoryController : MonoBehaviour
             if (currentEquippedWeapon > weapons.Count - 1)
                 currentEquippedWeapon = 0;
 
-            weaponController.currentWeapon = getCurrentWeapon();
+            weaponController.setCurrentWeapon(getCurrentWeapon());
             Debug.Log(weaponController.currentWeapon.name);
         }
         else if (scrollInput < 0f)
@@ -54,7 +54,7 @@ public class InventoryController : MonoBehaviour
             if (currentEquippedWeapon < 0)
                 currentEquippedWeapon = weapons.Count - 1;
 
-            weaponController.currentWeapon = getCurrentWeapon();
+            weaponController.setCurrentWeapon(getCurrentWeapon());
             Debug.Log(weaponController.currentWeapon.name);
         }
     }

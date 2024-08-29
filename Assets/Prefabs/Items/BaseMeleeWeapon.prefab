@@ -84,6 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6743834417482336770}
+  - component: {fileID: -725597881407751919}
   - component: {fileID: -8295837255045410598}
   - component: {fileID: -1895704664429968637}
   m_Layer: 5
@@ -113,6 +114,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &-725597881407751919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6141355934658109055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023cdaeff0002e94daa393a660237cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    sprite: {fileID: 0}
+    name: 
+    description: 
+    type: 0
+    amount: 0
+    id: 0
+    stackLimit: 0
+  config: {fileID: 11400000, guid: 1133200a9e4e8ab45bd14837c0c65b5e, type: 2}
+  onDataChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onInstantiate:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-8295837255045410598
 MonoBehaviour:
   m_ObjectHideFlags: 0

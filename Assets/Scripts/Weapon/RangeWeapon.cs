@@ -19,7 +19,6 @@ public class RangeWeapon : Weapon
     private new void Start()
     {
         base.Start();
-        setData();
     }
 
     public void setData()
@@ -30,6 +29,14 @@ public class RangeWeapon : Weapon
             id = GetComponent<Item>().data.id
         };
 
+        projectilePrefab = config.projectilePrefab;
+    }
+
+    public void setData(RangeWeaponData data)
+    {
+        config = (RangeWeaponConfig)GetComponent<Item>().config;
+
+        this.data = data;
         projectilePrefab = config.projectilePrefab;
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -22,6 +23,31 @@ public class WeaponController : MonoBehaviour
     {
         if (attackPoint != null)
             Gizmos.DrawWireSphere(attackPoint.position, 10);
+    }
+
+    public void setCurrentWeapon(Weapon weapon)
+    {
+        removeCurrentWeapon();
+
+        currentWeapon = Instantiate(weapon, weaponObject.transform);
+
+        if (currentWeapon is RangeWeapon rangeWeapon && weapon is RangeWeapon weapon1)
+        {
+            rangeWeapon.data.currentAmmoAmount = weapon1.data.currentAmmoAmount;
+            rangeWeapon.onAmmoChange.AddListener((int ammo) =>
+            {
+                weapon1.data.currentAmmoAmount = ammo;
+            });
+        }
+
+    }
+
+    private void removeCurrentWeapon()
+    {
+        foreach (Transform child in weaponObject.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void reloadWeapon()
