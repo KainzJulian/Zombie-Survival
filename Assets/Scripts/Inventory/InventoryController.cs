@@ -13,21 +13,22 @@ public class InventoryController : MonoBehaviour
 
     public List<Item> itemsOnGround;
 
-    public List<GameObject> inventorySlots;
-
+    public List<GameObject> inventorySlots = new List<GameObject>();
     public List<GameObject> armorSlots = new List<GameObject>();
-
     public List<GameObject> weaponSlots = new List<GameObject>();
+    public List<GameObject> hotBar = new List<GameObject>();
+
     private int currentEquippedWeapon = 0;
-
-    [SerializeField] int curWeaponIndex = 0;
-
-    [Button("Print Weapons")]
-    public void _pWeapon() => printWeaponInfo(curWeaponIndex);
 
     [SerializeField] MeleeWeapon baseWeapon;
 
     [SerializeField] WeaponController weaponController;
+
+    [Button("Print Weapons")]
+    public void _pWeapon() => printWeaponInfo(curWeaponIndex);
+    [SerializeField] int curWeaponIndex = 0;
+
+    public List<Weapon> weapons = new List<Weapon>();
 
     [Button("getArmor")]
     public void _getArmor() => getArmor();
@@ -40,31 +41,46 @@ public class InventoryController : MonoBehaviour
         {
             currentEquippedWeapon++;
 
-            if (currentEquippedWeapon > weaponSlots.Count - 1)
+            if (currentEquippedWeapon > weapons.Count - 1)
                 currentEquippedWeapon = 0;
 
             weaponController.currentWeapon = getCurrentWeapon();
-
+            Debug.Log(weaponController.currentWeapon.name);
         }
         else if (scrollInput < 0f)
         {
             currentEquippedWeapon--;
 
             if (currentEquippedWeapon < 0)
-                currentEquippedWeapon = weaponSlots.Count - 1;
+                currentEquippedWeapon = weapons.Count - 1;
 
             weaponController.currentWeapon = getCurrentWeapon();
+            Debug.Log(weaponController.currentWeapon.name);
         }
     }
 
     private Weapon getCurrentWeapon()
     {
-        Weapon help = weaponSlots[currentEquippedWeapon].GetComponentInChildren<Weapon>();
+        Weapon help = weapons[currentEquippedWeapon];
 
         if (help == null)
             return baseWeapon;
 
         return help;
+    }
+
+    public void saveWeaponSlots()
+    {
+        Weapon weapon;
+
+        foreach (GameObject gameObject in weaponSlots)
+        {
+            weapon = gameObject.GetComponentInChildren<Weapon>();
+            if (weapon == null)
+                weapons.Add(baseWeapon);
+            else
+                weapons.Add(weapon);
+        }
     }
 
     public void printWeaponInfo(int currentEquippedWeapon)
@@ -107,7 +123,8 @@ public class InventoryController : MonoBehaviour
     {
         foreach (Transform child in groundPanel.transform)
         {
-            GameObject.Destroy(child.gameObject);
+            itemsOnGround.Clear();
+            Destroy(child.gameObject);
         }
     }
 }

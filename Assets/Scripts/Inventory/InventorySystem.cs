@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
-    [SerializeField] List<Item> inventory;
-
     [SerializeField] InventoryController inventoryController;
 
     [SerializeField] GameObject inventoryUI;
@@ -20,14 +18,10 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] UnityEvent onOpenInventory = new UnityEvent();
     [SerializeField] UnityEvent onCloseInventory = new UnityEvent();
 
-    [SerializeField] List<GameObject> hotBar = new List<GameObject>();
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            inventoryController.itemsOnGround.Clear();
-
             Collider2D[] items = Physics2D.OverlapCircleAll(pickupArea.transform.position, pickRange, itemLayers);
 
             foreach (Collider2D item in items)
@@ -59,7 +53,7 @@ public class InventorySystem : MonoBehaviour
 
     public void switchHotbar(bool state)
     {
-        foreach (GameObject item in hotBar)
+        foreach (GameObject item in inventoryController.hotBar)
         {
             item.GetComponent<Image>().raycastTarget = state;
 
@@ -68,16 +62,6 @@ public class InventorySystem : MonoBehaviour
                 image.raycastTarget = state;
             }
         }
-    }
-
-    public void disableInput()
-    {
-
-    }
-
-    public void enableInput()
-    {
-
     }
 
     private void OnDrawGizmos()

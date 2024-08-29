@@ -232,6 +232,87 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!1 &8684187107316923051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 661985682620571972}
+  - component: {fileID: 67359342024292733}
+  - component: {fileID: 2760925886543391900}
+  m_Layer: 0
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &661985682620571972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8684187107316923051}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8901655225986151274}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &67359342024292733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8684187107316923051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12722a6c6315ea242b171d4197eea451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  groundItemPrefab: {fileID: 0}
+  groundPanel: {fileID: 0}
+  itemsOnGround: []
+  inventorySlots: []
+  armorSlots: []
+  weaponSlots: []
+  hotBar: []
+  baseWeapon: {fileID: -1895704664429968637, guid: 4cc73151e58caa546a4382a1d675cc3e, type: 3}
+  weaponController: {fileID: 6102759493574979055}
+  curWeaponIndex: 0
+--- !u!114 &2760925886543391900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8684187107316923051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a1f365f612ead47a05db512f3e3f25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryController: {fileID: 67359342024292733}
+  inventoryUI: {fileID: 0}
+  pickupArea: {fileID: 7095222145397010599}
+  itemLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  pickRange: 50
+  onOpenInventory:
+    m_PersistentCalls:
+      m_Calls: []
+  onCloseInventory:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &6424858684139808006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -353,6 +434,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2495177455688210028, guid: 68317e1326a1e47499325923916467df, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3962531677736074081}
+    - targetCorrespondingSourceObject: {fileID: 2495177455688210028, guid: 68317e1326a1e47499325923916467df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 661985682620571972}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
       insertIndex: -1
@@ -360,9 +444,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6102759493574979055}
-    - targetCorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8039157430685141745}
     - targetCorrespondingSourceObject: {fileID: 8965806107412115495, guid: 68317e1326a1e47499325923916467df, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6582673911388014362}
@@ -407,111 +488,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adbe3118ed95a0d47acbae35f39f0336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponConfig: {fileID: 11400000, guid: 911368c4e8ceba540bfe8628cbf64211, type: 2}
   weaponObject: {fileID: 3055290988472079326}
   currentWeapon: {fileID: 0}
   attackLayers:
     serializedVersion: 2
     m_Bits: 384
   attackPoint: {fileID: 815974179111587833}
---- !u!114 &8039157430685141745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2685658065619850529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49a1f365f612ead47a05db512f3e3f25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: []
-  inventoryController: {fileID: 0}
-  inventoryUI: {fileID: 0}
-  pickupArea: {fileID: 7095222145397010599}
-  itemLayers:
-    serializedVersion: 2
-    m_Bits: 512
-  pickRange: 50
-  onOpenInventory:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InventoryController, Assembly-CSharp
-        m_MethodName: drawItemsOnGround
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2982223488555565609}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6102759493574979055}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onCloseInventory:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InventoryController, Assembly-CSharp
-        m_MethodName: deleteItemsGroundPanel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4034647331464593795}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 6102759493574979055}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &6582673911388014362
 MonoBehaviour:
   m_ObjectHideFlags: 0

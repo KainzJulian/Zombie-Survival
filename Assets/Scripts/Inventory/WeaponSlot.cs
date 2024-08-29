@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class InventorySlot : MonoBehaviour, IDropHandler
+public class WeaponSlot : MonoBehaviour, IDropHandler
 {
     [SerializeField] GameObject itemPrefab;
 
@@ -36,9 +33,18 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         DraggableItem draggableItem = dropped.GetComponent<DraggableItem>();
         draggableItem.parentAfterDrag = transform;
 
-        // TODO: für jeden slot einfach ein AddComponent<RangeWeapon>() hinzufügen und die Daten von grounditem übernehmen
 
         itemPrefab.GetComponent<Item>().setItem(droppedItem.data, droppedItem.config);
+
+        Weapon weapon = dropped.GetComponent<Weapon>();
+
+        if (weapon != null)
+        {
+            if (weapon is RangeWeapon)
+                itemPrefab.AddComponent<RangeWeapon>().setData();
+            if (weapon is MeleeWeapon)
+                itemPrefab.AddComponent<MeleeWeapon>().setData();
+        }
 
         Instantiate(itemPrefab, transform);
 

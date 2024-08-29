@@ -12,17 +12,16 @@ public class MeleeWeapon : Weapon
     private new void Start()
     {
         base.Start();
-        if (data == null && config != null)
-        {
-            data = new MeleeWeaponData(config);
-            GetComponent<Item>()?.setItem(data, config);
-        }
+        setData();
     }
 
-    public void setData(MeleeWeaponData data, MeleeWeaponConfig config)
+    public void setData()
     {
-        this.data = data;
-        this.config = config;
+        config = (MeleeWeaponConfig)GetComponent<Item>().config;
+        data = new MeleeWeaponData(config)
+        {
+            id = GetComponent<Item>().data.id
+        };
     }
 
     private void Update()

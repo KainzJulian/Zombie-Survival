@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour
         if (amount == -1)
             amount = healthComponent.health;
 
-        healthText.SetText(amount.ToString());
+        healthText?.SetText(amount.ToString());
     }
 
     public void setMaxHealthText(int amount = -1)
@@ -73,6 +73,6 @@ public class PlayerManager : MonoBehaviour
         if (amount == -1)
             amount = healthComponent.health;
 
-        maxHealthText.SetText(amount.ToString());
+        maxHealthText?.SetText(amount.ToString());
     }
 }

@@ -18,7 +18,7 @@ public class InputController : MonoBehaviour
     private void Start()
     {
         sceneController = SceneController.instance;
-        weaponController.getWeaponAsRange()?.onAmmoChange.AddListener(rangeWeaponUI.setCurrentAmmoText);
+        // weaponController.getWeaponAsRange()?.onAmmoChange.AddListener(rangeWeaponUI.setCurrentAmmoText);
     }
 
     void Update()

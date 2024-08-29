@@ -24,7 +24,7 @@ public class Item : MonoBehaviour
 
     private void Awake()
     {
-        if (config != null && data == null)
+        if (config != null && data.id == 0)
         {
             data = new ItemData(config);
             onInstantiate?.Invoke(data, config);
